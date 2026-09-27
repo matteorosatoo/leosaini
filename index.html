@@ -241,6 +241,10 @@ html{scroll-snap-type:y mandatory}
 .g-hint{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.75}
 .g-hint b{display:inline-block;font-weight:inherit;animation:g-spinta 1.6s ease-in-out infinite}
 @keyframes g-spinta{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+/* in basso a sinistra, lontano dai contatti fissi a destra */
+.giu{position:absolute;left:var(--pad);right:calc(var(--pad) + 150px);bottom:calc(var(--sb) + 24px);z-index:3;font-size:11px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.giu b{display:inline-block;margin-left:4px;font-size:14px;animation:g-giu 1.6s ease-in-out infinite}
+@keyframes g-giu{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 .giostra.arriva .g-nome,.giostra.arriva .g-frase{animation:g-in .6s cubic-bezier(.2,.8,.2,1) both}
 .giostra.arriva .g-frase{animation-delay:.1s}
 @keyframes g-in{from{opacity:0;transform:translateX(34px)}to{opacity:1;transform:none}}
@@ -834,6 +838,7 @@ main{transition:opacity .2s ease}
       <p class="g-hint">Scorri a destra o a sinistra <b>⇄</b></p>
     </div>
   </div>
+  <p class="giu" data-in>Quando ti ho convinto, scorri verso il basso <b>↓</b></p>
 </section>
 
 <!-- ===== CONTATTI ===== -->
@@ -1121,7 +1126,8 @@ mm.add({mob:'(max-width:759px)',desk:'(min-width:760px)'},function(ctx){
   // Non ti ho ancora convinto?: la domanda, poi la scelta dello stile
   slide('#stile',function(tl){
     tl.from('#stile .ghost',{xPercent:30,opacity:0,duration:1.4},0)
-      .from('#stile [data-in]',up({y:40,stagger:.3}),.1);
+      .from('#stile .in [data-in]',up({y:40,stagger:.3}),.1)
+      .from('#stile .giu',up({y:20}),1.4);
   });
 
   // Contatti: le righe salgono una dopo l'altra
