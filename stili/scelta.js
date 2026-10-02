@@ -6,10 +6,10 @@
 (function(){
   var STILI=[
     {id:'originale',nome:'Red Light',bg:'#0A0A0A',frase:'Sei una persona da notte fonda? Red Light è nato tra le luci della città, per chi le serate le vive fino all’alba.'},
-    {id:'couture',nome:'Couture',bg:'#F2EDE6',frase:'Hai l’occhio per la moda? Couture l’ho pensato per chi sfoglia le riviste dalla prima all’ultima pagina.'},
+    {id:'couture',nome:'Couture',bg:'#F2EDE6',frase:'Hai l’occhio per la moda? Couture l’abbiamo pensato per chi sfoglia le riviste dalla prima all’ultima pagina.'},
     {id:'poster',nome:'Poster',bg:'#FFE500',frase:'Ti piace farti notare? Poster è per chi entra in una stanza e tutti si girano a guardarlo.'},
-    {id:'noir',nome:'Noir',bg:'#070707',frase:'Sei una persona elegante e un po’ misteriosa? Noir l’ho girato per chi aspetta sempre i titoli di coda.'},
-    {id:'anni50',nome:'Anni ’50',bg:'#E8751A',frase:'Sei una persona retrò? Lo stile anni ’50 l’ho creato apposta per le persone come te.'}
+    {id:'noir',nome:'Noir',bg:'#070707',frase:'Sei una persona elegante e un po’ misteriosa? Noir l’abbiamo girato per chi aspetta sempre i titoli di coda.'},
+    {id:'anni50',nome:'Anni ’50',bg:'#E8751A',frase:'Sei una persona retrò? Lo stile anni ’50 l’abbiamo creato apposta per le persone come te.'}
   ];
   var html=document.documentElement;
   var css=document.createElement('style');

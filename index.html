@@ -218,11 +218,17 @@ html{scroll-snap-type:y mandatory}
 .cta img.on{opacity:1}
 .cta .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.95) 0%,rgba(10,10,10,.72) 50%,rgba(10,10,10,.45) 100%)}
 .cta .bottom{display:flex;flex-direction:column;gap:clamp(14px,2.4vh,22px);bottom:calc(var(--sb) + clamp(84px,13vh,130px))}
-.btns{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:4px}
+.btns a{grid-column:span 2;min-width:0}
+.btns a.meta{grid-column:span 1}
+.btns a.meta{padding-left:18px;padding-right:10px}
+.btns a.meta small{letter-spacing:.12em;font-size:10px;white-space:nowrap}
+.btns span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .btns a{display:flex;flex-direction:column;justify-content:center;gap:3px;min-height:52px;padding:9px 24px;border-radius:999px;border:1px solid rgba(255,255,255,.5);background:rgba(10,10,10,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .2s,border-color .2s}
 .btns a:hover{background:rgba(255,255,255,.14);border-color:#E3262E}
 .btns small{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.7}
 .btns span{font-size:clamp(17px,1.7vw,24px);font-weight:600}
+.btns a.meta span{font-size:15px}
 
 /* ===== Non ti ho ancora convinto? — si sceglie lo stile scorrendo di lato (stili/scelta.js) ===== */
 .stile{position:relative;height:100vh;height:100svh;overflow:hidden;--c:#E3262E;background:radial-gradient(120% 80% at 50% 20%,#1c0b0d 0%,#0A0A0A 70%);touch-action:pan-y;user-select:none;-webkit-user-select:none}
@@ -293,7 +299,6 @@ html{scroll-snap-type:y mandatory}
   .tools{flex:1;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:760px}
   .tool{min-height:150px;padding:18px}
   .s4 .phone-wrap{align-self:stretch}
-  .btns{flex-direction:row;flex-wrap:wrap}
 }
 
 /* ===================== STILE COUTURE =====================
@@ -577,8 +582,8 @@ main{transition:opacity .2s ease}
       <div class="hero-row"><p>Film AI per le tue serate.</p><span class="hint">Scorri ↓</span></div>
     </div>
     <div class="agenda">
-      <p class="who">Sono Leo, Product Design @ Politecnico di Milano.</p>
-      <h2 class="big">Ti spiego come lavoro.</h2>
+      <p class="who">Siamo Leo e Matteo, Product Design @ Politecnico di Milano.</p>
+      <h2 class="big">Ti spieghiamo come lavoriamo.</h2>
       <ol>
         <li><b style="color:#2F6BFF">01</b>Parliamo.</li>
         <li><b style="color:#D8B45A">02</b>Lo script.</li>
@@ -602,7 +607,7 @@ main{transition:opacity .2s ease}
     <div class="center">
       <div class="stepbar"><div class="sn"><b>1</b><span>/4</span></div><div class="sl"><small>Passo 1 di 4 · il processo</small><div class="segs"><i class="on"></i><i></i><i></i><i></i></div></div></div>
       <h2 class="big">Parliamo.</h2>
-      <p class="sub"><span class="sa">Le mie idee incontrano le tue:</span> <span class="sb">da lì nasce il tuo video.</span></p>
+      <p class="sub"><span class="sa">Le nostre idee incontrano le tue:</span> <span class="sb">da lì nasce il tuo video.</span></p>
     </div>
   </div>
 </section>
@@ -655,7 +660,7 @@ main{transition:opacity .2s ease}
         <p class="sub">Fissiamo insieme cosa succede, scena per scena.</p>
       </div>
       <div class="script">
-        <div class="paper first"><div class="paper-top"><span>Serata — Bozza 01</span><span>Leo Saini</span></div>
+        <div class="paper first"><div class="paper-top"><span>Serata — Bozza 01</span><span>Nitido Vision</span></div>
           <span class="ln h">Sc. 01 — Terrazza Duomo 21 · Notte</span>
           <span class="ln">Il Duomo acceso alle spalle. Calici in alto.</span>
         </div>
@@ -684,7 +689,7 @@ main{transition:opacity .2s ease}
       <div class="head">
         <div class="stepbar"><div class="sn"><b>3</b><span>/4</span></div><div class="sl"><small>Passo 3 di 4 · il processo</small><div class="segs"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div></div>
         <h2 class="big">Produzione.</h2>
-        <p class="sub">Genero il video, lo monto, metto musica e tutte le info che vuoi.</p>
+        <p class="sub">Generiamo il video, lo montiamo, mettiamo musica e tutte le info che vuoi.</p>
       </div>
       <div class="work">
         <div class="monitor">
@@ -718,7 +723,7 @@ main{transition:opacity .2s ease}
       <div class="head">
         <div class="kick"><b>03</b><i></i><span>Gli strumenti</span></div>
         <h2 class="big">Software da studio.</h2>
-        <p class="sub">L'AI genera. Il resto lo faccio con gli stessi programmi di case di produzione e studi di design.</p>
+        <p class="sub">L'AI genera. Il resto lo facciamo con gli stessi programmi di case di produzione e studi di design.</p>
       </div>
       <div class="tools">
         <div class="tool" data-rot="-3"><small>Adobe</small><b>Premiere Pro</b><span>Montaggio</span></div>
@@ -746,7 +751,7 @@ main{transition:opacity .2s ease}
     <div class="bottom ta">
       <div class="kick"><b>03</b><i></i><span>Il cast</span></div>
       <h2 class="big">Persone vere. Protagoniste.</h2>
-      <p class="sub">Da poche foto creo il tuo sosia digitale.</p>
+      <p class="sub">Da poche foto creiamo il tuo sosia digitale.</p>
     </div>
     <div class="bottom tb" data-rm-hide>
       <div class="kick"><b>03</b><i></i><span>Coerenza dei personaggi</span></div>
@@ -770,7 +775,7 @@ main{transition:opacity .2s ease}
     <div class="bottom head">
       <div class="kick"><b>03</b><i></i><span>Le location</span></div>
       <h2 class="big">Il tuo locale. Riconoscibile.</h2>
-      <p class="sub">Qualsiasi locale, qualsiasi posto: lo ricreo coerente e preciso.</p>
+      <p class="sub">Qualsiasi locale, qualsiasi posto: lo ricreiamo coerente e preciso.</p>
     </div>
   </div>
 </section>
@@ -800,12 +805,12 @@ main{transition:opacity .2s ease}
       <div class="head">
         <div class="stepbar"><div class="sn"><b>4</b><span>/4</span></div><div class="sl"><small>Passo 4 di 4 · il processo</small><div class="segs"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div></div>
         <h2 class="big">Consegna.</h2>
-        <p class="sub">Ti mando il video, pronto da pubblicare.</p>
+        <p class="sub">Ti mandiamo il video, pronto da pubblicare.</p>
       </div>
       <div class="phone-wrap">
         <div class="phone">
           <div class="chat">
-            <div class="chat-h"><span class="av">LS</span><div><b>Leo Saini</b><small>online</small></div></div>
+            <div class="chat-h"><span class="av">NV</span><div><b>Nitido Vision</b><small>online</small></div></div>
             <div class="chat-b">
               <div class="msg in m1"><div class="thumb"><img class="media" src="assets/04-mfw-closing-party-poster.jpg" alt="" loading="lazy"></div><time>23:47</time></div>
               <div class="msg in m2"><p>Ecco il video, pronto da pubblicare.</p><time>23:47</time></div>
@@ -814,7 +819,7 @@ main{transition:opacity .2s ease}
           </div>
           <div class="player">
             <video class="media" data-src="assets/04-mfw-closing-party.mp4" poster="assets/04-mfw-closing-party-poster.jpg" muted loop playsinline preload="none"></video>
-            <div class="plab"><span class="t1">Il mio ultimo lavoro</span><span class="t2">Fashion Week Closing Party.</span><span class="t3">Twiga · Milano · UNILUX</span></div>
+            <div class="plab"><span class="t1">Il nostro ultimo lavoro</span><span class="t2">Fashion Week Closing Party.</span><span class="t3">Twiga · Milano · UNILUX</span></div>
           </div>
         </div>
       </div>
@@ -828,7 +833,7 @@ main{transition:opacity .2s ease}
   <div class="ghost">?</div>
   <div class="in">
     <div class="kick" data-in><b>→</b><i></i><span>Un'ultima cosa</span></div>
-    <h2 class="big titolo" data-in>Non ti ho ancora convinto?</h2>
+    <h2 class="big titolo" data-in>Non ti abbiamo ancora convinto?</h2>
     <p class="sub" data-in>Il sito non ti sembra adatto a te? Non ti preoccupare: ricordati che l'unico limite è l'immaginazione.</p>
     <div class="giostra" data-giostra data-in tabindex="0" role="group" aria-roledescription="scelta dello stile">
       <p class="g-lab">Scegli il tuo stile</p>
@@ -838,7 +843,7 @@ main{transition:opacity .2s ease}
       <p class="g-hint">Scorri a destra o a sinistra <b>⇄</b></p>
     </div>
   </div>
-  <p class="giu" data-in>Quando ti ho convinto, scorri verso il basso <b>↓</b></p>
+  <p class="giu" data-in>Quando ti abbiamo convinto, scorri verso il basso <b>↓</b></p>
 </section>
 
 <!-- ===== CONTATTI ===== -->
@@ -853,11 +858,13 @@ main{transition:opacity .2s ease}
   <div class="bottom">
     <div class="kick" data-in><b>→</b><i></i><span>Il prossimo passo è tuo</span></div>
     <h2 class="big" data-in>Hai una serata?</h2>
-    <p class="sub" data-in>Come funziona, quanto costa, una prova. Chiedimi tutto: rispondo sempre.</p>
+    <p class="sub" data-in>Come funziona, quanto costa, una prova. Chiedeteci tutto: rispondiamo sempre.</p>
     <div class="btns" data-in>
-      <a href="https://instagram.com/leosainii" target="_blank" rel="noopener"><small>Instagram</small><span>@leosainii</span></a>
+      <a class="meta" href="https://instagram.com/leosainii" target="_blank" rel="noopener"><small>Instagram · Leo</small><span>@leosainii</span></a>
+      <a class="meta" href="https://instagram.com/matteorosatoo" target="_blank" rel="noopener"><small>Instagram · Matteo</small><span>@matteorosatoo</span></a>
       <a href="https://wa.me/393703374793" target="_blank" rel="noopener"><small>WhatsApp</small><span>370 337 4793</span></a>
-      <a href="mailto:leo.saini06@gmail.com"><small>Email</small><span>leo.saini06@gmail.com</span></a>
+      <a href="mailto:leo@nitidovision.com"><small>Email · Leo</small><span>leo@nitidovision.com</span></a>
+      <a href="mailto:matteo@nitidovision.com"><small>Email · Matteo</small><span>matteo@nitidovision.com</span></a>
     </div>
   </div>
 </section>
@@ -866,18 +873,19 @@ main{transition:opacity .2s ease}
 
 <div class="pill pill-d">
   <a href="https://instagram.com/leosainii" target="_blank" rel="noopener">@leosainii</a><span style="opacity:.5">·</span>
+  <a href="https://instagram.com/matteorosatoo" target="_blank" rel="noopener">@matteorosatoo</a><span style="opacity:.5">·</span>
   <a href="https://wa.me/393703374793" target="_blank" rel="noopener">370 337 4793</a><span style="opacity:.5">·</span>
-  <a href="mailto:leo.saini06@gmail.com">leo.saini06@gmail.com</a>
+  <a href="mailto:leo@nitidovision.com,matteo@nitidovision.com">leo@ · matteo@nitidovision.com</a>
 </div>
 <div class="pill pill-m">
   <a href="https://instagram.com/leosainii" target="_blank" rel="noopener" aria-label="Instagram @leosainii"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="#fff"/></svg></a>
   <a href="https://wa.me/393703374793" target="_blank" rel="noopener" aria-label="WhatsApp 370 337 4793"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4A8.5 8.5 0 1 1 8.4 19z"/><path d="M9.2 8.6c.2-.4.5-.5.8-.5h.4l.9 2-.6.8a5 5 0 0 0 2.4 2.4l.8-.6 2 .9v.4c0 .3-.2.7-.5.9-.6.4-1.5.5-2.6 0a8 8 0 0 1-3.6-3.6c-.4-1-.3-1.9 0-2.7z"/></svg></a>
-  <a href="mailto:leo.saini06@gmail.com" aria-label="Email leo.saini06@gmail.com"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></a>
+  <a href="mailto:leo@nitidovision.com,matteo@nitidovision.com" aria-label="Email leo@nitidovision.com e matteo@nitidovision.com"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></a>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="stili/scelta.js?v=20260927h"></script>
+<script src="stili/scelta.js?v=20261003a"></script>
 <script>
 (function(){
 var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
