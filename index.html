@@ -11,14 +11,14 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201327%201328%22%3E%3Crect%20width%3D%221327%22%20height%3D%221328%22%20fill%3D%22%230A0A0A%22/%3E%3Cpath%20d%3D%22M84.5%20953V373.5A289.5%20289.5%200%200%201%20663.5%20373.5V953.5A289.5%20289.5%200%200%200%201242.5%20953.5V374%22%20fill%3D%22none%22%20stroke%3D%22%23FFD500%22%20stroke-width%3D%22169%22/%3E%3C/svg%3E">
 <title>Nitido Vision</title>
 <style>
-/* Layout: sidebar fissa a sinistra (Home / Commissioned / Vision / Contact), viste che cambiano con uno strappo rosso.
+/* Layout: logo-bottone in alto a sinistra che apre il menu a tutto schermo (Home / Commissioned / Vision / Contact), viste che cambiano con uno strappo rosso.
    Identita: solo bianco puro + rosso acceso, grana e disturbo sopra tutto, bordi ruvidi da fotocopia. */
 :root{
   --white:#0A0A0A;
   --red:#FFD500;
   --f-display:"Satoshi","Helvetica Neue",Helvetica,Arial,sans-serif;
   --f-body:"Satoshi","Helvetica Neue",Helvetica,Arial,sans-serif;
-  --side:clamp(168px,15vw,240px);
+  --side:0px;
   --pad:clamp(20px,3.4vw,56px);
   --nav:clamp(15px,1.4vw,22px);
   --torn:polygon(1.4% 0,.4% 4%,1.8% 9%,.2% 15%,1.6% 22%,.3% 29%,1.9% 36%,.1% 44%,1.5% 51%,.4% 58%,2% 66%,.2% 73%,1.6% 81%,.3% 88%,1.2% 94%,0 100%,100% 100%,100% 0);
@@ -40,7 +40,7 @@ a{color:inherit}
 #grain{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:90}
 
 /* sidebar */
-.side{position:fixed;left:0;top:0;bottom:0;width:var(--side);z-index:110;color:var(--white);display:flex;flex-direction:column;justify-content:space-between;
+.side{display:none!important;position:fixed;left:0;top:0;bottom:0;width:var(--side);z-index:110;color:var(--white);display:flex;flex-direction:column;justify-content:space-between;
   padding:calc(24px + env(safe-area-inset-top,0px)) 18px calc(22px + env(safe-area-inset-bottom,0px)) 20px}
 .side::before{content:"";position:absolute;top:-8px;bottom:-8px;left:-10px;right:-5px;background:var(--red);filter:url(#rough);z-index:-1}
 .mark{display:block;width:46px;height:46px;color:var(--white);position:relative}
@@ -136,7 +136,7 @@ a{color:inherit}
 .lang.inv button.on{background:var(--white);color:var(--red);border-color:var(--white)}
 .mb-lbl{position:relative;background:var(--red);color:var(--white);font:900 14px/1 var(--f-display);letter-spacing:.1em;text-transform:lowercase;padding:.8em 1.05em .74em;clip-path:var(--tape);transform:rotate(-2deg);transition:background .25s,color .25s}
 .mbtn.inv .mb-lbl,.mbtn.on .mb-lbl{background:var(--white);color:var(--red)}
-.mbtn,.mmenu{display:none}
+.mbtn,.mmenu{display:flex}
 .mbtn{-webkit-tap-highlight-color:transparent;touch-action:manipulation;position:fixed;left:14px;top:calc(14px + env(safe-area-inset-top,0px));z-index:130;appearance:none;border:0;background:none;padding:0;cursor:pointer;align-items:center;gap:10px;color:var(--white)}
 .mb-ring{position:relative;display:grid;place-items:center;width:54px;height:54px;color:var(--red);transition:color .25s}
 .mb-ring::before{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid currentColor;background:rgba(10,10,10,.55);filter:url(#rough);transition:background .35s,border-color .35s}
@@ -151,19 +151,31 @@ a{color:inherit}
 .mbtn.on .mb-ring::before{background:var(--white);border-color:var(--white)}
 .mbtn.on .mb-ring svg{transform:rotate(180deg)}
 .mmenu{position:fixed;inset:0;z-index:100;background:var(--red);color:var(--white);flex-direction:column;justify-content:center;padding:90px 26px 40px;overflow:hidden;
-  clip-path:circle(0px at 41px 41px);visibility:hidden;transition:clip-path .62s cubic-bezier(.7,0,.2,1),visibility 0s .62s}
-.mmenu.on{clip-path:circle(160vmax at 41px 41px);visibility:visible;transition:clip-path .62s cubic-bezier(.7,0,.2,1),visibility 0s}
+  clip-path:circle(0px at var(--ox,41px) var(--oy,41px));visibility:hidden;transition:clip-path .62s cubic-bezier(.7,0,.2,1),visibility 0s .62s}
+.mmenu.on{clip-path:circle(160vmax at var(--ox,41px) var(--oy,41px));visibility:visible;transition:clip-path .62s cubic-bezier(.7,0,.2,1),visibility 0s}
 .mmenu nav{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;z-index:1}
 .mmenu nav a{display:block;color:var(--white);text-decoration:none;font:900 clamp(36px,11.6vw,96px)/.95 var(--f-display);letter-spacing:-.055em;text-transform:lowercase;padding:.04em .16em .1em;margin-left:-.16em;
   opacity:0;transform:translateY(46px) rotate(2.5deg);transition:opacity .35s,transform .35s}
 .mmenu.on nav a{opacity:1;transform:none;transition:opacity .5s calc(.28s + var(--i)*.08s),transform .5s cubic-bezier(.2,.9,.3,1.2) calc(.28s + var(--i)*.08s)}
 .mmenu nav a i{font:900 12px/1 var(--f-display);letter-spacing:.14em;vertical-align:top;margin-right:.7em;position:relative;top:.9em}
+.mmenu nav a:hover{text-decoration:underline;text-decoration-thickness:.07em;text-underline-offset:.1em}
 .mmenu nav a[aria-current="page"]{background:var(--white);color:var(--red);clip-path:var(--tape)}
 .mdraw{position:absolute;right:-12vw;bottom:-8vw;width:92vw;height:auto;opacity:.16;z-index:0}
 .mdraw path{fill:none;stroke:var(--white);stroke-width:169;stroke-dasharray:1;stroke-dashoffset:1}
 .mmenu.on .mdraw path{stroke-dashoffset:0;transition:stroke-dashoffset 1.1s cubic-bezier(.6,0,.2,1) .35s}
 .mfoot{position:absolute;left:26px;bottom:calc(24px + env(safe-area-inset-bottom,0px));margin:0;font:900 12px/1.4 var(--f-body);letter-spacing:.14em;text-transform:lowercase;z-index:1}
 
+@media (min-width:821px){
+  .mmenu{padding:120px var(--pad) 60px}
+  .mmenu nav{gap:10px}
+  .mmenu nav a{font-size:clamp(72px,11vw,190px)}
+  .mdraw{width:min(70vw,95vh);right:-6vw;bottom:-10vh}
+  .mfoot{left:var(--pad);font-size:13px}
+  .lang{right:var(--pad);top:22px}
+  .mbtn{left:var(--pad);top:22px}
+  .page{padding-top:calc(var(--pad) + 84px)}
+  .home-l{padding-top:calc(var(--pad) + 76px)}
+}
 /* strappo tra le viste */
 .wipe{position:fixed;inset:0;z-index:120;pointer-events:none;display:flex;flex-direction:column}
 .wipe i{flex:1;background:var(--red);transform:translateX(-101%);transition:transform .24s cubic-bezier(.7,0,.2,1) var(--dl,0s)}
@@ -196,9 +208,9 @@ a{color:inherit}
 }
 @media (prefers-reduced-motion:reduce){.btrack{animation:none}.mb-ring::after{animation:none!important}}
 </style>
-
 </head>
 <body>
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <filter id="rough" x="-4%" y="-6%" width="108%" height="112%">
@@ -267,35 +279,34 @@ a{color:inherit}
 
       <div class="band" id="band" role="img" aria-label="Loghi dei locali: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack" id="btrack"></div></div>
 
-      <div class="sec"><span class="tape">Serate</span></div>
+      <div class="sec"><span class="tape">Video promozionali</span></div>
       <div class="grid">
-        <figure class="vid c6" style="--ar:16/9"><div class="fr"><video muted loop playsinline preload="none" poster="poster/racing-week-unilux.jpg" data-src="video/racing-week-unilux.mp4"></video></div><figcaption>Unilux &middot; Twiga<span></span></figcaption></figure>
-        <figure class="vid c6 off2" style="--ar:16/9"><div class="fr"><video muted loop playsinline preload="none" poster="poster/ugo-dv-mariu.jpg" data-src="video/ugo-dv-mariu.mp4"></video></div><figcaption>Terrazza Duomo<span>Evento</span></figcaption></figure>
-        <figure class="vid v c4" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/hollywood-friday.jpg" data-src="video/hollywood-friday.mp4"></video></div><figcaption>Hollywood<span>Evento</span></figcaption></figure>
+        <figure class="vid c8" style="--ar:16/9"><div class="fr"><video muted loop playsinline preload="none" poster="poster/ugo-dv-mariu.jpg" data-src="video/ugo-dv-mariu.mp4"></video></div><figcaption>Terrazza Duomo<span>Evento</span></figcaption></figure>
+        <div class="c4 fl-side off1"><p>Serate, eventi e locali: aftermovie e promo verticali e orizzontali.</p></div>
         <figure class="vid v c4" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/dolce-vita.jpg" data-src="video/dolce-vita.mp4"></video></div><figcaption>Dolce Vita<span>Terrazza Duomo</span></figcaption></figure>
         <figure class="vid v c4 off2" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/mfw-closing-unilux.jpg" data-src="video/mfw-closing-unilux.mp4"></video></div><figcaption>MFW Closing<span>Twiga</span></figcaption></figure>
       </div>
 
       <div class="sec"><span class="tape">Flyer animati</span></div>
       <div class="grid">
-        <figure class="vid v c4" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/fastlife-flyer.jpg" data-src="video/fastlife-flyer.mp4"></video></div><figcaption>Fast Life<span>Risotto Western</span></figcaption></figure>
-        <figure class="vid v c4 off2" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/ladies-night.jpg" data-src="video/ladies-night.mp4"></video></div><figcaption>Ladies Night<span>Loolapaloosa</span></figcaption></figure>
-        <div class="c4 fl-side off1">
+        <figure class="vid v c3" style="--ar:4/5"><div class="fr"><video muted loop playsinline preload="none" poster="poster/fastlife-draft.jpg" data-src="video/fastlife-draft.mp4"></video></div><figcaption>Fast Life<span>Risotto Western</span></figcaption></figure>
+        <figure class="vid v c3 off2" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/ladies-night.jpg" data-src="video/ladies-night.mp4"></video></div><figcaption>Ladies Night<span>Loolapaloosa</span></figcaption></figure>
+        <figure class="vid v c3" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/ciak-song1.jpg" data-src="video/ciak-song1.mp4"></video></div><figcaption>Fast Life<span>Ciak</span></figcaption></figure>
+        <div class="c3 fl-side off1">
           <h2 class="fl-big">Flyer<br>in moto</h2>
           <p>Locandine che si muovono. 9:16, in loop.</p>
         </div>
       </div>
 
-      <div class="sec"><span class="tape">Rentallo</span></div>
+      <div class="sec"><span class="tape">Video tutorial</span></div>
       <div class="grid">
-        <figure class="vid v c4" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/rentallo-checkin-duomo.jpg" data-src="video/rentallo-checkin-duomo.mp4"></video></div><figcaption>Check-in<span>Duomo</span></figcaption></figure>
+        <figure class="vid v c4" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/rentallo-checkin-skyline.jpg" data-src="video/rentallo-checkin-skyline.mp4"></video></div><figcaption>Check-in<span>Skyline</span></figcaption></figure>
         <figure class="vid v c4 off2" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/rentallo-checkout-duomo.jpg" data-src="video/rentallo-checkout-duomo.mp4"></video></div><figcaption>Check-out<span>Duomo</span></figcaption></figure>
         <div class="c4 fl-side off1">
           <img class="rlogo" src="assets/logos/rentallo.png" alt="Rentallo" onerror="this.outerHTML='<h2 class=&quot;fl-big&quot;>rentallo</h2>'">
           <p>Video di automazione per appartamenti: un ibrido tra video girati in modo classico e AI.</p>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- VISION -->
@@ -467,7 +478,7 @@ a{color:inherit}
   mbtn.addEventListener('click', function(){ setMenu(!menuOpen); });
   Array.prototype.forEach.call(mm.querySelectorAll('a'), function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
   addEventListener('keydown', function(e){ if (e.key === 'Escape' && menuOpen) setMenu(false); });
-  addEventListener('resize', function(){ if (innerWidth > 820 && menuOpen) setMenu(false); });
+  
 
   /* i tasti si invertono in base a cosa hanno sotto (tutto protetto: se qualcosa non va, i tasti funzionano lo stesso) */
   function isLightAt(x, y, skip){
@@ -489,8 +500,11 @@ a{color:inherit}
     inkQ = false;
     try {
       if (!document.elementsFromPoint) return;
-      if (!menuOpen) mbtn.classList.toggle('inv', isLightAt(41, 41, mbtn));
-      lg.classList.toggle('inv', menuOpen ? true : isLightAt(Math.max(20, innerWidth - 60), 36, lg));
+      var r = mbtn.querySelector('.mb-ring').getBoundingClientRect(), cx = r.left + r.width/2, cy = r.top + r.height/2;
+      mm.style.setProperty('--ox', cx + 'px'); mm.style.setProperty('--oy', cy + 'px');
+      if (!menuOpen) mbtn.classList.toggle('inv', isLightAt(cx, cy, mbtn));
+      var l = lg.getBoundingClientRect();
+      lg.classList.toggle('inv', menuOpen ? true : isLightAt(Math.max(20, l.left + l.width/2), l.top + l.height/2, lg));
     } catch (e) {}
   }
   function queueInk(){ if (!inkQ){ inkQ = true; (window.requestAnimationFrame || setTimeout)(sampleInk); } }
@@ -500,7 +514,7 @@ a{color:inherit}
 
   /* italiano / english: cambia tutto il sito */
   var EN = {
-    'lavori su commissione':'commissioned work','serate':'nights','flyer animati':'animated flyers','flyer':'flyers','in moto':'in motion',
+    'lavori su commissione':'commissioned work','video promozionali':'promo videos','video tutorial':'tutorial videos','skyline':'skyline','ciak':'clapper','serate, eventi e locali: aftermovie e promo verticali e orizzontali.':'nights, events and venues: vertical and horizontal promos.','serate':'nights','flyer animati':'animated flyers','flyer':'flyers','in moto':'in motion',
     'locandine che si muovono. 9:16, in loop.':'posters that move. 9:16, looping.',
     'video di automazione per appartamenti: un ibrido tra video girati in modo classico e ai.':'apartment automation videos: a hybrid of classically shot video and ai.',
     'evento':'event','progetti personali':'personal projects','slot libero':'free slot','progetto':'project','in arrivo':'coming soon',
