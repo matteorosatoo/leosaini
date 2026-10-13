@@ -81,18 +81,16 @@ a{color:inherit}
 .vb-h small{font:900 12px/1 var(--f-body);letter-spacing:.14em;opacity:.8}
 .vb-view{position:relative;flex:1;min-height:0;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(transparent,#000 12%,#000 88%,transparent)}
 .vb-view{display:flex;flex-direction:column;contain:size}
-.vb-track{list-style:none;margin:0;padding:12px 0 0;display:flex;flex-direction:column;gap:10px;padding-bottom:10px;animation:vbY 9s linear infinite;will-change:transform}
+.vb-run{display:flex;flex-direction:column;will-change:transform}
+.vb-track{list-style:none;margin:0;padding:12px 0 0;display:flex;flex-direction:column;gap:10px;padding-bottom:10px;}
 .vb-track li{position:relative;margin:0 14px;border-radius:12px;overflow:hidden;aspect-ratio:16/9;opacity:.72;flex:none}
 .vb-track img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.85)}
 .vb-track i{position:absolute;left:8px;bottom:6px;font:900 11px/1 var(--f-display);font-style:normal;letter-spacing:.12em;color:var(--red);text-shadow:0 0 6px #000}
-.vboard:hover .vb-track{animation-play-state:paused}
 .vboard:hover .vb-track li{opacity:1}
-@keyframes vbY{to{transform:translateY(calc(-100% - 0px))}}
-@media (prefers-reduced-motion:reduce){.vb-track{animation:none}.vb-track[aria-hidden]{display:none}.vb-view{overflow:auto}}
-@media (max-width:820px){.vboard{align-self:auto}.vb-view{flex:none;contain:none;flex-direction:row;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}.vb-track{flex-direction:row;padding:10px 0 10px 10px;animation-name:vbX;animation-duration:8s}.vb-track li{margin:0;width:46vw;max-width:220px}}
-@keyframes vbX{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.vb-track[aria-hidden]{display:none}.vb-view{overflow:auto}}
+@media (max-width:820px){.vboard{align-self:auto}.vb-view{flex:none;contain:none;flex-direction:row;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}.vb-run{flex-direction:row}.vb-track{flex-direction:row;padding:10px 0 10px 10px}.vb-track li{margin:0;width:46vw;max-width:220px}}
 .hgo{display:flex;flex-direction:column;gap:clamp(12px,1.6vw,18px);width:min(100%,600px);margin-top:clamp(22px,3vw,44px)}
-.hgo a{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:clamp(12px,1.6vw,20px);min-height:92px;padding:12px clamp(18px,2.4vw,30px) 12px 14px;width:var(--w,100%);margin-left:var(--ml,0);color:var(--white);text-decoration:none;text-transform:lowercase;-webkit-tap-highlight-color:transparent;touch-action:manipulation;isolation:isolate;animation:hgoIn .7s cubic-bezier(.16,1,.3,1) calc(.15s + var(--i,0)*.1s) backwards}
+.hgo a{position:relative;display:grid;grid-template-columns:minmax(0,1fr);align-items:center;min-height:92px;padding:14px clamp(26px,3vw,40px);width:var(--w,100%);margin-left:var(--ml,0);color:var(--white);text-decoration:none;text-transform:lowercase;-webkit-tap-highlight-color:transparent;touch-action:manipulation;isolation:isolate;animation:hgoIn .7s cubic-bezier(.16,1,.3,1) calc(.15s + var(--i,0)*.1s) backwards}
 .hgo a::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--red);border-radius:var(--b1);box-shadow:0 10px 24px -10px rgba(0,0,0,.7);transition:border-radius .6s cubic-bezier(.16,1,.3,1),background .25s,transform .45s cubic-bezier(.16,1,.3,1);animation:hgoMorph 7s ease-in-out calc(var(--i,0)*-2.3s) infinite alternate}
 .hgo i{display:grid;place-items:center;width:clamp(54px,5.4vw,66px);aspect-ratio:1;border-radius:46% 54% 50% 50%/52% 46% 54% 48%;background:var(--white);color:var(--red);font:900 15px/1 var(--f-display);letter-spacing:.06em;font-style:normal;transition:background .25s,color .25s,transform .45s cubic-bezier(.16,1,.3,1)}
 .hgo b{display:block;font:900 clamp(30px,3.6vw,48px)/.9 var(--f-display);letter-spacing:-.05em;padding-bottom:.06em}
@@ -112,7 +110,7 @@ a{color:inherit}
   .home .home-r{min-height:30vh}
   .home-l>span[aria-hidden]{display:none}
   .hgo{width:100%;gap:10px}
-  .hgo a{min-height:84px;column-gap:10px;padding-right:16px}.hgo b{font-size:clamp(26px,7.4vw,34px)}.hgo i{width:48px}.hgo svg{width:38px}.hgo small{letter-spacing:.1em;font-size:11px}
+  .hgo a{min-height:84px;padding:12px 26px}.hgo b{font-size:clamp(30px,8.4vw,40px)}.hgo small{letter-spacing:.1em;font-size:11px}
 }
 
 /* fascia loghi dritta */
@@ -273,7 +271,7 @@ a{color:inherit}
     <a href="#home" data-view="home" style="--i:0">home</a>
     <a href="#commissioned" data-view="commissioned" style="--i:1">commissioned</a>
     <a href="#vision" data-view="vision" style="--i:2">vision</a>
-    <a href="#contact" data-view="contact" style="--i:3">contact</a>
+    <a href="#contact" data-view="contact" style="--i:3">contatti</a>
   </nav>
   <p class="mfoot">nitido vision<br>milano 2026</p>
 </div>
@@ -283,7 +281,7 @@ a{color:inherit}
     <a href="#home" data-view="home">Home</a>
     <a href="#commissioned" data-view="commissioned">Commissioned</a>
     <a href="#vision" data-view="vision">Vision</a>
-    <a href="#contact" data-view="contact">Contact</a>
+    <a href="#contact" data-view="contact">Contatti</a>
   </nav>
   <div class="side-foot">Milano<br>2026</div>
 </aside>
@@ -298,9 +296,9 @@ a{color:inherit}
         <div>
           <h1 class="wm">Nitido<br>Vision</h1>
           <nav class="hgo" aria-label="Sezioni del sito">
-            <a href="#commissioned" style="--i:0;--w:94%;--b1:46px 26px 46px 34px;--b2:28px 46px 30px 46px"><i>02</i><span><b>commissioned</b><small>lavori su commissione</small></span><svg viewBox="0 0 90 50" aria-hidden="true"><path pathLength="1" d="M6 30C22 14 36 40 52 25S70 22 82 25M64 10L82 25 64 40"/></svg></a>
-            <a href="#vision" style="--i:1;--w:86%;--ml:12%;--b1:30px 46px 28px 46px;--b2:46px 30px 46px 26px"><i>03</i><span><b>vision</b><small>progetti personali</small></span><svg viewBox="0 0 90 50" aria-hidden="true"><path pathLength="1" d="M6 30C22 14 36 40 52 25S70 22 82 25M64 10L82 25 64 40"/></svg></a>
-            <a href="#contact" style="--i:2;--w:92%;--ml:3%;--b1:42px 30px 46px 24px;--b2:26px 46px 34px 44px"><i>04</i><span><b>contact</b><small>scrivici</small></span><svg viewBox="0 0 90 50" aria-hidden="true"><path pathLength="1" d="M6 30C22 14 36 40 52 25S70 22 82 25M64 10L82 25 64 40"/></svg></a>
+            <a href="#commissioned" style="--i:0;--w:94%;--b1:46px 26px 46px 34px;--b2:28px 46px 30px 46px"><span><b>commissioned</b><small>lavori su commissione</small></span></a>
+            <a href="#vision" style="--i:1;--w:86%;--ml:12%;--b1:30px 46px 28px 46px;--b2:46px 30px 46px 26px"><span><b>vision</b><small>progetti personali</small></span></a>
+            <a href="#contact" style="--i:2;--w:92%;--ml:3%;--b1:42px 30px 46px 24px;--b2:26px 46px 34px 44px"><span><b>contatti</b><small>scrivici</small></span></a>
           </nav>
         </div>
         <p>video-visual</p>
@@ -354,7 +352,7 @@ a{color:inherit}
       </div>
       <div class="grid">
         <figure class="vid c8" style="--ar:16/9"><div class="fr"><video muted loop playsinline preload="none" poster="poster/mob-fut-grain.jpg" data-src="video/mob-fut-grain.mp4"></video></div><figcaption>01 TRAINING</figcaption></figure>
-        <aside class="vboard c4" aria-label="Immagini"><div class="vb-view"><ul class="vb-track"><li><img src="assets/frames/f-01.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-02.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-03.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-04.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-05.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-06.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-07.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-08.jpg" alt="" loading="lazy" decoding="async"></li></ul><ul class="vb-track" aria-hidden="true"><li><img src="assets/frames/f-01.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-02.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-03.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-04.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-05.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-06.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-07.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-08.jpg" alt="" decoding="async"></li></ul></div></aside>
+        <aside class="vboard c4" aria-label="Immagini"><div class="vb-view"><div class="vb-run"><ul class="vb-track"><li><img src="assets/frames/f-01.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-02.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-03.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-04.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-05.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-06.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-07.jpg" alt="" loading="lazy" decoding="async"></li><li><img src="assets/frames/f-08.jpg" alt="" loading="lazy" decoding="async"></li></ul><ul class="vb-track" aria-hidden="true"><li><img src="assets/frames/f-01.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-02.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-03.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-04.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-05.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-06.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-07.jpg" alt="" decoding="async"></li><li><img src="assets/frames/f-08.jpg" alt="" decoding="async"></li></ul></div></div></aside>
       </div>
     </div>
   </section>
@@ -364,7 +362,7 @@ a{color:inherit}
     <div class="page">
       <div class="page-head">
         <span class="tape">Scrivici</span>
-        <h1 class="h1">Contact</h1>
+        <h1 class="h1">Contatti</h1>
       </div>
       <div class="rows">
         <div class="row">
@@ -553,7 +551,7 @@ a{color:inherit}
     'locandine che si muovono. 9:16, in loop.':'posters that move. 9:16, looping.',
     'video di automazione per appartamenti: un ibrido tra video girati in modo classico e ai.':'apartment automation videos: a hybrid of classically shot video and ai.',
     'evento':'event','progetti personali':'personal projects','slot libero':'free slot','progetto':'project','in arrivo':'coming soon',
-    'scrivici':'write to us','per contattarmi direttamente':'to contact me directly','apri chat':'open chat','copia':'copy','scrivi':'write',
+    'scrivici':'write to us','contatti':'contact','per contattarmi direttamente':'to contact me directly','apri chat':'open chat','copia':'copy','scrivi':'write',
     'chi siamo':'about us','video, visual e ai per locali, serate e brand.':'video, visual and ai for venues, nights and brands.',
     'video e visual per locali, serate e brand.':'video and visual for venues, nights and brands.',
     'suite adobe completa':'full adobe suite','alias \u00b7 modellazione 3d':'alias \u00b7 3d modelling','blender \u00b7 modellazione 3d':'blender \u00b7 3d modelling'
@@ -591,6 +589,23 @@ a{color:inherit}
     });
   });
 
+
+  /* ---------- board immagini: scorrimento continuo, mai fermo ---------- */
+  (function(){
+    var run = document.querySelector('.vb-run'); if (!run) return;
+    var first = run.querySelector('.vb-track'), pos = 0, last = 0, SEC = 22; /* secondi per un giro completo */
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    var mq = window.matchMedia ? matchMedia('(max-width:820px)') : {matches:false};
+    function frame(t){
+      requestAnimationFrame(frame);
+      var dt = last ? Math.min(t - last, 100) : 16; last = t;
+      var horiz = mq.matches, len = horiz ? first.offsetWidth : first.offsetHeight;
+      if (!len) return; /* pagina nascosta */
+      pos = (pos + len / (SEC * 1000) * dt) % len;
+      run.style.transform = horiz ? 'translate3d(' + (-pos) + 'px,0,0)' : 'translate3d(0,' + (-pos) + 'px,0)';
+    }
+    requestAnimationFrame(frame);
+  })();
 })();
 </script>
 </body>
