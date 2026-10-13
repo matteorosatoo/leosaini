@@ -76,6 +76,21 @@ a{color:inherit}
 .home-r .micro{position:absolute;left:12px;top:0;bottom:0;writing-mode:vertical-rl;transform:rotate(180deg);font:900 12px/1 var(--f-body);letter-spacing:.34em;text-transform:lowercase;white-space:nowrap;overflow:hidden;opacity:.95;padding:12px 0}
 .home-r .tape{position:absolute;right:var(--pad);bottom:var(--pad);transform:rotate(2deg)}
 /* home: tasti per andare subito nelle altre pagine (solo qui) */
+.vboard{align-self:stretch;position:relative;display:flex;flex-direction:column;min-height:0;border:3px solid var(--red);border-radius:26px;overflow:hidden;background:rgba(255,213,0,.05)}
+.vb-h{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;font:900 13px/1 var(--f-display);letter-spacing:.14em;color:var(--red);border-bottom:3px solid var(--red)}
+.vb-h small{font:900 12px/1 var(--f-body);letter-spacing:.14em;opacity:.8}
+.vb-view{position:relative;flex:1;min-height:0;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(transparent,#000 12%,#000 88%,transparent)}
+.vb-view{display:flex;flex-direction:column;contain:size}
+.vb-track{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;padding-bottom:10px;animation:vbY 9s linear infinite;will-change:transform}
+.vb-track li{position:relative;margin:0 14px;border-radius:12px;overflow:hidden;aspect-ratio:16/9;opacity:.72;flex:none}
+.vb-track img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.85)}
+.vb-track i{position:absolute;left:8px;bottom:6px;font:900 11px/1 var(--f-display);font-style:normal;letter-spacing:.12em;color:var(--red);text-shadow:0 0 6px #000}
+.vboard:hover .vb-track{animation-play-state:paused}
+.vboard:hover .vb-track li{opacity:1}
+@keyframes vbY{to{transform:translateY(calc(-100% - 0px))}}
+@media (prefers-reduced-motion:reduce){.vb-track{animation:none}.vb-track[aria-hidden]{display:none}.vb-view{overflow:auto}}
+@media (max-width:820px){.vboard{align-self:auto}.vb-view{flex:none;contain:none;flex-direction:row;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}.vb-track{flex-direction:row;padding:10px 0 10px 10px;animation-name:vbX;animation-duration:8s}.vb-track li{margin:0;width:46vw;max-width:220px}}
+@keyframes vbX{to{transform:translateX(-100%)}}
 .hgo{display:flex;flex-direction:column;gap:14px;width:min(100%,560px);margin-top:clamp(22px,3vw,44px)}
 .hgo a{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:clamp(12px,1.4vw,18px);min-height:84px;padding:10px 10px 10px 10px;border-radius:999px;background:var(--red);color:var(--white);text-decoration:none;text-transform:lowercase;-webkit-tap-highlight-color:transparent;touch-action:manipulation;box-shadow:0 0 0 3px var(--red);transition:transform .25s cubic-bezier(.2,.9,.3,1.2),background .2s,color .2s,box-shadow .2s;animation:hgoIn .55s cubic-bezier(.2,.9,.3,1.2) calc(.2s + var(--i,0)*.09s) backwards}
 .hgo i{display:grid;place-items:center;width:clamp(52px,5vw,64px);aspect-ratio:1;border-radius:50%;background:var(--white);color:var(--red);font:900 15px/1 var(--f-display);letter-spacing:.06em;font-style:normal}
@@ -323,15 +338,7 @@ a{color:inherit}
         </div>
       </div>
 
-      <div class="sec"><span class="tape">Video tutorial</span></div>
-      <div class="grid">
-        <figure class="vid v c4" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/rentallo-checkin-skyline.jpg" data-src="video/rentallo-checkin-skyline.mp4"></video></div><figcaption>Check-in<span>Skyline</span></figcaption></figure>
-        <figure class="vid v c4 off2" style="--ar:9/16"><div class="fr"><video muted loop playsinline preload="none" poster="poster/rentallo-checkout-duomo.jpg" data-src="video/rentallo-checkout-duomo.mp4"></video></div><figcaption>Check-out<span>Duomo</span></figcaption></figure>
-        <div class="c4 fl-side off1">
-          <img class="rlogo" src="assets/logos/rentallo.png" alt="Rentallo" onerror="this.outerHTML='<h2 class=&quot;fl-big&quot;>rentallo</h2>'">
-          <p>Video di automazione per appartamenti: un ibrido tra video girati in modo classico e AI.</p>
-        </div>
-      </div>
+    </div>
   </section>
 
   <!-- VISION -->
@@ -342,7 +349,8 @@ a{color:inherit}
         <h1 class="h1">Vision</h1>
       </div>
       <div class="grid">
-        <figure class="vid c12" style="--ar:16/9"><div class="fr"><video muted loop playsinline preload="none" poster="poster/mob-fut-grain.jpg" data-src="video/mob-fut-grain.mp4"></video></div><figcaption>01 TRAINING</figcaption></figure>
+        <figure class="vid c8" style="--ar:16/9"><div class="fr"><video muted loop playsinline preload="none" poster="poster/mob-fut-grain.jpg" data-src="video/mob-fut-grain.mp4"></video></div><figcaption>01 TRAINING</figcaption></figure>
+        <aside class="vboard c4" aria-label="Frames dal video 01 Training"><div class="vb-h"><span>frames</span><small>01&ndash;08</small></div><div class="vb-view"><ul class="vb-track"><li><img src="assets/frames/f-01.jpg" alt="" loading="lazy" decoding="async"><i>01</i></li><li><img src="assets/frames/f-02.jpg" alt="" loading="lazy" decoding="async"><i>02</i></li><li><img src="assets/frames/f-03.jpg" alt="" loading="lazy" decoding="async"><i>03</i></li><li><img src="assets/frames/f-04.jpg" alt="" loading="lazy" decoding="async"><i>04</i></li><li><img src="assets/frames/f-05.jpg" alt="" loading="lazy" decoding="async"><i>05</i></li><li><img src="assets/frames/f-06.jpg" alt="" loading="lazy" decoding="async"><i>06</i></li><li><img src="assets/frames/f-07.jpg" alt="" loading="lazy" decoding="async"><i>07</i></li><li><img src="assets/frames/f-08.jpg" alt="" loading="lazy" decoding="async"><i>08</i></li></ul><ul class="vb-track" aria-hidden="true"><li><img src="assets/frames/f-01.jpg" alt="" decoding="async"><i>01</i></li><li><img src="assets/frames/f-02.jpg" alt="" decoding="async"><i>02</i></li><li><img src="assets/frames/f-03.jpg" alt="" decoding="async"><i>03</i></li><li><img src="assets/frames/f-04.jpg" alt="" decoding="async"><i>04</i></li><li><img src="assets/frames/f-05.jpg" alt="" decoding="async"><i>05</i></li><li><img src="assets/frames/f-06.jpg" alt="" decoding="async"><i>06</i></li><li><img src="assets/frames/f-07.jpg" alt="" decoding="async"><i>07</i></li><li><img src="assets/frames/f-08.jpg" alt="" decoding="async"><i>08</i></li></ul></div></aside>
       </div>
     </div>
   </section>
