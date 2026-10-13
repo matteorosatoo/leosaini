@@ -88,7 +88,7 @@ a{color:inherit}
 
 /* video */
 .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(14px,2vw,28px);align-items:start}
-.c8{grid-column:span 8}.c3{grid-column:span 3}.c7{grid-column:span 7}.c6{grid-column:span 6}.c5{grid-column:span 5}.c4{grid-column:span 4}
+.c12{grid-column:span 12}.c8{grid-column:span 8}.c3{grid-column:span 3}.c7{grid-column:span 7}.c6{grid-column:span 6}.c5{grid-column:span 5}.c4{grid-column:span 4}
 .slot{position:relative;margin:0;aspect-ratio:var(--ar,16/9);background:var(--red);color:var(--white);overflow:hidden}
 .slot::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-58deg,transparent 0 13px,rgba(255,255,255,.16) 13px 15px);mix-blend-mode:normal}
 .slot .cap{position:absolute;left:clamp(14px,1.6vw,24px);right:14px;bottom:clamp(12px,1.4vw,22px);display:flex;flex-direction:column;gap:6px}
@@ -317,9 +317,7 @@ a{color:inherit}
         <h1 class="h1">Vision</h1>
       </div>
       <div class="grid">
-        <figure class="slot c5" style="--ar:4/5"><div class="cap"><strong>Progetto</strong><span>In arrivo</span></div><span class="tape inv">Slot libero</span></figure>
-        <figure class="slot c4 off1" style="--ar:1/1"><div class="cap"><strong>Progetto</strong><span>In arrivo</span></div><span class="tape inv">Slot libero</span></figure>
-        <figure class="slot c3 off2" style="--ar:3/4;grid-column:span 3"><div class="cap"><strong>Progetto</strong><span>In arrivo</span></div><span class="tape inv">Slot libero</span></figure>
+        <figure class="vid c12" style="--ar:16/9"><div class="fr"><video muted loop playsinline preload="none" poster="poster/mob-fut-grain.jpg" data-src="video/mob-fut-grain.mp4"></video></div><figcaption>01 TRAINING</figcaption></figure>
       </div>
     </div>
   </section>
