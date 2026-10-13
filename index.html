@@ -75,15 +75,28 @@ a{color:inherit}
 .home-r::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(0,0,0,.22) 1.3px,transparent 1.6px) 0 0/9px 9px;pointer-events:none}
 .home-r .micro{position:absolute;left:12px;top:0;bottom:0;writing-mode:vertical-rl;transform:rotate(180deg);font:900 12px/1 var(--f-body);letter-spacing:.34em;text-transform:lowercase;white-space:nowrap;overflow:hidden;opacity:.95;padding:12px 0}
 .home-r .tape{position:absolute;right:var(--pad);bottom:var(--pad);transform:rotate(2deg)}
-/* home: foto in dissolvenza al posto del nero */
-.home-l{position:relative;overflow:hidden;isolation:isolate}
-.home-l>:not(.hbg){position:relative;z-index:2}
-.hbg{position:absolute;inset:0;z-index:0;background:var(--white)}
-.hbg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.02);animation:hbg 48s linear infinite}
-.hbg img:nth-child(2){animation-delay:6s}.hbg img:nth-child(3){animation-delay:12s}.hbg img:nth-child(4){animation-delay:18s}.hbg img:nth-child(5){animation-delay:24s}.hbg img:nth-child(6){animation-delay:30s}.hbg img:nth-child(7){animation-delay:36s}.hbg img:nth-child(8){animation-delay:42s}
-.hbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.38),rgba(10,10,10,.12) 45%,rgba(10,10,10,.5))}
-@keyframes hbg{0%{opacity:0;transform:scale(1.02)}3%{opacity:1}12.5%{opacity:1}15.5%{opacity:0;transform:scale(1.09)}100%{opacity:0;transform:scale(1.09)}}
-@media (prefers-reduced-motion:reduce){.hbg img{animation:none}.hbg img:first-child{opacity:1;transform:none}}
+/* home: tasti per andare subito nelle altre pagine (solo qui) */
+.hgo{display:flex;flex-direction:column;gap:12px;width:min(100%,560px);margin-top:clamp(22px,3vw,44px)}
+.hgo a{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:clamp(12px,1.4vw,20px);min-height:72px;padding:14px clamp(16px,2vw,26px) 14px clamp(14px,1.6vw,22px);color:var(--white);text-decoration:none;text-transform:lowercase;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transform:rotate(var(--r,0deg));transition:transform .22s cubic-bezier(.2,.9,.3,1.2);animation:hgoIn .55s cubic-bezier(.2,.9,.3,1.2) calc(.2s + var(--i,0)*.09s) backwards}
+.hgo a::before{content:"";position:absolute;inset:0;z-index:0;background:var(--red);clip-path:var(--tape);transition:filter .2s}
+.hgo a>*{position:relative;z-index:1}
+.hgo i{font:900 13px/1 var(--f-display);letter-spacing:.14em;font-style:normal}
+.hgo b{display:block;font:900 clamp(28px,3.3vw,48px)/.92 var(--f-display);letter-spacing:-.05em;padding-bottom:.06em}
+.hgo small{display:block;margin-top:6px;font:900 12px/1.2 var(--f-body);letter-spacing:.14em}
+.hgo em{font:900 clamp(28px,3vw,42px)/1 var(--f-display);font-style:normal;transition:transform .22s cubic-bezier(.2,.9,.3,1.2)}
+.hgo a:hover,.hgo a:focus-visible{transform:translateX(12px) rotate(0deg)}
+.hgo a:hover::before,.hgo a:focus-visible::before{filter:brightness(1.12)}
+.hgo a:hover b,.hgo a:focus-visible b{text-decoration:underline;text-decoration-thickness:.07em;text-underline-offset:.1em}
+.hgo a:hover em,.hgo a:focus-visible em{transform:translateX(8px)}
+.hgo a:active{transform:translateX(6px) scale(.98)}
+@keyframes hgoIn{from{opacity:0;transform:translateY(22px) rotate(var(--r,0deg))}to{opacity:1;transform:rotate(var(--r,0deg))}}
+@media (prefers-reduced-motion:reduce){.hgo a{animation:none;transition:none}}
+@media (max-width:820px){
+  .home .home-r{min-height:30vh}
+  .home-l>span[aria-hidden]{display:none}
+  .hgo{width:100%;gap:10px}
+  .hgo a{min-height:64px}
+}
 
 /* fascia loghi dritta */
 .band{position:relative;margin:6px calc(-1*var(--pad)) 0;padding:30px 0;overflow:hidden;background:var(--white)}
@@ -264,10 +277,14 @@ a{color:inherit}
   <section class="view on" id="v-home" aria-label="Home">
     <div class="home">
       <div class="home-l">
-        <div class="hbg" aria-hidden="true"><img src="assets/bg/bg-01.jpg" alt="" decoding="async"><img src="assets/bg/bg-02.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-03.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-04.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-05.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-06.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-07.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-08.jpg" alt="" decoding="async" loading="lazy"></div>
         <span aria-hidden="true"></span>
         <div>
           <h1 class="wm">Nitido<br>Vision</h1>
+          <nav class="hgo" aria-label="Sezioni del sito">
+            <a href="#commissioned" style="--i:0;--r:-1.2deg"><i>02</i><span><b>commissioned</b><small>lavori su commissione</small></span><em aria-hidden="true">&rarr;</em></a>
+            <a href="#vision" style="--i:1;--r:.9deg"><i>03</i><span><b>vision</b><small>progetti personali</small></span><em aria-hidden="true">&rarr;</em></a>
+            <a href="#contact" style="--i:2;--r:-.6deg"><i>04</i><span><b>contact</b><small>scrivici</small></span><em aria-hidden="true">&rarr;</em></a>
+          </nav>
         </div>
         <p>video-visual</p>
       </div>
