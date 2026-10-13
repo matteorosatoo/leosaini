@@ -76,26 +76,24 @@ a{color:inherit}
 .home-r .micro{position:absolute;left:12px;top:0;bottom:0;writing-mode:vertical-rl;transform:rotate(180deg);font:900 12px/1 var(--f-body);letter-spacing:.34em;text-transform:lowercase;white-space:nowrap;overflow:hidden;opacity:.95;padding:12px 0}
 .home-r .tape{position:absolute;right:var(--pad);bottom:var(--pad);transform:rotate(2deg)}
 /* home: tasti per andare subito nelle altre pagine (solo qui) */
-.hgo{display:flex;flex-direction:column;gap:12px;width:min(100%,560px);margin-top:clamp(22px,3vw,44px)}
-.hgo a{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:clamp(12px,1.4vw,20px);min-height:72px;padding:14px clamp(16px,2vw,26px) 14px clamp(14px,1.6vw,22px);color:var(--white);text-decoration:none;text-transform:lowercase;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transform:rotate(var(--r,0deg));transition:transform .22s cubic-bezier(.2,.9,.3,1.2);animation:hgoIn .55s cubic-bezier(.2,.9,.3,1.2) calc(.2s + var(--i,0)*.09s) backwards}
-.hgo a::before{content:"";position:absolute;inset:0;z-index:0;background:var(--red);clip-path:var(--tape);transition:filter .2s}
-.hgo a>*{position:relative;z-index:1}
-.hgo i{font:900 13px/1 var(--f-display);letter-spacing:.14em;font-style:normal}
-.hgo b{display:block;font:900 clamp(28px,3.3vw,48px)/.92 var(--f-display);letter-spacing:-.05em;padding-bottom:.06em}
-.hgo small{display:block;margin-top:6px;font:900 12px/1.2 var(--f-body);letter-spacing:.14em}
-.hgo em{font:900 clamp(28px,3vw,42px)/1 var(--f-display);font-style:normal;transition:transform .22s cubic-bezier(.2,.9,.3,1.2)}
-.hgo a:hover,.hgo a:focus-visible{transform:translateX(12px) rotate(0deg)}
-.hgo a:hover::before,.hgo a:focus-visible::before{filter:brightness(1.12)}
-.hgo a:hover b,.hgo a:focus-visible b{text-decoration:underline;text-decoration-thickness:.07em;text-underline-offset:.1em}
-.hgo a:hover em,.hgo a:focus-visible em{transform:translateX(8px)}
-.hgo a:active{transform:translateX(6px) scale(.98)}
-@keyframes hgoIn{from{opacity:0;transform:translateY(22px) rotate(var(--r,0deg))}to{opacity:1;transform:rotate(var(--r,0deg))}}
+.hgo{display:flex;flex-direction:column;gap:14px;width:min(100%,560px);margin-top:clamp(22px,3vw,44px)}
+.hgo a{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:clamp(12px,1.4vw,18px);min-height:84px;padding:10px 10px 10px 10px;border-radius:999px;background:var(--red);color:var(--white);text-decoration:none;text-transform:lowercase;-webkit-tap-highlight-color:transparent;touch-action:manipulation;box-shadow:0 0 0 3px var(--red);transition:transform .25s cubic-bezier(.2,.9,.3,1.2),background .2s,color .2s,box-shadow .2s;animation:hgoIn .55s cubic-bezier(.2,.9,.3,1.2) calc(.2s + var(--i,0)*.09s) backwards}
+.hgo i{display:grid;place-items:center;width:clamp(52px,5vw,64px);aspect-ratio:1;border-radius:50%;background:var(--white);color:var(--red);font:900 15px/1 var(--f-display);letter-spacing:.06em;font-style:normal}
+.hgo b{display:block;font:900 clamp(28px,3.3vw,44px)/.92 var(--f-display);letter-spacing:-.05em;padding-bottom:.06em}
+.hgo small{display:block;margin-top:5px;font:900 12px/1.2 var(--f-body);letter-spacing:.14em}
+.hgo em{display:grid;place-items:center;width:clamp(52px,5vw,64px);aspect-ratio:1;border-radius:50%;border:3px solid var(--white);font:900 clamp(24px,2.6vw,32px)/1 var(--f-display);font-style:normal;transition:transform .25s cubic-bezier(.2,.9,.3,1.2),background .2s,color .2s,border-color .2s}
+.hgo a:hover,.hgo a:focus-visible{transform:translateX(10px);background:var(--white);color:var(--red);box-shadow:0 0 0 3px var(--red)}
+.hgo a:hover i,.hgo a:focus-visible i{background:var(--red);color:var(--white)}
+.hgo a:hover em,.hgo a:focus-visible em{background:var(--red);color:var(--white);border-color:var(--red);transform:translateX(3px)}
+.hgo a:focus-visible{outline-offset:6px;border-radius:999px}
+.hgo a:active{transform:translateX(5px) scale(.97)}
+@keyframes hgoIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.hgo a{animation:none;transition:none}}
 @media (max-width:820px){
   .home .home-r{min-height:30vh}
   .home-l>span[aria-hidden]{display:none}
   .hgo{width:100%;gap:10px}
-  .hgo a{min-height:64px}
+  .hgo a{min-height:76px}
 }
 
 /* fascia loghi dritta */
@@ -281,9 +279,9 @@ a{color:inherit}
         <div>
           <h1 class="wm">Nitido<br>Vision</h1>
           <nav class="hgo" aria-label="Sezioni del sito">
-            <a href="#commissioned" style="--i:0;--r:-1.2deg"><i>02</i><span><b>commissioned</b><small>lavori su commissione</small></span><em aria-hidden="true">&rarr;</em></a>
-            <a href="#vision" style="--i:1;--r:.9deg"><i>03</i><span><b>vision</b><small>progetti personali</small></span><em aria-hidden="true">&rarr;</em></a>
-            <a href="#contact" style="--i:2;--r:-.6deg"><i>04</i><span><b>contact</b><small>scrivici</small></span><em aria-hidden="true">&rarr;</em></a>
+            <a href="#commissioned" style="--i:0"><i>02</i><span><b>commissioned</b><small>lavori su commissione</small></span><em aria-hidden="true">&rarr;</em></a>
+            <a href="#vision" style="--i:1"><i>03</i><span><b>vision</b><small>progetti personali</small></span><em aria-hidden="true">&rarr;</em></a>
+            <a href="#contact" style="--i:2"><i>04</i><span><b>contact</b><small>scrivici</small></span><em aria-hidden="true">&rarr;</em></a>
           </nav>
         </div>
         <p>video-visual</p>
