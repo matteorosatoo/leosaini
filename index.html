@@ -75,6 +75,15 @@ a{color:inherit}
 .home-r::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(0,0,0,.22) 1.3px,transparent 1.6px) 0 0/9px 9px;pointer-events:none}
 .home-r .micro{position:absolute;left:12px;top:0;bottom:0;writing-mode:vertical-rl;transform:rotate(180deg);font:900 12px/1 var(--f-body);letter-spacing:.34em;text-transform:lowercase;white-space:nowrap;overflow:hidden;opacity:.95;padding:12px 0}
 .home-r .tape{position:absolute;right:var(--pad);bottom:var(--pad);transform:rotate(2deg)}
+/* home: foto in dissolvenza al posto del nero */
+.home-l{position:relative;overflow:hidden;isolation:isolate}
+.home-l>:not(.hbg){position:relative;z-index:2}
+.hbg{position:absolute;inset:0;z-index:0;background:var(--white)}
+.hbg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.02);animation:hbg 48s linear infinite}
+.hbg img:nth-child(2){animation-delay:6s}.hbg img:nth-child(3){animation-delay:12s}.hbg img:nth-child(4){animation-delay:18s}.hbg img:nth-child(5){animation-delay:24s}.hbg img:nth-child(6){animation-delay:30s}.hbg img:nth-child(7){animation-delay:36s}.hbg img:nth-child(8){animation-delay:42s}
+.hbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.38),rgba(10,10,10,.12) 45%,rgba(10,10,10,.5))}
+@keyframes hbg{0%{opacity:0;transform:scale(1.02)}3%{opacity:1}12.5%{opacity:1}15.5%{opacity:0;transform:scale(1.09)}100%{opacity:0;transform:scale(1.09)}}
+@media (prefers-reduced-motion:reduce){.hbg img{animation:none}.hbg img:first-child{opacity:1;transform:none}}
 
 /* fascia loghi dritta */
 .band{position:relative;margin:6px calc(-1*var(--pad)) 0;padding:30px 0;overflow:hidden;background:var(--white)}
@@ -255,11 +264,12 @@ a{color:inherit}
   <section class="view on" id="v-home" aria-label="Home">
     <div class="home">
       <div class="home-l">
-        <span class="tape">Video &middot; Visual &middot; AI</span>
+        <div class="hbg" aria-hidden="true"><img src="assets/bg/bg-01.jpg" alt="" decoding="async"><img src="assets/bg/bg-02.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-03.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-04.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-05.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-06.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-07.jpg" alt="" decoding="async" loading="lazy"><img src="assets/bg/bg-08.jpg" alt="" decoding="async" loading="lazy"></div>
+        <span aria-hidden="true"></span>
         <div>
           <h1 class="wm">Nitido<br>Vision</h1>
         </div>
-        <p>Video e visual per locali, serate e brand.</p>
+        <p>video-visual</p>
       </div>
       <div class="home-r" aria-hidden="true">
         <div class="micro">Nitido Vision &middot; Video &middot; Visual &middot; AI &middot; Milano &middot; Nitido Vision &middot; Video &middot; Visual &middot; AI &middot; Milano &middot; Nitido Vision &middot; Video &middot; Visual &middot; AI &middot; Milano</div>
