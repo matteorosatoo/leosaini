@@ -117,6 +117,7 @@ a{color:inherit}
 .band{position:relative;margin:6px calc(-1*var(--pad)) 0;padding:30px 0;overflow:hidden;background:var(--white)}
 .band::before,.band::after{content:"";position:absolute;left:0;right:0;height:7px;background:var(--red);filter:url(#rough)}
 .band::before{top:6px}.band::after{bottom:6px}
+.home-l .band{margin-top:clamp(22px,3vw,36px)}
 .btrack{display:flex;width:max-content;animation:bnd 38s linear infinite;will-change:transform}
 .bitem{flex:none;display:flex;align-items:center;justify-content:center;height:92px;width:clamp(170px,19vw,280px);padding:0 clamp(18px,2.4vw,40px)}
 .bitem img{max-width:100%;max-height:100%;object-fit:contain;display:block}
@@ -300,6 +301,7 @@ a{color:inherit}
         <span aria-hidden="true"></span>
         <div>
           <h1 class="wm">Nitido<br>Vision</h1>
+          <div class="band" id="band" role="img" aria-label="Loghi dei locali: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack" id="btrack"></div></div>
           <nav class="hgo" aria-label="Sezioni del sito">
             <a href="#commissioned" style="--i:0;--w:94%;--b1:46px 26px 46px 34px;--b2:28px 46px 30px 46px"><span><b>commissioned</b><small>lavori su commissione</small></span></a>
             <a href="#vision" style="--i:1;--w:86%;--ml:12%;--b1:30px 46px 28px 46px;--b2:46px 30px 46px 26px"><span><b>vision</b><small>progetti personali</small></span></a>
@@ -323,8 +325,6 @@ a{color:inherit}
         <span class="tape">Lavori su commissione</span>
         <h1 class="h1">Commis&shy;sioned</h1>
       </div>
-
-      <div class="band" id="band" role="img" aria-label="Loghi dei locali: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack" id="btrack"></div></div>
 
       <div class="sec"><span class="tape">Video promozionali</span></div>
       <div class="grid">
