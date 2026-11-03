@@ -309,6 +309,12 @@ body.is-home .lang button.on{--fill:var(--red);--line:var(--red)}
 @keyframes vin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .btn,.hbt,.lang button,.snd,.nav a,.mnav a,.fl{touch-action:manipulation}
 html{-webkit-text-size-adjust:100%;overscroll-behavior-y:none}
+
+/* menu mobile: voci centrate e a larghezza proporzionata */
+@media (max-width:820px){
+.mnav{display:grid;grid-template-columns:.8fr 1.55fr .95fr 1.05fr;gap:4px;margin:8px 0 2px;justify-content:stretch}
+.mnav a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:8px 6px;text-wrap:balance;line-height:1.05}
+}
 </style>
 </head>
 <body>
