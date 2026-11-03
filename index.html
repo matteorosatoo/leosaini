@@ -92,7 +92,7 @@ a{color:inherit}
 
 /* spazi video "work in progress" */
 .site{position:relative;overflow:hidden;background:#141414;border:3px dashed var(--red)}
-.site::before{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(255,213,0,.16) 1.3px,transparent 1.6px) 0 0/9px 9px}
+.site::before{content:"";position:absolute;inset:0;background:radial-gradient(circle,color-mix(in srgb,var(--red) 16%,transparent) 1.3px,transparent 1.6px) 0 0/9px 9px}
 .wip{position:absolute;left:50%;top:50%;width:var(--w,160%);height:34px;transform:translate(-50%,-50%) rotate(var(--r,29deg));background:var(--red);color:var(--white);display:flex;align-items:center;white-space:nowrap;overflow:hidden;font-size:11px;letter-spacing:.2em;box-shadow:0 0 0 3px var(--white)}
 .wip::before,.wip::after{content:"";position:absolute;left:0;right:0;height:5px;background:repeating-linear-gradient(45deg,var(--white) 0 6px,var(--red) 6px 12px)}
 .wip::before{top:0}.wip::after{bottom:0}
@@ -163,8 +163,10 @@ a{color:inherit}
   .filters{gap:12px}
 }
 /* strappo tra le viste */
+body[data-page="ai"]{--red:#9B5CFF}body[data-page="making"]{--red:#4C8DFF}body[data-page="contact"]{--red:#FF5A36}
+body[data-page="ai"] .tint{filter:url(#t-ai)}body[data-page="making"] .tint{filter:url(#t-making)}body[data-page="contact"] .tint{filter:url(#t-contact)}
 .wipe{position:fixed;inset:0;z-index:120;pointer-events:none;display:flex;flex-direction:column}
-.wipe i{flex:1;background:var(--red);transform:translateX(-101%);transition:transform .24s cubic-bezier(.7,0,.2,1) var(--dl,0s)}
+.wipe i{flex:1;background:var(--wc,var(--red));transform:translateX(-101%);transition:transform .24s cubic-bezier(.7,0,.2,1) var(--dl,0s)}
 .wipe.in i{transform:none}
 .wipe.out i{transform:translateX(101%)}
 
@@ -202,7 +204,7 @@ a{color:inherit}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
 <filter id="rough" x="-4%" y="-6%" width="108%" height="112%"><feTurbulence type="fractalNoise" baseFrequency=".025 .05" numOctaves="2" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="5" xChannelSelector="R" yChannelSelector="G"/></filter>
 <symbol id="mk" viewBox="0 0 1327 1328"><path d="M84.5 953V373.5A289.5 289.5 0 0 1 663.5 373.5V953.5A289.5 289.5 0 0 0 1242.5 953.5V374" fill="none" stroke="currentColor" stroke-width="169" stroke-linecap="butt" stroke-linejoin="miter"/></symbol>
-</defs></svg>
+<filter id="t-ai" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.6078 0 0 0 0 0.3608 0 0 0 0 1.0000 0 0 0 0 0 0 0 1 0"/></filter><filter id="t-making" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.2980 0 0 0 0 0.5529 0 0 0 0 1.0000 0 0 0 0 0 0 0 1 0"/></filter><filter id="t-contact" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1.0000 0 0 0 0 0.3529 0 0 0 0 0.2118 0 0 0 0 0 0 0 1 0"/></filter></defs></svg>
 
 <canvas id="grain" aria-hidden="true"></canvas>
 <div class="wipe" id="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -248,7 +250,7 @@ a{color:inherit}
 <div class="sec"><span class="tape">serate</span></div>
 <p class="p" style="margin-bottom:20px">after movie e reel per discoteche e locali. a breve qui.</p>
 <div class="two sera">
-<figure class="fig"><div class="site" style="aspect-ratio:16/9" role="img" aria-label="Spazio video, lavori in corso"><img class="lg" src="assets/logos/disco-amore.png" alt="Logo Disco Amore"><div class="wip" style="--r:29deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div><div class="wip" style="--r:-29deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div></div><figcaption class="cap-s">work in progress · disco amore</figcaption></figure>
+<figure class="fig"><div class="site" style="aspect-ratio:16/9" role="img" aria-label="Spazio video, lavori in corso"><img class="lg tint" src="assets/logos/disco-amore.png" alt="Logo Disco Amore"><div class="wip" style="--r:29deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div><div class="wip" style="--r:-29deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div></div><figcaption class="cap-s">work in progress · disco amore</figcaption></figure>
 <div></div>
 </div>
 <div class="wipgrid">
@@ -302,8 +304,8 @@ a{color:inherit}
 <p class="intro">siti essenziali e veloci, pensati prima di tutto per il telefono.</p>
 <div class="band" role="img" aria-label="Brand con cui abbiamo collaborato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack"></div></div>
 <div class="webgrid">
-<figure class="fig"><div class="site" style="aspect-ratio:4/3" role="img" aria-label="Rentallo, lavori in corso"><img class="lg" style="width:130px;height:auto" src="assets/logos/rentallo.png" alt="Logo Rentallo"><div class="wip" style="--r:37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div><div class="wip" style="--r:-37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div></div><figcaption><strong>rentallo</strong><span>sito web</span></figcaption></figure>
-<figure class="fig"><div class="site" style="aspect-ratio:4/3" role="img" aria-label="MC Holiday, lavori in corso"><img class="lg" src="assets/logos/mc-holiday.png" alt="Logo MC Holiday"><div class="wip" style="--r:37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div><div class="wip" style="--r:-37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div></div><figcaption><strong>mc holiday</strong><span>sito web</span></figcaption></figure>
+<figure class="fig"><div class="site" style="aspect-ratio:4/3" role="img" aria-label="Rentallo, lavori in corso"><img class="lg tint" style="width:130px;height:auto" src="assets/logos/rentallo.png" alt="Logo Rentallo"><div class="wip" style="--r:37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div><div class="wip" style="--r:-37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div></div><figcaption><strong>rentallo</strong><span>sito web</span></figcaption></figure>
+<figure class="fig"><div class="site" style="aspect-ratio:4/3" role="img" aria-label="MC Holiday, lavori in corso"><img class="lg tint" src="assets/logos/mc-holiday.png" alt="Logo MC Holiday"><div class="wip" style="--r:37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div><div class="wip" style="--r:-37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div></div><figcaption><strong>mc holiday</strong><span>sito web</span></figcaption></figure>
 </div>
 </div></section>
 
@@ -327,16 +329,18 @@ a{color:inherit}
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function(s,r){ return (r||document).querySelector(s); }, $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
 
+  var COL = {ai:'#9B5CFF',making:'#4C8DFF',web:'#FFD500',contact:'#FF5A36'}, curCol = COL.ai;
+  function rgbOf(h){ return [parseInt(h.substr(1,2),16), parseInt(h.substr(3,2),16), parseInt(h.substr(5,2),16)]; }
   /* grana */
   var cv = $('#grain'), cx = cv.getContext('2d');
   function paintGrain(){
     var dpr = Math.min(window.devicePixelRatio || 1, 2), w = Math.ceil(innerWidth * dpr), h = Math.ceil(innerHeight * dpr);
     cv.width = w; cv.height = h;
-    var im = cx.createImageData(w, h), d = im.data, n = d.length, i, r;
+    var im = cx.createImageData(w, h), d = im.data, n = d.length, i, r, cc = rgbOf(curCol);
     for (i = 0; i < n; i += 4){
       r = Math.random();
       if (r < .012){ d[i]=255; d[i+1]=255; d[i+2]=255; d[i+3]=14 + Math.random()*26; }
-      else if (r < .020){ d[i]=255; d[i+1]=213; d[i+2]=0; d[i+3]=50 + Math.random()*70; }
+      else if (r < .020){ d[i]=cc[0]; d[i+1]=cc[1]; d[i+2]=cc[2]; d[i+3]=50 + Math.random()*70; }
     }
     cx.putImageData(im, 0, 0);
   }
@@ -352,7 +356,7 @@ a{color:inherit}
     $$('.nav a, .mnav a').forEach(function(a){
       if (a.getAttribute('data-view') === v) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
     });
-    current = v; window.scrollTo(0,0);
+    current = v; curCol = COL[v]; document.body.setAttribute('data-page', v); paintGrain(); window.scrollTo(0,0);
     document.dispatchEvent(new CustomEvent('viewchange',{detail:v}));
   }
   function go(v){
@@ -361,6 +365,7 @@ a{color:inherit}
     if (reduce){ show(v); return; }
     busy = true;
     bars.forEach(function(b){ b.style.setProperty('--dl', (Math.random()*.14).toFixed(3)+'s'); });
+    wipe.style.setProperty('--wc', COL[v]);
     wipe.classList.add('in');
     setTimeout(function(){
       show(v);
@@ -384,7 +389,7 @@ a{color:inherit}
   /* fascia loghi: su tutte le pagine. Per aggiungere un brand: una riga in LOGOS + il file in assets/logos */
   var LOGOS = [['terrazza21','Terrazza 21','png'],['hollywood','Hollywood','png'],['twiga','Twiga','svg'],['loolapaloosa','Loolapaloosa','png'],['rentallo','Rentallo','png'],['fastlife','Fast Life','png']];
   var bh = '';
-  for (var rep = 0; rep < 8; rep++) LOGOS.forEach(function(l){ bh += '<div class="bitem"><img src="assets/logos/' + l[0] + '.' + l[2] + '" alt="' + l[1] + '" data-t="' + l[1] + '"></div>'; });
+  for (var rep = 0; rep < 8; rep++) LOGOS.forEach(function(l){ bh += '<div class="bitem"><img class="tint" src="assets/logos/' + l[0] + '.' + l[2] + '" alt="' + l[1] + '" data-t="' + l[1] + '"></div>'; });
   $$('.btrack').forEach(function(t){
     t.innerHTML = bh;
     $$('img', t).forEach(function(im){ im.addEventListener('error', function(){ var b = document.createElement('b'); b.textContent = im.getAttribute('data-t'); im.replaceWith(b); }); });
