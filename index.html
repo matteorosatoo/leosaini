@@ -520,7 +520,7 @@ body.is-home .lang button.on{--fill:var(--red);--line:var(--red)}
   /* home: ventaglio dal logo */
   var fan = $('#fan'), fl = $('#fl'), fanT = 0;
   function fanPos(){ var fr = fan.getBoundingClientRect(), d = fl.offsetWidth || 180, bh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bh')) || 70, sz = 92, cy = fr.top + fr.height / 2, ty = window.innerHeight - bh - 12 - sz / 2; fan.style.setProperty('--dy', (ty - cy) + 'px'); fan.style.setProperty('--ss', (sz / d).toFixed(3)); }
-  function fanSet(on){ if (on) fanPos(); var was = fan.classList.contains('open'); fan.classList.toggle('open', on); fan.classList.toggle('rew', !on && was); fl.setAttribute('aria-expanded', on ? 'true' : 'false'); fl.setAttribute('aria-label', on ? 'Chiudi le sezioni' : 'Apri le sezioni'); }
+  function fanSet(on){ if (on) fanPos(); var was = fan.classList.contains('open'); fan.classList.toggle('open', on); fan.classList.toggle('rew', !on && was); fl.setAttribute('aria-expanded', on ? 'true' : 'false'); fl.setAttribute('aria-label', (typeof lang !== 'undefined' && lang === 'en') ? (on ? 'Close the sections' : 'Open the sections') : (on ? 'Chiudi le sezioni' : 'Apri le sezioni')); }
   fl.addEventListener('click', function(){ fanSet(!fan.classList.contains('open')); });
   document.addEventListener('viewchange', function(e){ if (e.detail === 'home') fanSet(false); });
 
@@ -614,11 +614,12 @@ body.is-home .lang button.on{--fill:var(--red);--line:var(--red)}
     'siti essenziali e veloci, pensati prima di tutto per il telefono.':'essential, fast websites, designed phone-first.','sito web':'website',
     'inizia qualcosa insieme.':'start something together.',
     'contatto diretto · whatsapp':'direct contact · whatsapp','apri chat':'open chat','copia':'copy','scrivi':'write',
-    'chi siamo':'about us','product designer':'product designer','politecnico di milano':'politecnico di milano'
+    'chi siamo':'about us','product designer':'product designer','politecnico di milano':'politecnico di milano',
+    'video making e doppiaggi':'video making and dubbing','contattaci':'contact us','[video con tracce audio]':'[video with audio tracks]'
   };
   var tnodes = [];
   try {
-    var tw = document.createTreeWalker($('.main'), NodeFilter.SHOW_TEXT, null, false), tn, k;
+    var tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false), tn, k;
     while ((tn = tw.nextNode())){
       var pn = tn.parentNode.nodeName;
       if (pn === 'SCRIPT' || pn === 'STYLE' || !tn.nodeValue.replace(/\s+/g,'')) continue;
@@ -627,9 +628,17 @@ body.is-home .lang button.on{--fill:var(--red);--line:var(--red)}
       if (EN[k]) tnodes.push({n:tn, it:tn.nodeValue, en:tn.nodeValue.replace(tn.nodeValue.trim(), EN[k])});
     }
   } catch (e) {}
+  var AL = {
+    'Menu principale':'Main menu','Apri le sezioni':'Open the sections','Chiudi le sezioni':'Close the sections','attiva audio':'turn sound on','Filtra per categoria':'Filter by category','Lingua del video':'Video language',"Lingua dell'audio":'Audio language','Spazio video, lavori in corso':'Video space, work in progress','Contattaci':'Contact us','Video making e doppiaggi':'Video making and dubbing','Rentallo, lavori in corso':'Rentallo, work in progress','MC Holiday, lavori in corso':'MC Holiday, work in progress','Logo Disco Amore':'Disco Amore logo','Logo Rentallo':'Rentallo logo','Logo MC Holiday':'MC Holiday logo',
+    'Brand con cui abbiamo collaborato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life':'Brands we have worked with: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life'
+  };
+  var anodes = [];
+  try { $$('[aria-label],[alt]').forEach(function(e){ ['aria-label','alt'].forEach(function(at){ var v = e.getAttribute(at); if (v && AL[v]) anodes.push({e:e, a:at, it:v, en:AL[v]}); }); }); } catch (e) {}
   function setLang(l){
     lang = l; document.documentElement.lang = l;
     tnodes.forEach(function(t){ t.n.nodeValue = (l === 'en') ? t.en : t.it; });
+    anodes.forEach(function(t){ t.e.setAttribute(t.a, (l === 'en') ? t.en : t.it); });
+    try { var isOpen = fan.classList.contains('open'); fl.setAttribute('aria-label', l === 'en' ? (isOpen ? 'Close the sections' : 'Open the sections') : (isOpen ? 'Chiudi le sezioni' : 'Apri le sezioni')); } catch (e) {}
     $$('button', lg).forEach(function(b){ var on = b.getAttribute('data-l') === l; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
     try { localStorage.setItem('nv-lang', l); } catch (e) {}
   }
