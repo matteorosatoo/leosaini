@@ -249,6 +249,21 @@ body.is-home .lang button.on{background:var(--red);color:var(--white);border-col
 @media (hover:hover) and (pointer:fine){.hbt:hover{background:var(--red);color:var(--white);text-decoration:none;transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--red)}.hbt:active{transform:translate(5px,5px);box-shadow:1px 1px 0 var(--red)}}
 @media (min-width:821px){.hbt{font-size:44px;min-height:130px}}
 @media (prefers-reduced-motion:reduce){.fl svg{transition:none}}
+
+/* home v4: giro 495, cerchio che si espande, pulsazione, hint */
+.fl svg{transition:transform 1.25s cubic-bezier(.5,0,.15,1)}
+.fan.open .fl svg{transform:rotate(495deg)}
+.fring{transition:scale 1.1s cubic-bezier(.5,0,.15,1)}
+.fan.open .fring{scale:1.1}
+.fring::after{content:"";position:absolute;inset:-6px;border:4px solid var(--red);border-radius:50%;opacity:0;pointer-events:none}
+.fan:not(.open) .fring::after{animation:ripple 2.2s cubic-bezier(.2,.6,.3,1) infinite}
+.fan:not(.open) .fl svg{animation:pulse 2.2s ease-in-out infinite}
+.fan.open .fl svg,.fan.rew .fl svg{animation:none}
+@keyframes pulse{0%,100%{scale:1}40%{scale:1.09}}
+@keyframes ripple{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.28);opacity:0}}
+.fhint{position:absolute;left:50%;top:calc(50% - var(--D)/2 - 46px);transform:translateX(-50%);color:var(--red);font:900 clamp(20px,5.6vw,30px)/1 var(--f-display);letter-spacing:-.02em;white-space:nowrap;pointer-events:none;transition:opacity .3s ease}
+.fan.open .fhint{opacity:0}
+@media (prefers-reduced-motion:reduce){.fan:not(.open) .fring::after,.fan:not(.open) .fl svg{animation:none}.fring,.fl svg{transition:none}}
 </style>
 </head>
 <body>
@@ -285,6 +300,7 @@ body.is-home .lang button.on{background:var(--red);color:var(--white);border-col
 <button class="fl" id="fl" type="button" aria-expanded="false" aria-label="Apri le sezioni"><svg viewBox="0 0 1327 1328" aria-hidden="true"><use href="#mk"/></svg></button>
 <div class="hb" style="--i:2;--ro:1.6deg;--tx:55%;--ty:-125%"><a class="hbt" href="#web">web design</a></div>
 <div class="hb" style="--i:3;--ro:-2deg;--tx:-55%;--ty:-125%"><a class="hbt" href="#contact">contattaci</a></div>
+<div class="fhint" aria-hidden="true">premi il logo</div>
 </div>
 </div></section>
 
@@ -541,7 +557,7 @@ body.is-home .lang button.on{background:var(--red);color:var(--white);border-col
   var lang = 'it', lg = $('#lang');
   var EN = {
     'visual designer. visual ai per brand, artisti, eventi e cultura.':'visual designer. visual ai for brands, artists, events and culture.',
-    'progetti personali · vision':'personal projects · vision','progetti personali':'personal projects','scrivici su whatsapp':'message us on whatsapp','scegli la sezione':'choose a section','tocca il logo':'tap the logo','passa sul logo':'hover the logo','commissionati':'commissioned',
+    'progetti personali · vision':'personal projects · vision','progetti personali':'personal projects','scrivici su whatsapp':'message us on whatsapp','scegli la sezione':'choose a section','premi il logo':'press the logo','tocca il logo':'tap the logo','passa sul logo':'hover the logo','commissionati':'commissioned',
     'serate, eventi e locali: promo, after movie, reel e flyer animati.':'nights, events and venues: promos, after movies, reels and animated flyers.',
     'evento':'event',
     'video maker. giriamo e montiamo video per locali. produzione di after movie e reel, produzione di video informativi e doppiaggio di video.':'video maker. we shoot and edit videos for venues. production of after movies and reels, informative videos and video dubbing.',
