@@ -38,8 +38,6 @@ a{color:inherit}
 .tape{display:inline-block;background:var(--red);color:var(--white);font:900 13px/1 var(--f-display);letter-spacing:.14em;padding:.7em 1.1em .65em;clip-path:var(--tape);transform:rotate(-1.6deg)}
 .pad{padding:calc(var(--top) + 36px) var(--pad) 80px}
 .h1{margin:0;font:900 clamp(60px,9.4vw,150px)/.84 var(--f-display);letter-spacing:-.055em;filter:url(#rough);overflow-wrap:anywhere}
-.intro{margin:22px 0 0;max-width:46ch;font:900 clamp(16px,1.5vw,20px)/1.3 var(--f-body)}
-.intro.big{max-width:24ch;font-size:clamp(24px,2.4vw,34px);line-height:1.04;letter-spacing:-.035em}
 .sec{display:flex;align-items:center;gap:16px;margin:clamp(40px,5vw,72px) 0 22px}
 .sec::after{content:"";flex:1;height:5px;background:var(--red);filter:url(#rough)}
 .h2{margin:0;font:900 clamp(40px,4.4vw,56px)/.86 var(--f-display);letter-spacing:-.05em;filter:url(#rough)}
@@ -82,8 +80,12 @@ a{color:inherit}
 .hbt{display:flex;align-items:center;justify-content:space-between;gap:12px;color:inherit;text-decoration:none;font:900 clamp(36px,3.6vw,54px)/.9 var(--f-display);letter-spacing:-.05em;-webkit-tap-highlight-color:transparent}
 .hbt svg{flex:none;width:.7em;height:.7em}
 .hs{display:flex;flex-wrap:wrap;gap:10px}
-.hs a{display:inline-flex;align-items:center;min-height:48px;padding:0 1.2em;background:var(--white);color:var(--red);text-decoration:none;font:900 15px/1 var(--f-display);letter-spacing:.08em;-webkit-tap-highlight-color:transparent}
-.hs a:hover,.hs a:active{background:var(--ink,#0A0A0A);color:var(--white)}
+.hs a{outline-offset:3px;display:inline-flex;align-items:center;min-height:48px;padding:0 1.2em;background:var(--white);color:var(--red);text-decoration:none;font:900 15px/1 var(--f-display);letter-spacing:.08em;-webkit-tap-highlight-color:transparent}
+.hs a,.hbt,.btn,.snd{transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .16s ease,color .16s ease}
+.hs a:active,.btn:active,.snd:active{transform:scale(.97)}
+.hbt:active{transform:translateX(3px)}
+@media (hover:hover) and (pointer:fine){.hs a:hover{background:var(--red);color:var(--white)}.hbt:hover svg{transform:translateX(4px)}}
+.hbt svg{transition:transform .2s cubic-bezier(.23,1,.32,1)}
 .band.big{margin-top:48px;padding:44px 0}
 .band.big .bitem{height:130px;padding:0 64px}.band.big .bitem img{height:96px;max-width:300px}.band.big .bitem b{font-size:40px}
 .sec,.fig{scroll-margin-top:calc(var(--top) + 24px)}
@@ -102,7 +104,6 @@ a{color:inherit}
 .snd svg{width:16px;height:16px;display:block}
 .snd .on{display:none}
 .snd[aria-pressed="true"] .on{display:block}.snd[aria-pressed="true"] .off{display:none}
-.vid.ph .fr{display:block}
 
 /* spazi video "work in progress" */
 .site{position:relative;overflow:hidden;background:#141414;border:3px dashed var(--red)}
@@ -156,8 +157,6 @@ a{color:inherit}
 .pc p{margin:0;font:900 16px/1.3 var(--f-body);letter-spacing:.1em}
 .pc .em{font:900 clamp(20px,2vw,26px)/1 var(--f-display);letter-spacing:-.03em;margin-top:8px;overflow-wrap:anywhere}
 .btns{display:flex;gap:10px;flex-wrap:wrap}
-.chips{display:flex;flex-wrap:wrap;gap:10px}
-.chip{border:3px solid var(--red);padding:.7em 1em .65em;font:900 14px/1 var(--f-display);letter-spacing:.06em;background:var(--red);color:var(--white)}
 
 @media (min-width:821px){
   .pad{padding-top:calc(var(--pad) + 40px)}
@@ -243,7 +242,7 @@ a{color:inherit}
 <div class="hb"><a class="hbt" href="#ai">video ai<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#ai-personali">progetti personali</a><a href="#ai-commissionati">commissionati</a></div></div>
 <div class="hb"><a class="hbt" href="#making">video making<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#making-serate">serate</a><a href="#making-appartamenti">appartamenti</a><a href="#making-doppiaggi">doppiaggi</a></div></div>
 <div class="hb"><a class="hbt" href="#web">web design<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#web-rentallo">rentallo</a><a href="#web-mcholiday">mc holiday</a></div></div>
-<div class="hb"><a class="hbt" href="#contact">contattaci<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#contact">whatsapp</a><a href="#contact-chisiamo">chi siamo</a></div></div>
+<div class="hb"><a class="hbt" href="#contact">contattaci<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="https://wa.me/393703374793" target="_blank" rel="noopener">scrivici su whatsapp</a><a href="#contact-chisiamo">chi siamo</a></div></div>
 </div>
 <div class="band big" role="img" aria-label="Brand con cui abbiamo collaborato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack"></div></div>
 </div></section>
@@ -487,7 +486,7 @@ a{color:inherit}
   var lang = 'it', lg = $('#lang');
   var EN = {
     'visual designer. visual ai per brand, artisti, eventi e cultura.':'visual designer. visual ai for brands, artists, events and culture.',
-    'progetti personali · vision':'personal projects · vision','progetti personali':'personal projects','scegli la sezione':'choose a section','commissionati':'commissioned',
+    'progetti personali · vision':'personal projects · vision','progetti personali':'personal projects','scrivici su whatsapp':'message us on whatsapp','scegli la sezione':'choose a section','commissionati':'commissioned',
     'serate, eventi e locali: promo, after movie, reel e flyer animati.':'nights, events and venues: promos, after movies, reels and animated flyers.',
     'evento':'event',
     'video maker. giriamo e montiamo video per locali. produzione di after movie e reel, produzione di video informativi e doppiaggio di video.':'video maker. we shoot and edit videos for venues. production of after movies and reels, informative videos and video dubbing.',
