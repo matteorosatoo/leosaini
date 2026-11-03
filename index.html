@@ -75,6 +75,20 @@ a{color:inherit}
 .bitem b{font:900 28px/1 var(--f-display);letter-spacing:-.03em;white-space:nowrap}
 @keyframes bnd{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
+
+/* home */
+.hgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:36px}
+.hb{background:var(--red);color:var(--white);padding:20px 20px 22px;display:flex;flex-direction:column;gap:18px;clip-path:var(--tape)}
+.hbt{display:flex;align-items:center;justify-content:space-between;gap:12px;color:inherit;text-decoration:none;font:900 clamp(36px,3.6vw,54px)/.9 var(--f-display);letter-spacing:-.05em;-webkit-tap-highlight-color:transparent}
+.hbt svg{flex:none;width:.7em;height:.7em}
+.hs{display:flex;flex-wrap:wrap;gap:10px}
+.hs a{display:inline-flex;align-items:center;min-height:48px;padding:0 1.2em;background:var(--white);color:var(--red);text-decoration:none;font:900 15px/1 var(--f-display);letter-spacing:.08em;-webkit-tap-highlight-color:transparent}
+.hs a:hover,.hs a:active{background:var(--ink,#0A0A0A);color:var(--white)}
+.band.big{margin-top:48px;padding:44px 0}
+.band.big .bitem{height:130px;padding:0 64px}.band.big .bitem img{height:96px;max-width:300px}.band.big .bitem b{font-size:40px}
+.sec,.fig{scroll-margin-top:calc(var(--top) + 24px)}
+@media (max-width:820px){.hgrid{grid-template-columns:1fr}}
+
 /* video */
 .car{--h:360px;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(-1*var(--pad));padding:0 var(--pad) 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .car::-webkit-scrollbar{display:none}
@@ -186,9 +200,10 @@ a{color:inherit}
   .band{margin-top:28px;padding:22px 0}
   .band::before,.band::after{height:6px}.band::before{top:4px}.band::after{bottom:4px}
   .btrack{animation-duration:30s}
+  .band.big{padding:30px 0;margin-top:36px}.band.big .bitem{height:84px;padding:0 34px}.band.big .bitem img{height:60px;max-width:180px}
   .bitem{height:48px;padding:0 28px}.bitem img{height:34px;max-width:130px}.bitem b{font-size:20px}
   .car{--h:200px;gap:12px}
-  .vid{width:min(calc(var(--h)*var(--rw)),calc(100vw - 64px))}
+  .vid{width:min(calc(var(--h)*var(--rw)),calc(100vw - 96px))}
   .vid .fr{height:auto;aspect-ratio:var(--ar)}
   .vid figcaption{font-size:12px;gap:8px}
   .sec{margin:40px 0 18px}
@@ -210,31 +225,41 @@ a{color:inherit}
 <div class="lang" id="lang" role="group" aria-label="lingua / language"><button type="button" data-l="it" class="on" aria-pressed="true">ita</button><button type="button" data-l="en" aria-pressed="false">en</button></div>
 
 <aside class="side">
-<a class="mk" href="#ai" aria-label="Nitido Vision"><svg viewBox="0 0 1327 1328" aria-hidden="true"><use href="#mk"/></svg></a>
+<a class="mk" href="#home" aria-label="Nitido Vision"><svg viewBox="0 0 1327 1328" aria-hidden="true"><use href="#mk"/></svg></a>
 <nav class="nav" aria-label="Menu principale"><a href="#ai" data-view="ai">video ai</a><a href="#making" data-view="making">video making</a><a href="#web" data-view="web">web design</a><a href="#contact" data-view="contact">contattaci</a></nav>
 <div class="yr">2026</div>
 </aside>
 <header class="top">
-<div class="row1"><span class="mkm" style="color:var(--white)"><svg viewBox="0 0 1327 1328" aria-hidden="true"><use href="#mk"/></svg></span><span>nitido vision</span></div>
+<a class="row1" href="#home" aria-label="Nitido Vision, home" style="text-decoration:none;color:inherit"><span class="mkm" style="color:var(--white)"><svg viewBox="0 0 1327 1328" aria-hidden="true"><use href="#mk"/></svg></span><span>nitido vision</span></a>
 <nav class="mnav" aria-label="Menu principale"><a href="#ai" data-view="ai">video ai</a><a href="#making" data-view="making">video making</a><a href="#web" data-view="web">web design</a><a href="#contact" data-view="contact">contattaci</a></nav>
 </header>
 
 <main class="main">
 
+<!-- HOME -->
+<section class="view on" id="v-home" aria-label="Home"><div class="pad">
+<h1 class="h1">scegli la sezione</h1>
+<div class="hgrid">
+<div class="hb"><a class="hbt" href="#ai">video ai<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#ai-personali">progetti personali</a><a href="#ai-commissionati">commissionati</a></div></div>
+<div class="hb"><a class="hbt" href="#making">video making<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#making-serate">serate</a><a href="#making-appartamenti">appartamenti</a><a href="#making-doppiaggi">doppiaggi</a></div></div>
+<div class="hb"><a class="hbt" href="#web">web design<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#web-rentallo">rentallo</a><a href="#web-mcholiday">mc holiday</a></div></div>
+<div class="hb"><a class="hbt" href="#contact">contattaci<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#contact">whatsapp</a><a href="#contact-chisiamo">chi siamo</a></div></div>
+</div>
+<div class="band big" role="img" aria-label="Brand con cui abbiamo collaborato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack"></div></div>
+</div></section>
+
 <!-- VIDEO AI -->
-<section class="view on" id="v-ai" aria-label="Video AI"><div class="pad">
+<section class="view" id="v-ai" aria-label="Video AI"><div class="pad">
 <h1 class="h1">video ai</h1>
-<div class="band" role="img" aria-label="Brand con cui abbiamo collaborato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack"></div></div>
-<div class="sec"><span class="tape">progetti personali · vision</span></div>
+<div class="sec" id="s-personali"><span class="tape">progetti personali · vision</span></div>
 <div class="car"><figure class="vid" style="--ar:16/9;--rw:1.778"><div class="fr"><video muted loop playsinline preload="none" poster="video/church.jpg" data-src="video/church.mp4"></video><button class="snd" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M17 8a5 5 0 0 1 0 8M20 5a9 9 0 0 1 0 14"/></g></svg></button></div><figcaption>07 church</figcaption></figure><figure class="vid" style="--ar:16/9;--rw:1.778"><div class="fr"><video muted loop playsinline preload="none" poster="poster/salvadors-dream.jpg" data-src="video/salvadors-dream.mp4"></video><button class="snd" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M17 8a5 5 0 0 1 0 8M20 5a9 9 0 0 1 0 14"/></g></svg></button></div><figcaption>05 salvador's dream</figcaption></figure><figure class="vid" style="--ar:16/9;--rw:1.778"><div class="fr"><video muted loop playsinline preload="none" poster="poster/backrooms.jpg" data-src="video/backrooms.mp4"></video><button class="snd" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M17 8a5 5 0 0 1 0 8M20 5a9 9 0 0 1 0 14"/></g></svg></button></div><figcaption>04 backrooms</figcaption></figure><figure class="vid" style="--ar:16/9;--rw:1.778"><div class="fr"><video muted loop playsinline preload="none" poster="poster/boxing.jpg" data-src="video/boxing.mp4"></video><button class="snd" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M17 8a5 5 0 0 1 0 8M20 5a9 9 0 0 1 0 14"/></g></svg></button></div><figcaption>03 boxing</figcaption></figure><figure class="vid" style="--ar:16/9;--rw:1.778"><div class="fr"><video muted loop playsinline preload="none" poster="poster/milano.jpg" data-src="video/milano.mp4"></video><button class="snd" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M17 8a5 5 0 0 1 0 8M20 5a9 9 0 0 1 0 14"/></g></svg></button></div><figcaption>02 milano</figcaption></figure><figure class="vid" style="--ar:16/9;--rw:1.778"><div class="fr"><video muted loop playsinline preload="none" poster="poster/mob-fut-grain.jpg" data-src="video/mob-fut-grain.mp4"></video><button class="snd" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M17 8a5 5 0 0 1 0 8M20 5a9 9 0 0 1 0 14"/></g></svg></button></div><figcaption>01 training</figcaption></figure></div>
-<div class="sec"><span class="tape">commissionati</span></div>
+<div class="sec" id="s-commissionati"><span class="tape">commissionati</span></div>
 <div class="car"><figure class="vid" style="--ar:16/9;--rw:1.778"><div class="fr"><video muted loop playsinline preload="none" poster="poster/ugo-dv-mariu.jpg" data-src="video/ugo-dv-mariu.mp4"></video></div><figcaption>terrazza duomo<span>evento</span></figcaption></figure><figure class="vid" style="--ar:9/16;--rw:.5625"><div class="fr"><video muted loop playsinline preload="none" poster="poster/dolce-vita.jpg" data-src="video/dolce-vita.mp4"></video></div><figcaption>dolce vita<span>terrazza duomo</span></figcaption></figure><figure class="vid" style="--ar:9/16;--rw:.5625"><div class="fr"><video muted loop playsinline preload="none" poster="poster/mfw-closing-unilux.jpg" data-src="video/mfw-closing-unilux.mp4"></video></div><figcaption>mfw closing<span>twiga</span></figcaption></figure><figure class="vid" style="--ar:4/5;--rw:.8"><div class="fr"><video muted loop playsinline preload="none" poster="poster/fastlife-draft.jpg" data-src="video/fastlife-draft.mp4"></video></div><figcaption>fast life<span>risotto western</span></figcaption></figure><figure class="vid" style="--ar:9/16;--rw:.5625"><div class="fr"><video muted loop playsinline preload="none" poster="poster/ladies-night.jpg" data-src="video/ladies-night.mp4"></video></div><figcaption>ladies night<span>loolapaloosa</span></figcaption></figure><figure class="vid" style="--ar:9/16;--rw:.5625"><div class="fr"><video muted loop playsinline preload="none" poster="poster/ciak-song1.jpg" data-src="video/ciak-song1.mp4"></video></div><figcaption>ciak<span>fast life</span></figcaption></figure></div>
 </div></section>
 
 <!-- VIDEO MAKING -->
 <section class="view" id="v-making" aria-label="Video Making"><div class="pad">
 <h1 class="h1">video making</h1>
-<div class="band" role="img" aria-label="Brand con cui abbiamo collaborato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack"></div></div>
 <div class="filters" role="group" aria-label="Filtra per categoria">
 <button class="btn" type="button" data-f="serate" aria-pressed="true">serate</button>
 <button class="btn" type="button" data-f="appartamenti" aria-pressed="false">appartamenti</button>
@@ -293,19 +318,17 @@ a{color:inherit}
 <!-- WEB DESIGN -->
 <section class="view" id="v-web" aria-label="Web Design"><div class="pad">
 <h1 class="h1">web design</h1>
-<div class="band" role="img" aria-label="Brand con cui abbiamo collaborato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack"></div></div>
 <div class="webgrid">
-<figure class="fig"><div class="site" style="aspect-ratio:4/3" role="img" aria-label="Rentallo, lavori in corso"><img class="lg" style="width:130px;height:auto" src="assets/logos/rentallo.png" alt="Logo Rentallo"><div class="wip" style="--r:37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div><div class="wip" style="--r:-37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div></div><figcaption><strong>rentallo</strong><span>sito web</span></figcaption></figure>
-<figure class="fig"><div class="site" style="aspect-ratio:4/3" role="img" aria-label="MC Holiday, lavori in corso"><img class="lg" src="assets/logos/mc-holiday.png" alt="Logo MC Holiday"><div class="wip" style="--r:37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div><div class="wip" style="--r:-37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div></div><figcaption><strong>mc holiday</strong><span>sito web</span></figcaption></figure>
+<figure class="fig" id="s-rentallo"><div class="site" style="aspect-ratio:4/3" role="img" aria-label="Rentallo, lavori in corso"><img class="lg" style="width:130px;height:auto" src="assets/logos/rentallo.png" alt="Logo Rentallo"><div class="wip" style="--r:37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div><div class="wip" style="--r:-37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div></div><figcaption><strong>rentallo</strong><span>sito web</span></figcaption></figure>
+<figure class="fig" id="s-mcholiday"><div class="site" style="aspect-ratio:4/3" role="img" aria-label="MC Holiday, lavori in corso"><img class="lg" src="assets/logos/mc-holiday.png" alt="Logo MC Holiday"><div class="wip" style="--r:37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div><div class="wip" style="--r:-37deg;--w:170%">work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress · work in progress</div></div><figcaption><strong>mc holiday</strong><span>sito web</span></figcaption></figure>
 </div>
 </div></section>
 
 <!-- CONTATTACI -->
 <section class="view" id="v-contact" aria-label="Contattaci"><div class="pad">
 <h1 class="h1">contattaci</h1>
-<div class="band" role="img" aria-label="Brand con cui abbiamo collaborato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack"></div></div>
 <div class="cl"><span class="tape">contatto diretto · whatsapp</span><div class="val" id="c-wa">+39 370 337 4793</div><div class="btns"><a class="btn solid" href="https://wa.me/393703374793" target="_blank" rel="noopener">apri chat</a><button class="btn" type="button" data-copy="c-wa">copia</button></div></div>
-<div class="sec"><span class="tape">chi siamo</span></div>
+<div class="sec" id="s-chisiamo"><span class="tape">chi siamo</span></div>
 <div class="who2">
 <section class="pc"><h3>leo</h3><p>product designer<br>politecnico di milano</p><div class="em" id="c-leo">leo@nitidovision.com</div><div class="btns"><a class="btn solid" href="mailto:leo@nitidovision.com">scrivi</a><button class="btn" type="button" data-copy="c-leo">copia</button></div></section>
 <section class="pc"><h3>matteo</h3><p>product designer<br>politecnico di milano</p><div class="em" id="c-matteo">matteo@nitidovision.com</div><div class="btns"><a class="btn solid" href="mailto:matteo@nitidovision.com">scrivi</a><button class="btn" type="button" data-copy="c-matteo">copia</button></div></section>
@@ -336,15 +359,26 @@ a{color:inherit}
   addEventListener('resize', function(){ clearTimeout(gt); gt = setTimeout(paintGrain, 250); });
 
   /* pagine + strappo giallo */
-  var views = ['ai','making','web','contact'], legacy = {commissioned:'ai', vision:'ai', home:'ai'};
+  var views = ['home','ai','making','web','contact'], legacy = {commissioned:'ai', vision:'ai'}, pendingSub = '';
   var wipe = $('#wipe'), bars = $$('i', wipe), current = null, busy = false;
-  function norm(v){ v = legacy[v] || v; return views.indexOf(v) < 0 ? 'ai' : v; }
+  function norm(v){ v = legacy[v] || v; return views.indexOf(v) < 0 ? 'home' : v; }
+  function applySub(v){
+    var sub = pendingSub; pendingSub = '';
+    if (!sub) return;
+    if (v === 'making'){
+      var fbtn = document.querySelector('.filters .btn[data-f="' + sub + '"]');
+      if (fbtn) setTimeout(function(){ fbtn.click(); }, 0);
+      return;
+    }
+    var el = document.getElementById('s-' + sub);
+    if (el) setTimeout(function(){ el.scrollIntoView(); }, 30);
+  }
   function show(v){
     views.forEach(function(k){ $('#v-'+k).classList.toggle('on', k === v); });
     $$('.nav a, .mnav a').forEach(function(a){
       if (a.getAttribute('data-view') === v) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
     });
-    current = v; window.scrollTo(0,0);
+    current = v; window.scrollTo(0,0); applySub(v);
     document.dispatchEvent(new CustomEvent('viewchange',{detail:v}));
   }
   function go(v){
@@ -367,8 +401,9 @@ a{color:inherit}
     }, 460);
   }
   function fromHash(first){
-    var v = norm((location.hash || '#ai').slice(1));
-    if (first) show(v); else go(v);
+    var h = (location.hash || '#home').slice(1), i = h.indexOf('-'), v = norm(i < 0 ? h : h.slice(0,i));
+    pendingSub = i < 0 ? '' : h.slice(i+1);
+    if (first) show(v); else if (v === current) applySub(v); else go(v);
   }
   addEventListener('hashchange', function(){ fromHash(false); });
   fromHash(true);
@@ -452,7 +487,7 @@ a{color:inherit}
   var lang = 'it', lg = $('#lang');
   var EN = {
     'visual designer. visual ai per brand, artisti, eventi e cultura.':'visual designer. visual ai for brands, artists, events and culture.',
-    'progetti personali · vision':'personal projects · vision','commissionati':'commissioned',
+    'progetti personali · vision':'personal projects · vision','progetti personali':'personal projects','scegli la sezione':'choose a section','commissionati':'commissioned',
     'serate, eventi e locali: promo, after movie, reel e flyer animati.':'nights, events and venues: promos, after movies, reels and animated flyers.',
     'evento':'event',
     'video maker. giriamo e montiamo video per locali. produzione di after movie e reel, produzione di video informativi e doppiaggio di video.':'video maker. we shoot and edit videos for venues. production of after movies and reels, informative videos and video dubbing.',
