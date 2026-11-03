@@ -74,6 +74,26 @@ a{color:inherit}
 @keyframes bnd{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 
+
+/* home: logo al centro, le sezioni si aprono a ventaglio */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;filter:none}
+.fan{display:flex;flex-direction:column;align-items:center;max-width:920px;margin:0 auto}
+.fl{appearance:none;border:0;background:none;color:var(--red);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:22px;padding:8px 24px 14px;-webkit-tap-highlight-color:transparent}
+.fl svg{width:min(54vw,250px);height:auto;display:block;transition:transform .55s cubic-bezier(.23,1,.32,1)}
+.fl:active svg{transform:scale(.96)}
+.fan.open .fl svg{transform:rotate(-8deg) scale(.82)}
+.fh{transition:opacity .25s ease}
+.fan.open .fh{opacity:0}
+.fh .hm{display:none}
+@media (hover:hover) and (pointer:fine){.fh .ht{display:none}.fh .hm{display:inline}}
+.fanw{width:100%;display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .5s cubic-bezier(.23,1,.32,1),visibility 0s .5s}
+.fan.open .fanw{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .5s cubic-bezier(.23,1,.32,1),visibility 0s}
+.fanin{min-height:0;overflow:hidden;padding:0 4px}
+.fanin .hgrid{margin-top:8px;padding-bottom:12px}
+.fan .hb{opacity:0;transform:translateY(-70px) scale(.72) rotate(calc(var(--ro)*5));transform-origin:50% 0;transition:transform .55s cubic-bezier(.23,1,.32,1) calc(var(--i)*70ms),opacity .3s ease calc(var(--i)*70ms)}
+.fan.open .hb{opacity:1;transform:rotate(var(--ro))}
+@media (prefers-reduced-motion:reduce){.fan *,.fan *::before{transition:none!important}}
+
 /* home */
 .hgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:36px}
 .hb{background:var(--red);color:var(--white);padding:20px 20px 22px;display:flex;flex-direction:column;gap:18px;clip-path:var(--tape)}
@@ -237,12 +257,15 @@ a{color:inherit}
 
 <!-- HOME -->
 <section class="view on" id="v-home" aria-label="Home"><div class="pad">
-<h1 class="h1">scegli la sezione</h1>
-<div class="hgrid">
-<div class="hb"><a class="hbt" href="#ai">video ai<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#ai-personali">progetti personali</a><a href="#ai-commissionati">commissionati</a></div></div>
-<div class="hb"><a class="hbt" href="#making">video making<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#making-serate">serate</a><a href="#making-appartamenti">appartamenti</a><a href="#making-doppiaggi">doppiaggi</a></div></div>
-<div class="hb"><a class="hbt" href="#web">web design<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#web-rentallo">rentallo</a><a href="#web-mcholiday">mc holiday</a></div></div>
-<div class="hb"><a class="hbt" href="#contact">contattaci<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="https://wa.me/393703374793" target="_blank" rel="noopener">scrivici su whatsapp</a><a href="#contact-chisiamo">chi siamo</a></div></div>
+<h1 class="h1 sr">scegli la sezione</h1>
+<div class="fan" id="fan">
+<button class="fl" id="fl" type="button" aria-expanded="false" aria-controls="fanw" aria-label="Apri le sezioni"><svg viewBox="0 0 1327 1328" aria-hidden="true"><use href="#mk"/></svg><span class="tape fh"><span class="ht">tocca il logo</span><span class="hm">passa sul logo</span></span></button>
+<div class="fanw" id="fanw"><div class="fanin"><div class="hgrid">
+<div class="hb" style="--i:0;--ro:-2.2deg"><a class="hbt" href="#ai">video ai<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#ai-personali">progetti personali</a><a href="#ai-commissionati">commissionati</a></div></div>
+<div class="hb" style="--i:1;--ro:1.6deg"><a class="hbt" href="#making">video making<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#making-serate">serate</a><a href="#making-appartamenti">appartamenti</a><a href="#making-doppiaggi">doppiaggi</a></div></div>
+<div class="hb" style="--i:2;--ro:-1.4deg"><a class="hbt" href="#web">web design<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="#web-rentallo">rentallo</a><a href="#web-mcholiday">mc holiday</a></div></div>
+<div class="hb" style="--i:3;--ro:2.4deg"><a class="hbt" href="#contact">contattaci<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/></svg></a><div class="hs"><a href="https://wa.me/393703374793" target="_blank" rel="noopener">scrivici su whatsapp</a><a href="#contact-chisiamo">chi siamo</a></div></div>
+</div></div></div>
 </div>
 <div class="band big" role="img" aria-label="Brand con cui abbiamo collaborato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="btrack"></div></div>
 </div></section>
@@ -416,6 +439,18 @@ a{color:inherit}
     $$('img', t).forEach(function(im){ im.addEventListener('error', function(){ var b = document.createElement('b'); b.textContent = im.getAttribute('data-t'); im.replaceWith(b); }); });
   });
 
+
+  /* home: ventaglio dal logo */
+  var fan = $('#fan'), fl = $('#fl'), fanT = 0;
+  function fanSet(on){ fan.classList.toggle('open', on); fl.setAttribute('aria-expanded', on ? 'true' : 'false'); fl.setAttribute('aria-label', on ? 'Chiudi le sezioni' : 'Apri le sezioni'); }
+  fl.addEventListener('click', function(){ fanSet(!fan.classList.contains('open')); });
+  if (window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches){
+    fl.addEventListener('mouseenter', function(){ clearTimeout(fanT); fanSet(true); });
+    fan.addEventListener('mouseenter', function(){ clearTimeout(fanT); });
+    fan.addEventListener('mouseleave', function(){ fanT = setTimeout(function(){ fanSet(false); }, 350); });
+  }
+  document.addEventListener('viewchange', function(e){ if (e.detail === 'home') fanSet(false); });
+
   /* filtri video making */
   var fb = $$('.filters .btn');
   fb.forEach(function(b){
@@ -486,7 +521,7 @@ a{color:inherit}
   var lang = 'it', lg = $('#lang');
   var EN = {
     'visual designer. visual ai per brand, artisti, eventi e cultura.':'visual designer. visual ai for brands, artists, events and culture.',
-    'progetti personali · vision':'personal projects · vision','progetti personali':'personal projects','scrivici su whatsapp':'message us on whatsapp','scegli la sezione':'choose a section','commissionati':'commissioned',
+    'progetti personali · vision':'personal projects · vision','progetti personali':'personal projects','scrivici su whatsapp':'message us on whatsapp','scegli la sezione':'choose a section','tocca il logo':'tap the logo','passa sul logo':'hover the logo','commissionati':'commissioned',
     'serate, eventi e locali: promo, after movie, reel e flyer animati.':'nights, events and venues: promos, after movies, reels and animated flyers.',
     'evento':'event',
     'video maker. giriamo e montiamo video per locali. produzione di after movie e reel, produzione di video informativi e doppiaggio di video.':'video maker. we shoot and edit videos for venues. production of after movies and reels, informative videos and video dubbing.',
