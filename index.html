@@ -264,6 +264,25 @@ body.is-home .lang button.on{background:var(--red);color:var(--white);border-col
 .fhint{position:absolute;left:50%;top:calc(50% - var(--D)/2 - 46px);transform:translateX(-50%);color:var(--red);font:900 clamp(20px,5.6vw,30px)/1 var(--f-display);letter-spacing:-.02em;white-space:nowrap;pointer-events:none;transition:opacity .3s ease}
 .fan.open .fhint{opacity:0}
 @media (prefers-reduced-motion:reduce){.fan:not(.open) .fring::after,.fan:not(.open) .fl svg{animation:none}.fring,.fl svg{transition:none}}
+
+/* home v5: sigillo che si apre, menu a pillole, logo piccolo in basso */
+#v-home{overflow:clip}
+.fan{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;max-width:440px;padding:10px 0}
+.hb{width:100%;transform:translateY(-28px) scale(.72);transform-origin:50% 0;transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .25s ease,visibility 0s .5s}
+.fan.open .hb{transform:rotate(var(--ro));transition:transform .8s cubic-bezier(.22,1,.36,1) calc(.55s + var(--i)*95ms),opacity .4s ease calc(.55s + var(--i)*95ms),visibility 0s 0s}
+.hbt{--r:48px 56px 44px 60px / 56px 44px 60px 46px;border-radius:var(--r);box-shadow:none;min-height:clamp(72px,19vw,92px);font-size:clamp(24px,7vw,36px);padding:.3em .8em .26em}
+.hb:nth-child(2) .hbt{--r:58px 44px 60px 46px / 46px 58px 44px 60px}
+.hb:nth-child(5) .hbt{--r:44px 60px 48px 56px / 60px 46px 56px 44px}
+.hb:nth-child(6) .hbt{--r:56px 46px 58px 44px / 44px 60px 46px 58px}
+.hbt:active{transform:scale(.96);box-shadow:none}
+@media (hover:hover) and (pointer:fine){.hbt:hover{transform:scale(1.03);box-shadow:none}.hbt:active{transform:scale(.96)}}
+@media (min-width:821px){.hbt{font-size:40px;min-height:96px}.fan{max-width:520px}}
+.fring{transition:transform 1.15s cubic-bezier(.55,0,.8,.45),opacity .5s ease .65s}
+.fan.open .fring{transform:translate(-50%,-50%) scale(11);opacity:0}
+.fl{transition:transform .95s cubic-bezier(.65,0,.25,1)}
+.fan.open .fl{transform:translate(-50%,calc(-50% + var(--dy,0px))) scale(var(--ss,.5));z-index:3}
+.fan.open .fl:active{transform:translate(-50%,calc(-50% + var(--dy,0px))) scale(calc(var(--ss,.5)*.92))}
+@media (prefers-reduced-motion:reduce){.fring,.fl,.hb{transition:none!important}}
 </style>
 </head>
 <body>
@@ -478,13 +497,9 @@ body.is-home .lang button.on{background:var(--red);color:var(--white);border-col
 
   /* home: ventaglio dal logo */
   var fan = $('#fan'), fl = $('#fl'), fanT = 0;
-  function fanSet(on){ var was = fan.classList.contains('open'); fan.classList.toggle('open', on); fan.classList.toggle('rew', !on && was); fl.setAttribute('aria-expanded', on ? 'true' : 'false'); fl.setAttribute('aria-label', on ? 'Chiudi le sezioni' : 'Apri le sezioni'); }
+  function fanPos(){ var fr = fan.getBoundingClientRect(), d = fl.offsetWidth || 180, bh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bh')) || 70, sz = 92, cy = fr.top + fr.height / 2, ty = window.innerHeight - bh - 12 - sz / 2; fan.style.setProperty('--dy', (ty - cy) + 'px'); fan.style.setProperty('--ss', (sz / d).toFixed(3)); }
+  function fanSet(on){ if (on) fanPos(); var was = fan.classList.contains('open'); fan.classList.toggle('open', on); fan.classList.toggle('rew', !on && was); fl.setAttribute('aria-expanded', on ? 'true' : 'false'); fl.setAttribute('aria-label', on ? 'Chiudi le sezioni' : 'Apri le sezioni'); }
   fl.addEventListener('click', function(){ fanSet(!fan.classList.contains('open')); });
-  if (window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches){
-    fl.addEventListener('mouseenter', function(){ clearTimeout(fanT); fanSet(true); });
-    fan.addEventListener('mouseenter', function(){ clearTimeout(fanT); });
-    fan.addEventListener('mouseleave', function(){ fanT = setTimeout(function(){ fanSet(false); }, 350); });
-  }
   document.addEventListener('viewchange', function(e){ if (e.detail === 'home') fanSet(false); });
 
   /* filtri video making */
