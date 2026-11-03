@@ -194,7 +194,6 @@ a{color:inherit}
   .sec{margin:40px 0 18px}
   .tape{font-size:12px}
 }
-@media (prefers-reduced-motion:reduce){.btrack{animation:none}}
 
 /* fascia loghi: piccola, fissa in basso su tutte le pagine */
 :root{--bh:70px;--sw:84px}
@@ -234,7 +233,6 @@ body.is-home .lang button.on{background:var(--red);color:var(--white);border-col
 .hs a:active{transform:scale(.97);background:var(--red);color:var(--white)}
 @media (hover:hover) and (pointer:fine){.hs a:hover{background:var(--red);color:var(--white)}.hbt:hover{text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:6px}}
 @media (min-width:821px){.fan{--D:250px;gap:16px 40px}.hb{padding:18px 8px 8px}.hs a{font-size:15px;min-height:48px}}
-@media (prefers-reduced-motion:reduce){.hb{transition:none!important}.fan.open .fl svg,.fan.rew .fl svg{animation:none}.fan.open .fl svg{transform:rotate(0)}}
 
 /* home v3: logo 0->135, quattro tasti */
 .fl svg{transform:rotate(0deg);transition:transform .75s cubic-bezier(.65,0,.35,1)}
@@ -248,7 +246,6 @@ body.is-home .lang button.on{background:var(--red);color:var(--white);border-col
 .hbt:active{transform:translate(5px,5px);box-shadow:1px 1px 0 var(--red);background:var(--red);color:var(--white)}
 @media (hover:hover) and (pointer:fine){.hbt:hover{background:var(--red);color:var(--white);text-decoration:none;transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--red)}.hbt:active{transform:translate(5px,5px);box-shadow:1px 1px 0 var(--red)}}
 @media (min-width:821px){.hbt{font-size:44px;min-height:130px}}
-@media (prefers-reduced-motion:reduce){.fl svg{transition:none}}
 
 /* home v4: giro 495, cerchio che si espande, pulsazione, hint */
 .fl svg{transition:transform 1.25s cubic-bezier(.5,0,.15,1)}
@@ -263,7 +260,6 @@ body.is-home .lang button.on{background:var(--red);color:var(--white);border-col
 @keyframes ripple{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.28);opacity:0}}
 .fhint{position:absolute;left:50%;top:calc(50% - var(--D)/2 - 46px);transform:translateX(-50%);color:var(--red);font:900 clamp(20px,5.6vw,30px)/1 var(--f-display);letter-spacing:-.02em;white-space:nowrap;pointer-events:none;transition:opacity .3s ease}
 .fan.open .fhint{opacity:0}
-@media (prefers-reduced-motion:reduce){.fan:not(.open) .fring::after,.fan:not(.open) .fl svg{animation:none}.fring,.fl svg{transition:none}}
 
 /* home v5: sigillo che si apre, menu a pillole, logo piccolo in basso */
 #v-home{overflow:clip}
@@ -282,7 +278,6 @@ body.is-home .lang button.on{background:var(--red);color:var(--white);border-col
 .fl{transition:transform .95s cubic-bezier(.65,0,.25,1)}
 .fan.open .fl{transform:translate(-50%,calc(-50% + var(--dy,0px))) scale(var(--ss,.5));z-index:3}
 .fan.open .fl:active{transform:translate(-50%,calc(-50% + var(--dy,0px))) scale(calc(var(--ss,.5)*.92))}
-@media (prefers-reduced-motion:reduce){.fring,.fl,.hb{transition:none!important}}
 
 /* regola generale: tasti = forme arrotondate dal bordo storto; cio che non si clicca = solo scritta */
 .btn,.lang button,.hbt,.snd,.nav a[aria-current="page"],.mnav a[aria-current="page"]{position:relative;isolation:isolate;background:none!important;border:0!important;clip-path:none!important;box-shadow:none!important}
@@ -305,6 +300,15 @@ body.is-home .lang button.on{--fill:var(--red);--line:var(--red)}
 .site{border:0}
 .wip{background:none;box-shadow:none;color:var(--red);height:auto}
 .wip::before,.wip::after{display:none}
+
+/* fluidita su cellulare */
+.hb,.fl,.wipe i,.fring{will-change:transform;backface-visibility:hidden}
+.fring{will-change:width,height,opacity}
+.fan.open .fring{filter:none}
+.view.on{animation:vin .55s cubic-bezier(.22,1,.36,1) both}
+@keyframes vin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.btn,.hbt,.lang button,.snd,.nav a,.mnav a,.fl{touch-action:manipulation}
+html{-webkit-text-size-adjust:100%;overscroll-behavior-y:none}
 </style>
 </head>
 <body>
@@ -438,7 +442,7 @@ body.is-home .lang button.on{--fill:var(--red);--line:var(--red)}
 
 <script>
 (function(){
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduce = false; /* le animazioni fanno parte dell'identita: non seguono "riduci movimento" */
   var $ = function(s,r){ return (r||document).querySelector(s); }, $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
 
   /* grana */
