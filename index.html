@@ -350,6 +350,34 @@ body.is-home .hc{display:inline-block}
 .feat b{font-size:24px}
 }
 @media (min-width:821px){.filters{grid-template-columns:repeat(3,max-content);gap:14px}.filters .btn{padding:0 2em;font-size:15px}}
+
+/* selettore lingua rotondo (globo + lingua + freccia) con tendina di pillole */
+.ls{display:grid;gap:10px;position:relative;z-index:2}
+.ls-btn,.ls-opt{appearance:none;cursor:pointer;position:relative;isolation:isolate;background:none;border:0;color:var(--red);font:900 14px/1 var(--f-display);letter-spacing:.08em;text-transform:lowercase;text-align:left;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.ls-btn{display:flex;align-items:center;gap:10px;width:100%;min-height:54px;padding:0 20px}
+.ls-btn svg{width:18px;height:18px;flex:none}
+.ls-val{flex:1}
+.ls-chev{transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.ls.open .ls-chev{transform:rotate(180deg)}
+.ls-btn::before,.ls-opt::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border:3px solid var(--red);border-radius:34px 42px 30px 44px / 42px 30px 44px 34px;background:var(--fill,transparent);filter:url(#rough);transition:background-color .16s ease}
+.ls-opt{display:block;width:100%;min-height:48px;padding:0 20px}
+li:nth-child(2)>.ls-opt::before{border-radius:42px 30px 44px 34px / 30px 44px 34px 42px}
+li:nth-child(3)>.ls-opt::before{border-radius:30px 44px 36px 40px / 44px 34px 40px 30px}
+.ls-opt[aria-selected="true"],.ls-opt:active{--fill:var(--red);color:var(--white)}
+@media (hover:hover) and (pointer:fine){.ls-opt:hover,.ls-btn:hover{--fill:var(--red);color:var(--white)}}
+.ls-pop{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,1,.36,1)}
+.ls.open .ls-pop{grid-template-rows:1fr}
+.ls-list{list-style:none;margin:0;padding:0 4px;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:8px;visibility:hidden;opacity:0;transition:opacity .25s ease,visibility 0s .4s}
+.ls.open .ls-list{visibility:visible;opacity:1;padding:4px;transition:opacity .3s ease .08s,visibility 0s}
+/* doppiaggi: video con tracce audio */
+.dub .slot video{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-touch-callout:none;user-select:none}
+.dub .slot.has video{display:block}
+.dub .slot.has::before,.dub .slot.has .cap{display:none}
+.dub .slot .snd{position:absolute;top:10px;right:10px;z-index:3;transform:none}
+.dub .slot:not(.has) .snd{display:none}
+.dubtag{position:absolute;left:14px;bottom:14px;z-index:3;color:var(--red);font:900 14px/1 var(--f-display);letter-spacing:.08em;text-transform:lowercase;text-shadow:0 1px 10px rgba(0,0,0,.85),0 0 3px rgba(0,0,0,.8)}
+.dub .slot:not(.has) .dubtag{display:none}
+.dub{max-width:min(100%,320px)}
 </style>
 </head>
 <body>
@@ -447,12 +475,8 @@ body.is-home .hc{display:inline-block}
 </ul>
 </div>
 <div class="dub">
-<div class="slot"><div class="cap"><strong id="dubl">audio · italiano</strong><span>[video con tracce audio]</span></div></div>
-<div class="langs" role="group" aria-label="Lingua dell'audio">
-<button class="btn" type="button" data-a="italiano" aria-pressed="true">ita</button>
-<button class="btn" type="button" data-a="english" aria-pressed="false">en</button>
-<button class="btn" type="button" data-a="español" aria-pressed="false">es</button>
-</div>
+<div class="slot" id="dubslot"><video id="dubv" muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" data-src="video/doppiaggi.mp4" poster="poster/doppiaggi.jpg" data-tracks='{"italiano":"video/doppiaggi-ita.m4a","english":"video/doppiaggi-en.m4a","español":"video/doppiaggi-es.m4a"}'></video><button class="snd" id="dubsnd" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M17 8a5 5 0 0 1 0 8M20 5a9 9 0 0 1 0 14"/></g></svg></button><span class="dubtag" id="dubtag">italiano</span><div class="cap"><strong id="dubl">audio · italiano</strong><span>[video con tracce audio]</span></div></div>
+<select class="lsel" id="dubsel" aria-label="Lingua dell'audio"><option value="italiano">italiano</option><option value="english">english</option><option value="español">español</option></select>
 </div>
 </div>
 </div>
@@ -584,14 +608,68 @@ body.is-home .hc{display:inline-block}
       $$('.pn').forEach(function(p){ p.classList.toggle('on', p.id === 'p-' + f); });
     });
   });
-  /* doppiaggi: tasti lingua audio (qui va collegato il video con le 3 tracce) */
-  var al = $$('.langs .btn');
-  al.forEach(function(b){
-    b.addEventListener('click', function(){
-      al.forEach(function(o){ o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
-      $('#dubl').textContent = 'audio · ' + b.getAttribute('data-a');
+  /* selettore lingua: menu a tendina in forme rotonde (sostituisce i select e i tasti quadrati) */
+  var GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg>';
+  var CHEV = '<svg class="ls-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg>';
+  function enhanceSelect(sel){
+    var ls = document.createElement('div'); ls.className = 'ls';
+    var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'ls-btn'; btn.setAttribute('aria-haspopup','listbox'); btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-label', sel.getAttribute('aria-label') || 'lingua');
+    btn.innerHTML = GLOBE + '<span class="ls-val"></span>' + CHEV;
+    var pop = document.createElement('div'); pop.className = 'ls-pop';
+    var ul = document.createElement('ul'); ul.className = 'ls-list'; ul.setAttribute('role','listbox'); pop.appendChild(ul);
+    var val = btn.querySelector('.ls-val'), opts = [];
+    Array.prototype.forEach.call(sel.options, function(o, idx){
+      var li = document.createElement('li'), ob = document.createElement('button'); ob.type = 'button'; ob.className = 'ls-opt'; ob.setAttribute('role','option'); ob.textContent = o.textContent; ob.tabIndex = -1;
+      ob.addEventListener('click', function(){ pick(idx, true); toggle(false); btn.focus(); });
+      li.appendChild(ob); ul.appendChild(li); opts.push(ob);
     });
-  });
+    function paint(){ val.textContent = sel.options[sel.selectedIndex].textContent; opts.forEach(function(ob, k){ ob.setAttribute('aria-selected', k === sel.selectedIndex ? 'true' : 'false'); }); }
+    function pick(idx, fire){ sel.selectedIndex = idx; paint(); if (fire) sel.dispatchEvent(new Event('change')); }
+    function toggle(on){ ls.classList.toggle('open', on); btn.setAttribute('aria-expanded', on ? 'true' : 'false'); opts.forEach(function(ob){ ob.tabIndex = on ? 0 : -1; }); }
+    btn.addEventListener('click', function(){ toggle(!ls.classList.contains('open')); });
+    ls.addEventListener('keydown', function(e){ if (e.key === 'Escape'){ toggle(false); btn.focus(); } });
+    document.addEventListener('click', function(e){ if (!ls.contains(e.target)) toggle(false); });
+    ls.appendChild(btn); ls.appendChild(pop); paint();
+    sel.style.display = 'none'; sel.insertAdjacentElement('afterend', ls);
+  }
+  $$('.lsel').forEach(enhanceSelect);
+
+  /* doppiaggi: un solo video muto + una traccia audio per lingua, sincronizzate; il cambio lingua e in tempo reale */
+  var dv = $('#dubv'), dslot = $('#dubslot'), dtag = $('#dubtag'), dsnd = $('#dubsnd'), dsel = $('#dubsel');
+  if (dv && dsel){
+    var dmap = {}; try { dmap = JSON.parse(dv.getAttribute('data-tracks')); } catch (e) {}
+    var dtr = {}, dlang = dsel.value, don = false;
+    function dtrack(l){ if (!dtr[l] && dmap[l]){ var a = new Audio(); a.preload = 'auto'; a.src = dmap[l]; dtr[l] = a; } return dtr[l]; }
+    function dstop(){ Object.keys(dtr).forEach(function(k){ dtr[k].pause(); }); }
+    function dsync(force){
+      var a = don && dtrack(dlang); if (!a || !dslot.classList.contains('has')) return;
+      if (force || Math.abs(a.currentTime - dv.currentTime) > .3){ try { a.currentTime = dv.currentTime; } catch (e) {} }
+      if (dv.paused){ a.pause(); } else if (a.paused){ var p = a.play(); if (p && p.catch) p.catch(function(){}); }
+    }
+    function dload(){ if (!dv.getAttribute('src')){ dv.src = dv.getAttribute('data-src'); dv.load(); } }
+    dv.addEventListener('loadeddata', function(){ dslot.classList.add('has'); });
+    dv.addEventListener('error', function(){ dslot.classList.remove('has'); });
+    ['play','pause','seeked','waiting','playing'].forEach(function(ev){ dv.addEventListener(ev, function(){ dsync(ev === 'seeked'); }); });
+    dv.addEventListener('timeupdate', function(){ dsync(false); });
+    dsel.addEventListener('change', function(){
+      dlang = dsel.value; dtag.textContent = dlang; $('#dubl').textContent = 'audio · ' + dlang;
+      if (don){ dstop(); dsync(true); }
+    });
+    dsnd.addEventListener('click', function(){
+      don = !don; dsnd.setAttribute('aria-pressed', don ? 'true' : 'false'); dsnd.setAttribute('aria-label', don ? 'muta audio' : 'attiva audio');
+      if (don){
+        vids.forEach(function(o){ o.muted = true; }); $$('.vid .snd').forEach(function(o){ o.setAttribute('aria-pressed','false'); o.setAttribute('aria-label','attiva audio'); });
+        dload(); var p = dv.play(); if (p && p.catch) p.catch(function(){}); dsync(true);
+      } else { dstop(); }
+    });
+    window.dubMute = function(){ if (don){ don = false; dsnd.setAttribute('aria-pressed','false'); dsnd.setAttribute('aria-label','attiva audio'); dstop(); } };
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(en){ en.forEach(function(e){
+        if (e.isIntersecting){ dload(); var p = dv.play(); if (p && p.catch) p.catch(function(){}); } else { dv.pause(); dstop(); }
+      }); }, {threshold:.25}).observe(dslot);
+    }
+  }
 
   /* video: carica e parte quando e visibile */
   var vids = $$('.vid video');
@@ -613,7 +691,9 @@ body.is-home .hc{display:inline-block}
   /* audio: tutti muti, il tasto accende il singolo video */
   $$('.snd').forEach(function(b){
     b.addEventListener('click', function(){
-      var v = b.closest('.vid').querySelector('video'), on = v.muted;
+      var box = b.closest('.vid'); if (!box) return;
+      var v = box.querySelector('video'), on = v.muted;
+      if (window.dubMute) window.dubMute();
       vids.forEach(function(o){ o.muted = true; });
       $$('.snd').forEach(function(o){ o.setAttribute('aria-pressed','false'); o.setAttribute('aria-label','attiva audio'); });
       if (on){
@@ -625,7 +705,7 @@ body.is-home .hc{display:inline-block}
   });
 
   /* appartamenti: menu lingua (english / cinese), cambia video e copertina, mantiene punto e suono */
-  $$('.lsel').forEach(function(sel){
+  $$('.vid .lsel').forEach(function(sel){
     sel.addEventListener('change', function(){
       var v = sel.closest('.vid').querySelector('video'), o = sel.options[sel.selectedIndex];
       var t = v.currentTime || 0;
