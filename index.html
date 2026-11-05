@@ -331,6 +331,25 @@ html{-webkit-text-size-adjust:100%;overscroll-behavior-y:none}
 .hc{display:none;position:fixed;left:50%;bottom:calc(var(--bh) + 6px);transform:translateX(-50%);z-index:106;white-space:nowrap}
 body.is-home .hc{display:inline-block}
 #v-home .pad{padding-bottom:calc(var(--bh) + 56px)}
+/* pagina video making e doppiaggi: layout ripulito come la home */
+#v-making .h1{font-size:clamp(40px,11.4vw,88px);line-height:.9}
+@media (min-width:821px){#v-making .h1{font-size:clamp(60px,6.6vw,92px)}}
+.lsel{border-radius:30px 36px 28px 38px / 36px 28px 38px 30px;min-height:52px;padding-left:20px}
+#v-making .pn>.sec{display:none}
+.filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:26px}
+.filters .btn{flex:none;min-height:56px;padding:0 .3em;font-size:14px;letter-spacing:.05em}
+#v-making .pn{margin-top:30px}
+.site .wip{position:absolute;left:0;right:0;top:auto;bottom:14px;width:auto;height:auto;transform:none;font-size:0!important;justify-content:center;display:flex;box-shadow:none}
+.site .wip+.wip{display:none}
+.site .wip::after{position:static;height:auto;background:none;display:block;content:"work in progress";font:900 11px/1 var(--f-display);letter-spacing:.2em;text-transform:lowercase;color:var(--red)}
+@media (max-width:820px){
+.aptv{--h:auto}
+.aptv .vid{width:min(62vw,236px)}
+.aptv .vid figcaption{flex-direction:column;align-items:flex-start;gap:3px}
+.dub{max-width:min(100%,250px)}
+.feat b{font-size:24px}
+}
+@media (min-width:821px){.filters{grid-template-columns:repeat(3,max-content);gap:14px}.filters .btn{padding:0 2em;font-size:15px}}
 </style>
 </head>
 <body>
