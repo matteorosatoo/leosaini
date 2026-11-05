@@ -325,7 +325,8 @@ html{-webkit-text-size-adjust:100%;overscroll-behavior-y:none}
 /* in fondo a ogni pagina (tranne home e contatti) */
 .view.on:not(#v-home):not(#v-contact){display:flex;flex-direction:column}
 .view:not(#v-home):not(#v-contact) > .pad{flex:1 0 auto;padding-bottom:24px}
-.foot{text-align:center;padding:0 var(--pad) calc(var(--bh) + 18px)}
+.foot{text-align:left;padding:0 var(--pad) calc(var(--bh) + 18px)}
+.foot .clink{margin-left:-22px}
 /* home: centrato in basso, sopra la striscia dei loghi */
 .hc{display:none;position:fixed;left:50%;bottom:calc(var(--bh) + 6px);transform:translateX(-50%);z-index:106;white-space:nowrap}
 body.is-home .hc{display:inline-block}
