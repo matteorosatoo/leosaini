@@ -93,14 +93,17 @@ a{color:inherit}
 .wgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
 .cap{margin:10px 2px 0;font-size:11px;font-weight:800;letter-spacing:.16em;color:rgba(255,255,255,.7)}
 
-/* video: tutti insieme, uno sotto l'altro; quello scelto (al centro) viene avanti */
-.reel{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 12px}
-.reel-item{--rw:1.778;position:relative;display:block;flex:none;width:min(100%,calc(70svh * var(--rw)));aspect-ratio:var(--rw);margin:0;padding:0;overflow:hidden;text-align:left;color:#fff;background:#000;border-radius:22px;scroll-snap-align:center;transform:scale(.88);opacity:.5;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .5s ease,box-shadow .6s ease;will-change:transform,opacity}
-.reel-item.focus{transform:scale(1);opacity:1;z-index:2;box-shadow:0 26px 60px rgba(0,0,0,.65),0 0 0 1px rgba(255,210,31,.4),0 0 40px rgba(255,210,31,.12)}
+/* video: tutti insieme, a tutto schermo, senza cornice; quello al centro viene davanti agli altri */
+.reel{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0}
+.reel-item{--rw:1.778;position:relative;display:block;flex:none;width:100%;height:min(calc(100vw / var(--rw)),100svh);margin:0;padding:0;overflow:visible;text-align:left;color:#fff;background:#000;border:0;border-radius:0;scroll-snap-align:center;transform:scale(1);transition:transform .7s cubic-bezier(.2,.8,.2,1),box-shadow .7s ease;will-change:transform}
+.reel-item.v{height:100svh}
+.reel-item .clip{position:absolute;inset:0;overflow:hidden}
+.reel-item.focus{transform:scale(1.07);z-index:2;box-shadow:0 30px 80px rgba(0,0,0,.8)}
 .reel-item video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.reel-item .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.65))}
-.reel-item .rt{position:absolute;left:16px;right:16px;bottom:14px;font-weight:800;font-size:18px;line-height:1.05;letter-spacing:-.02em;text-shadow:0 2px 12px rgba(0,0,0,.6);transition:font-size .5s cubic-bezier(.2,.8,.2,1)}
-.reel-item.focus .rt{font-size:24px}
+.reel-item .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.6))}
+.reel-item .rt{position:absolute;left:20px;right:20px;bottom:calc(var(--dock) + 8px);font-weight:800;font-size:20px;line-height:1.05;letter-spacing:-.02em;text-shadow:0 2px 12px rgba(0,0,0,.6);transition:font-size .6s cubic-bezier(.2,.8,.2,1)}
+.reel-item.focus .rt{font-size:26px}
+.reel-item:not(.v) .rt{bottom:16px}
 .reel-item .rt small{display:block;margin-top:3px;font-size:11px;font-weight:600;color:var(--acc)}
 html.snap{scroll-snap-type:y proximity}
 .rhead{padding:0 16px;margin:0 auto 14px;max-width:960px}
@@ -199,10 +202,13 @@ body[data-view="contact"] .dockin .cc{display:none}
 .vbar i{display:block;height:100%;width:0;background:var(--acc)}
 
 /* intro: voce di dizionario */
-.wipe{position:fixed;inset:0;z-index:60;pointer-events:none;display:flex;flex-direction:column}
-.wipe i{flex:1;background:var(--acc);transform:translateX(-101%);will-change:transform}
-.wipe.in i{transform:none;transition:transform .42s cubic-bezier(.65,0,.25,1) calc(var(--k) * 32ms)}
-.wipe.out i{transform:translateX(101%);transition:transform .42s cubic-bezier(.65,0,.25,1) calc(var(--k) * 32ms)}
+.wipe{position:fixed;inset:0;z-index:60;pointer-events:none;overflow:hidden}
+.vglass{position:absolute;left:0;top:0;height:100%;width:calc(100vw + 200svh);border-radius:50svh;transform:translate3d(calc(-100vw - 200svh),0,0);will-change:transform;
+  background:linear-gradient(100deg,rgba(255,255,255,.2),rgba(255,210,31,.14) 45%,rgba(255,255,255,.16));
+  -webkit-backdrop-filter:blur(42px) saturate(190%) brightness(1.08);backdrop-filter:blur(42px) saturate(190%) brightness(1.08);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.4),inset 26px 0 60px rgba(255,210,31,.4),inset -26px 0 60px rgba(255,210,31,.4),0 0 90px rgba(255,210,31,.35)}
+.wipe.in .vglass{transform:translate3d(-100svh,0,0);transition:transform .62s cubic-bezier(.7,0,.2,1)}
+.wipe.out .vglass{transform:translate3d(100vw,0,0);transition:transform .62s cubic-bezier(.7,0,.2,1)}
 .intro{position:fixed;inset:0;z-index:40;width:100%;height:100%;background:var(--acc);color:#0A0A0A;display:flex;align-items:center;justify-content:center;padding:0 22px;transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
 .intro.out{opacity:0;transform:scale(1.05);pointer-events:none}
 .dq-wrap{position:relative}
@@ -215,9 +221,7 @@ body[data-view="contact"] .dockin .cc{display:none}
 
 @media (min-width:821px){
   .page.wide{max-width:none}
-  .reel{padding:0}
-  .reel-item{border-radius:0;width:min(100%,calc(90svh * var(--rw)))}
-  .reel-item .rt{left:32px;bottom:26px}
+  .reel-item .rt{left:32px}
   .vstage{top:0;height:100%}
   .vshade{display:block}
   .home{padding-top:64px}
@@ -257,21 +261,21 @@ body[data-view="contact"] .dockin .cc{display:none}
 
 <!-- VIDEO AI -->
 <section class="view" id="v-ai" aria-label="Video AI">
-  <div class="page wide" id="reelpage" style="padding-top:max(88px,calc(env(safe-area-inset-top) + 64px))">
+  <div class="page wide" id="reelpage" style="padding:0">
     <h1 class="sr">video ai</h1>
     <div class="reel" id="reel">
-      <button class="reel-item" type="button" style="--rw:1.778" data-t="church" data-tag="vision" data-src="video/church.mp4" aria-label="church"><video muted loop playsinline preload="none" poster="video/church.jpg" data-src="video/church.mp4"></video><span class="shade"></span><span class="rt">church</span></button>
-      <button class="reel-item" type="button" style="--rw:1.778" data-t="salvador's dream" data-tag="vision" data-src="video/salvadors-dream.mp4" aria-label="salvador's dream"><video muted loop playsinline preload="none" poster="poster/salvadors-dream.jpg" data-src="video/salvadors-dream.mp4"></video><span class="shade"></span><span class="rt">salvador's dream</span></button>
-      <button class="reel-item" type="button" style="--rw:1.778" data-t="backrooms" data-tag="vision" data-src="video/backrooms.mp4" aria-label="backrooms"><video muted loop playsinline preload="none" poster="poster/backrooms.jpg" data-src="video/backrooms.mp4"></video><span class="shade"></span><span class="rt">backrooms</span></button>
-      <button class="reel-item" type="button" style="--rw:1.778" data-t="boxing" data-tag="vision" data-src="video/boxing.mp4" aria-label="boxing"><video muted loop playsinline preload="none" poster="poster/boxing.jpg" data-src="video/boxing.mp4"></video><span class="shade"></span><span class="rt">boxing</span></button>
-      <button class="reel-item" type="button" style="--rw:1.778" data-t="milano" data-tag="vision" data-src="video/milano.mp4" aria-label="milano"><video muted loop playsinline preload="none" poster="poster/milano.jpg" data-src="video/milano.mp4"></video><span class="shade"></span><span class="rt">milano</span></button>
-      <button class="reel-item" type="button" style="--rw:1.778" data-t="training" data-tag="vision" data-src="video/mob-fut-grain.mp4" aria-label="training"><video muted loop playsinline preload="none" poster="poster/mob-fut-grain.jpg" data-src="video/mob-fut-grain.mp4"></video><span class="shade"></span><span class="rt">training</span></button>
-      <button class="reel-item" type="button" style="--rw:1.778" data-t="terrazza duomo" data-tag="evento" data-src="video/ugo-dv-mariu.mp4" aria-label="terrazza duomo, evento"><video muted loop playsinline preload="none" poster="poster/ugo-dv-mariu.jpg" data-src="video/ugo-dv-mariu.mp4"></video><span class="shade"></span><span class="rt">terrazza duomo<small>evento</small></span></button>
-      <button class="reel-item" type="button" style="--rw:0.5625" data-t="dolce vita" data-tag="terrazza duomo" data-src="video/dolce-vita.mp4" aria-label="dolce vita, terrazza duomo"><video muted loop playsinline preload="none" poster="poster/dolce-vita.jpg" data-src="video/dolce-vita.mp4"></video><span class="shade"></span><span class="rt">dolce vita<small>terrazza duomo</small></span></button>
-      <button class="reel-item" type="button" style="--rw:0.5625" data-t="mfw closing" data-tag="twiga" data-src="video/mfw-closing-unilux.mp4" aria-label="mfw closing, twiga"><video muted loop playsinline preload="none" poster="poster/mfw-closing-unilux.jpg" data-src="video/mfw-closing-unilux.mp4"></video><span class="shade"></span><span class="rt">mfw closing<small>twiga</small></span></button>
-      <button class="reel-item" type="button" style="--rw:0.8" data-t="fast life" data-tag="risotto western" data-src="video/fastlife-draft.mp4" aria-label="fast life, risotto western"><video muted loop playsinline preload="none" poster="poster/fastlife-draft.jpg" data-src="video/fastlife-draft.mp4"></video><span class="shade"></span><span class="rt">fast life<small>risotto western</small></span></button>
-      <button class="reel-item" type="button" style="--rw:0.5625" data-t="ladies night" data-tag="loolapaloosa" data-src="video/ladies-night.mp4" aria-label="ladies night, loolapaloosa"><video muted loop playsinline preload="none" poster="poster/ladies-night.jpg" data-src="video/ladies-night.mp4"></video><span class="shade"></span><span class="rt">ladies night<small>loolapaloosa</small></span></button>
-      <button class="reel-item" type="button" style="--rw:0.5625" data-t="ciak" data-tag="fast life" data-src="video/ciak-song1.mp4" aria-label="ciak, fast life"><video muted loop playsinline preload="none" poster="poster/ciak-song1.jpg" data-src="video/ciak-song1.mp4"></video><span class="shade"></span><span class="rt">ciak<small>fast life</small></span></button>
+      <button class="reel-item" type="button" style="--rw:1.778" data-t="church" data-tag="vision" data-src="video/church.mp4" aria-label="church"><span class="clip"><video muted loop playsinline preload="none" poster="video/church.jpg" data-src="video/church.mp4"></video><span class="shade"></span></span><span class="rt">church</span></button>
+      <button class="reel-item" type="button" style="--rw:1.778" data-t="salvador's dream" data-tag="vision" data-src="video/salvadors-dream.mp4" aria-label="salvador's dream"><span class="clip"><video muted loop playsinline preload="none" poster="poster/salvadors-dream.jpg" data-src="video/salvadors-dream.mp4"></video><span class="shade"></span></span><span class="rt">salvador's dream</span></button>
+      <button class="reel-item" type="button" style="--rw:1.778" data-t="backrooms" data-tag="vision" data-src="video/backrooms.mp4" aria-label="backrooms"><span class="clip"><video muted loop playsinline preload="none" poster="poster/backrooms.jpg" data-src="video/backrooms.mp4"></video><span class="shade"></span></span><span class="rt">backrooms</span></button>
+      <button class="reel-item" type="button" style="--rw:1.778" data-t="boxing" data-tag="vision" data-src="video/boxing.mp4" aria-label="boxing"><span class="clip"><video muted loop playsinline preload="none" poster="poster/boxing.jpg" data-src="video/boxing.mp4"></video><span class="shade"></span></span><span class="rt">boxing</span></button>
+      <button class="reel-item" type="button" style="--rw:1.778" data-t="milano" data-tag="vision" data-src="video/milano.mp4" aria-label="milano"><span class="clip"><video muted loop playsinline preload="none" poster="poster/milano.jpg" data-src="video/milano.mp4"></video><span class="shade"></span></span><span class="rt">milano</span></button>
+      <button class="reel-item" type="button" style="--rw:1.778" data-t="training" data-tag="vision" data-src="video/mob-fut-grain.mp4" aria-label="training"><span class="clip"><video muted loop playsinline preload="none" poster="poster/mob-fut-grain.jpg" data-src="video/mob-fut-grain.mp4"></video><span class="shade"></span></span><span class="rt">training</span></button>
+      <button class="reel-item" type="button" style="--rw:1.778" data-t="terrazza duomo" data-tag="evento" data-src="video/ugo-dv-mariu.mp4" aria-label="terrazza duomo, evento"><span class="clip"><video muted loop playsinline preload="none" poster="poster/ugo-dv-mariu.jpg" data-src="video/ugo-dv-mariu.mp4"></video><span class="shade"></span></span><span class="rt">terrazza duomo<small>evento</small></span></button>
+      <button class="reel-item v" type="button" style="--rw:0.5625" data-t="dolce vita" data-tag="terrazza duomo" data-src="video/dolce-vita.mp4" aria-label="dolce vita, terrazza duomo"><span class="clip"><video muted loop playsinline preload="none" poster="poster/dolce-vita.jpg" data-src="video/dolce-vita.mp4"></video><span class="shade"></span></span><span class="rt">dolce vita<small>terrazza duomo</small></span></button>
+      <button class="reel-item v" type="button" style="--rw:0.5625" data-t="mfw closing" data-tag="twiga" data-src="video/mfw-closing-unilux.mp4" aria-label="mfw closing, twiga"><span class="clip"><video muted loop playsinline preload="none" poster="poster/mfw-closing-unilux.jpg" data-src="video/mfw-closing-unilux.mp4"></video><span class="shade"></span></span><span class="rt">mfw closing<small>twiga</small></span></button>
+      <button class="reel-item v" type="button" style="--rw:0.8" data-t="fast life" data-tag="risotto western" data-src="video/fastlife-draft.mp4" aria-label="fast life, risotto western"><span class="clip"><video muted loop playsinline preload="none" poster="poster/fastlife-draft.jpg" data-src="video/fastlife-draft.mp4"></video><span class="shade"></span></span><span class="rt">fast life<small>risotto western</small></span></button>
+      <button class="reel-item v" type="button" style="--rw:0.5625" data-t="ladies night" data-tag="loolapaloosa" data-src="video/ladies-night.mp4" aria-label="ladies night, loolapaloosa"><span class="clip"><video muted loop playsinline preload="none" poster="poster/ladies-night.jpg" data-src="video/ladies-night.mp4"></video><span class="shade"></span></span><span class="rt">ladies night<small>loolapaloosa</small></span></button>
+      <button class="reel-item v" type="button" style="--rw:0.5625" data-t="ciak" data-tag="fast life" data-src="video/ciak-song1.mp4" aria-label="ciak, fast life"><span class="clip"><video muted loop playsinline preload="none" poster="poster/ciak-song1.jpg" data-src="video/ciak-song1.mp4"></video><span class="shade"></span></span><span class="rt">ciak<small>fast life</small></span></button>
     </div>
   </div>
 </section>
@@ -366,7 +370,7 @@ body[data-view="contact"] .dockin .cc{display:none}
 </nav>
 </div>
 
-<div class="wipe" id="wipe" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i></div>
+<div class="wipe" id="wipe" aria-hidden="true"><div class="vglass"></div></div>
 
 <!-- menu -->
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
@@ -433,7 +437,7 @@ body[data-view="contact"] .dockin .cc{display:none}
     document.documentElement.classList.toggle('snap', v === 'ai');
     window.scrollTo(0, 0); applySub(v); syncPlay(); paintReel();
   }
-  var wipe = $('#wipe'), bars = $$('i', wipe), busy = false;
+  var wipe = $('#wipe'), bars = $$('.vglass', wipe), busy = false;
   function go(v){
     if (reduce){ show(v); return; }
     busy = true; wipe.classList.remove('out'); void wipe.offsetWidth; wipe.classList.add('in');
@@ -445,7 +449,7 @@ body[data-view="contact"] .dockin .cc{display:none}
         wipe.classList.remove('out'); void wipe.offsetWidth;
         bars.forEach(function(b){ b.style.transition = ''; });
         busy = false; if (target() !== current) fromHash();
-      }, 780);
+      }, 680);
     }, 640);
   }
   function target(){ var h = (location.hash || '#home').slice(1), i = h.indexOf('-'); return norm(i < 0 ? h : h.slice(0, i)); }
@@ -554,9 +558,6 @@ body[data-view="contact"] .dockin .cc{display:none}
     ticking = false;
     if (current !== 'ai') return;
     var vh = innerHeight, mid = vh / 2, best = null, bd = 1e9;
-    var f = reelItems[0].offsetHeight, l = reelItems[reelItems.length - 1].offsetHeight;
-    reelPage.style.paddingTop = Math.max(88, (vh - f) / 2) + 'px';
-    reelPage.style.paddingBottom = Math.max(130, (vh - l) / 2) + 'px';
     reelItems.forEach(function(it){
       var r = it.getBoundingClientRect(), d = Math.abs(r.top + r.height / 2 - mid);
       if (d < bd){ bd = d; best = it; }
@@ -744,8 +745,7 @@ body[data-view="contact"] .dockin .cc{display:none}
 
   /* ---------- avvio ---------- */
   fromHash(true);
-  var seen = false; try { seen = sessionStorage.getItem('nv-intro') === '1'; } catch (e) {}
-  if (!seen && current === 'home'){
+  if (current === 'home'){
     intro.hidden = false; app.setAttribute('inert', ''); document.body.classList.add('lock');
     if (reduce){ typed = total; paintTyped(); } else { paintTyped(); timer = setTimeout(function(){ typeNext(0); }, 450); }
     intro.focus();
