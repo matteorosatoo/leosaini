@@ -193,6 +193,11 @@ body[data-view="contact"] .dockin .cc{display:none}
 .mlang .pill{height:36px;padding:0 14px;font-size:13px}
 .mcb{position:absolute;z-index:2;left:50%;transform:translateX(-50%);bottom:max(24px,env(safe-area-inset-bottom));height:52px;padding:0 30px;font-size:15px}
 .mcb:active{transform:translateX(-50%) scale(.96)}
+.home.hsplit{position:relative;height:100vh;height:100svh;min-height:0;padding:0;display:block;overflow:hidden}
+.hsplit .hlang{position:absolute;z-index:2;top:max(54px,calc(env(safe-area-inset-top) + 20px));left:0;right:0}
+.hsplit .hmq{position:absolute;z-index:2;left:16px;right:16px;width:auto;max-width:none;top:50%;margin-top:-32px}
+.hsplit .mh1 .mt{bottom:52px}
+.hsplit .mh2 .mt{bottom:calc(max(24px,env(safe-area-inset-bottom)) + 70px)}
 .mclose{position:absolute;top:max(56px,calc(env(safe-area-inset-top) + 20px));left:50%;margin-left:-32px;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2}
 .mlist{max-width:520px;margin:0 auto;padding:max(176px,calc(env(safe-area-inset-top) + 140px)) 16px 120px;display:flex;flex-direction:column;gap:14px}
 .mlist .lab{font-weight:700;font-size:15px;letter-spacing:.02em;color:var(--acc);text-align:center;padding-bottom:6px}
@@ -263,18 +268,16 @@ body[data-view="contact"] .dockin .cc{display:none}
 
 <!-- HOME -->
 <section class="view on" id="v-home" aria-label="Home">
-  <div class="home">
+  <div class="home hsplit">
     <h1 class="sr">nitido vision</h1>
-    <div class="lp" role="group" aria-label="lingua / language" data-lp>
+    <a class="mhalf mh1" href="#ai"><img src="assets/menu/video-ai.jpg" alt="" draggable="false"><span class="mt">video ai</span></a>
+    <a class="mhalf mh2" href="#making"><img src="assets/menu/doppiaggi.jpg" alt="" draggable="false"><span class="mt">video making e doppiaggi</span></a>
+    <div class="lp hlang" role="group" aria-label="lingua / language" data-lp>
       <button type="button" class="glass pill press pill-on" data-l="it" aria-pressed="true" aria-label="italiano">ita</button>
       <button type="button" class="glass pill press" data-l="en" aria-pressed="false" aria-label="english">en</button>
     </div>
-    <div class="rows stagger">
-      <a class="glass row press hrow" href="#ai"><span><span class="n">01</span><span class="t">video ai</span></span><span class="glass tint arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="glass row press hrow" href="#making"><span><span class="n">02</span><span class="t">video making e doppiaggi</span></span><span class="glass tint arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="glass row press hrow tint" href="#contact"><span><span class="n">03</span><span class="t">contattaci</span></span><span class="glass tint arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    </div>
-    <div class="glass mq" role="img" aria-label="Brand con cui abbiamo lavorato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="mqmask"><div class="marq" id="marq"></div></div></div>
+    <div class="glass mq hmq" role="img" aria-label="Brand con cui abbiamo lavorato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="mqmask"><div class="marq" id="marq"></div></div></div>
+    <a class="glass pill pill-on press mcb" href="#contact">contattaci</a>
   </div>
 </section>
 
