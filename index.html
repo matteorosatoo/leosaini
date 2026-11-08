@@ -331,7 +331,7 @@ html.snap{scroll-snap-type:y proximity}
 .cgrid{display:grid;gap:14px}
 
 /* contatti */
-.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:520px;margin:0 auto;padding-top:max(36px,calc(env(safe-area-inset-top) + 24px))}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:520px;margin:0 auto;padding-top:max(112px,calc(env(safe-area-inset-top) + 98px))}
 .ct-p{margin:0;border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
 .ct-ph{aspect-ratio:3/4;overflow:hidden;background:#111}
 .ct-ph img{display:block;width:100%;height:100%;object-fit:cover;-webkit-user-drag:none}
@@ -346,14 +346,20 @@ html.snap{scroll-snap-type:y proximity}
 .ct-num{text-align:center;font-size:12px;font-weight:600;color:rgba(255,255,255,.6)}
 
 /* dock */
-.dock{position:fixed;left:0;right:0;bottom:max(24px,env(safe-area-inset-bottom));display:none;justify-content:center;z-index:6;pointer-events:none}
-body:not(.is-home) .dock{display:flex;animation:dockin .7s cubic-bezier(.2,.8,.2,1) .15s both}
-@keyframes dockin{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
-.dockin{pointer-events:auto;height:68px;border-radius:34px;padding:0 10px;display:flex;align-items:center;gap:8px}
-.dockin .mbtn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.dockin .hm{height:44px;padding:0 14px;font-weight:700;font-size:13px;color:rgba(255,255,255,.8);display:inline-flex;align-items:center;text-decoration:none}
-.dockin .cc{height:48px;padding:0 20px}
-body[data-view="contact"] .dockin .cc{display:none}
+.dock{position:fixed;left:0;right:0;bottom:0;height:84px;display:none;justify-content:center;align-items:flex-end;z-index:6;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,10,0),rgba(10,10,10,.88));padding-bottom:max(18px,env(safe-area-inset-bottom));box-sizing:border-box}
+body:not(.is-home) .dock{display:flex}
+body[data-view="contact"] .dock{display:none}
+.ccta{pointer-events:auto;min-height:44px;padding:0 20px;display:flex;align-items:center;font-weight:700;font-size:13px;color:var(--acc);text-decoration:none;text-shadow:0 1px 10px rgba(0,0,0,.7);-webkit-tap-highlight-color:transparent}
+.ccta:active{transform:scale(.96)}
+.tb-home{position:fixed;z-index:24;left:16px;top:max(30px,calc(env(safe-area-inset-top) + 16px));width:52px;display:none;flex-direction:column;align-items:center;gap:4px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+body:not(.is-home) .tb-home{display:flex}
+.tb-home .c{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,rgba(255,210,31,.28),rgba(255,210,31,.06));border:1px solid rgba(255,210,31,.5);box-sizing:border-box;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.tb-home .t{font-size:12px;font-weight:700;color:var(--acc);text-shadow:0 1px 10px rgba(0,0,0,.7);line-height:1}
+.tb-title{position:fixed;z-index:24;left:80px;right:76px;top:max(32px,calc(env(safe-area-inset-top) + 18px));height:52px;display:none;align-items:center;font-weight:800;font-size:21px;letter-spacing:-.03em;line-height:1.05;text-shadow:0 1px 12px rgba(0,0,0,.55);pointer-events:none}
+body[data-view="ai"] .tb-title.ai,body[data-view="making"] .tb-title.making{display:flex}
+#v-making .page{padding-top:0}
+#v-making .tabs{margin:max(92px,calc(env(safe-area-inset-top) + 78px)) 0 calc(-44px - max(92px,calc(env(safe-area-inset-top) + 78px))) 64px;position:relative;z-index:3}
+#v-making .tabs .pill{flex:none;padding:0 16px}
 
 #snd{position:fixed;z-index:25;top:max(14px,calc(env(safe-area-inset-top) + 8px));right:14px;width:46px;height:46px;border-radius:50%;display:none;align-items:center;justify-content:center}
 body[data-view="ai"] #snd{display:flex}
@@ -487,7 +493,6 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
 <!-- VIDEO MAKING -->
 <section class="view" id="v-making" aria-label="Video making e doppiaggi">
   <div class="page">
-    <header class="glass phead"><div><h1 class="pt" style="margin:0">video making e doppiaggi</h1><div class="ps">appartamenti · doppiaggi</div></div><div class="yr">2026</div></header>
     <div class="tabs" role="group" aria-label="Filtra per categoria">
             <button class="glass pill press pill-on" type="button" data-f="appartamenti" aria-pressed="true">appartamenti</button>
       <button class="glass pill press" type="button" data-f="doppiaggi" aria-pressed="false">doppiaggi</button>
@@ -652,13 +657,9 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
 </main>
 
 <!-- dock flottante -->
-<nav class="dock" aria-label="Navigazione">
-  <div class="glass dockin">
-    <a class="glass tint press mbtn" href="#home" aria-label="home"><svg width="26" height="26" viewBox="0 0 92 92" fill="none" aria-hidden="true"><path d="M18 64V32Q18 16 33 16Q47 16 47 32V58Q47 74 61 74Q75 74 75 58V30" stroke="#FFD21F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    <a class="hm press" href="#home">home</a>
-    <a class="glass pill pill-on press cc" href="#contact">contattaci</a>
-  </div>
-</nav>
+<nav class="dock" aria-label="Navigazione"><a class="ccta press" href="#contact">contattaci</a></nav>
+<a class="tb-home press" href="#home" aria-label="home"><span class="c"><svg width="26" height="26" viewBox="0 0 92 92" fill="none" aria-hidden="true"><path d="M18 64V32Q18 16 33 16Q47 16 47 32V58Q47 74 61 74Q75 74 75 58V30" stroke="#FFD21F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">home</span></a>
+<div class="tb-title ai" aria-hidden="true">video ai</div><div class="tb-title making" aria-hidden="true">video making e doppiaggi</div>
 </div>
 
 <div class="wipe" id="wipe" aria-hidden="true"><div class="vglass"></div></div>
