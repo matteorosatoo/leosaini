@@ -748,8 +748,20 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   /* ---------- fascia loghi ---------- */
   var LOGOS = [['terrazza21','Terrazza 21','png',36,244/141],['hollywood','Hollywood Rythmoteque','png',30,900/176],['twiga','Twiga','svg',26,284/48],['loolapaloosa','Loolapaloosa','png',36,900/892],['rentallo','Rentallo','png',30,900/373],['fastlife','Fast Life','png',28,716/170]];
   var mh = '';
-  for (var rep = 0; rep < 2; rep++) LOGOS.forEach(function(l){ mh += '<img class="lg" src="assets/logos/' + l[0] + '.' + l[2] + '" alt="" decoding="async" style="height:' + l[3] + 'px;width:' + Math.round(l[3] * l[4]) + 'px;flex:none">'; });
+  for (var rep = 0; rep < 2; rep++) LOGOS.forEach(function(l){ mh += '<img class="lg" src="assets/logos/' + l[0] + '.' + l[2] + '" alt="" style="height:' + l[3] + 'px;width:' + Math.round(l[3] * l[4]) + 'px;flex:none">'; });
   $('#marq').innerHTML = mh;
+  /* scorrimento guidato da JS: parte subito anche su iPhone, senza aspettare che il browser avvii l'animazione CSS */
+  (function(){
+    var mq = $('#marq'); if (!mq) return;
+    mq.style.animation = 'none'; mq.style.willChange = 'transform';
+    var DUR = 11000, t0 = performance.now(), half = 0;
+    function loop(t){
+      if (!half || (t - t0) < 2000) half = mq.scrollWidth / 2;
+      mq.style.transform = 'translate3d(' + (-(((t - t0) % DUR) / DUR) * half) + 'px,0,0)';
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
 
   /* ---------- lingua ---------- */
   var EN = {
