@@ -72,7 +72,10 @@ a{color:inherit}
 .hrow .n,.mrow .n{font-size:12px;font-weight:800;color:var(--acc)}
 .hrow .t{display:block;margin-top:8px;font-weight:800;font-size:28px;letter-spacing:-.025em;line-height:1.04}
 .mq{width:100%;max-width:520px;height:64px;border-radius:32px;overflow:hidden}
-.mqmask{height:100%;display:flex;align-items:center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mqmask{height:100%;display:flex;align-items:center;position:relative}
+.hsplit .mqmask::before,.hsplit .mqmask::after{content:'';position:absolute;top:0;bottom:0;width:14%;z-index:2;pointer-events:none}
+.hsplit .mqmask::before{left:0;background:linear-gradient(90deg,#0A0A0A,rgba(10,10,10,0))}
+.hsplit .mqmask::after{right:0;background:linear-gradient(270deg,#0A0A0A,rgba(10,10,10,0))}
 .marq{display:flex;align-items:center;gap:36px;padding-right:36px;width:max-content;animation:marq 30s linear infinite}
 @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .lg{display:block;flex:none;width:auto;opacity:.95}
