@@ -176,6 +176,23 @@ body[data-view="contact"] .dockin .cc{display:none}
 .menu .mlist>*{opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
 .menu.open .mlist>*{opacity:1;transform:none}
 .menu.open .mlist>*:nth-child(1){transition-delay:.08s}.menu.open .mlist>*:nth-child(2){transition-delay:.14s}.menu.open .mlist>*:nth-child(3){transition-delay:.2s}
+.menu .mhalf{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.menu.open .mhalf{opacity:1;transform:none}
+.menu.open .mh2{transition-delay:.1s}
+.menu{overflow:hidden}
+.mhalf{position:absolute;left:0;right:0;display:block;overflow:hidden;color:#fff;text-decoration:none;background:#000;-webkit-tap-highlight-color:transparent}
+.mh1{top:0;height:50%;border-bottom:1px solid rgba(10,10,10,.9)}
+.mh2{top:50%;bottom:0}
+.mhalf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.mh1 img{object-position:20% 50%}.mh2 img{object-position:58% 50%}
+.mhalf:active img{transform:scale(1.04)}
+.mhalf::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,0) 35%,rgba(0,0,0,.62))}
+.mhalf .mt{position:absolute;left:20px;right:20px;bottom:20px;z-index:1;font-weight:800;font-size:28px;line-height:1.05;letter-spacing:-.025em;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.mh2 .mt{bottom:calc(max(24px,env(safe-area-inset-bottom)) + 70px)}
+.mlang{position:absolute;z-index:2;top:max(64px,calc(env(safe-area-inset-top) + 28px));left:16px;display:flex;gap:6px}
+.mlang .pill{height:36px;padding:0 14px;font-size:13px}
+.mcb{position:absolute;z-index:2;left:50%;transform:translateX(-50%);bottom:max(24px,env(safe-area-inset-bottom));height:52px;padding:0 30px;font-size:15px}
+.mcb:active{transform:translateX(-50%) scale(.96)}
 .mclose{position:absolute;top:max(56px,calc(env(safe-area-inset-top) + 20px));left:50%;margin-left:-32px;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2}
 .mlist{max-width:520px;margin:0 auto;padding:max(176px,calc(env(safe-area-inset-top) + 140px)) 16px 120px;display:flex;flex-direction:column;gap:14px}
 .mlist .lab{font-weight:700;font-size:15px;letter-spacing:.02em;color:var(--acc);text-align:center;padding-bottom:6px}
@@ -231,7 +248,7 @@ body[data-view="contact"] .dockin .cc{display:none}
   .wgrid{gap:14px}
   .gcard{width:200px}
 }
-@media (prefers-reduced-motion:reduce){.orb,.marq,.rise,.stagger>*,.dq-caret,.view.on,.pn.on{animation:none}.reel-item,.menu,.viewer,.menu .mlist>*{transition:none}.wipe{display:none}}
+@media (prefers-reduced-motion:reduce){.orb,.marq,.rise,.stagger>*,.dq-caret,.view.on,.pn.on{animation:none}.reel-item,.menu,.viewer,.menu .mlist>*,.menu .mhalf{transition:none}.wipe{display:none}}
 </style>
 </head>
 <body class="is-home" data-view="home">
@@ -377,18 +394,13 @@ body[data-view="contact"] .dockin .cc{display:none}
 <!-- menu -->
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
   <button class="glass tint press mclose" id="closeMenu" type="button" aria-label="chiudi il menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <div class="mlist">
-    <div class="lab">scegli la sezione</div>
-    <a class="glass row press mrow" href="#ai"><span><span class="n">01</span><span class="t">video ai</span></span><span class="glass tint arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="glass row press mrow" href="#making"><span><span class="n">02</span><span class="t">video making e doppiaggi</span></span><span class="glass tint arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  <a class="mhalf mh1" href="#ai"><img src="assets/menu/video-ai.jpg" alt="" draggable="false"><span class="mt">video ai</span></a>
+  <a class="mhalf mh2" href="#making"><img src="assets/menu/doppiaggi.jpg" alt="" draggable="false"><span class="mt">video making e doppiaggi</span></a>
+  <div class="mlang" role="group" aria-label="lingua / language" data-lp>
+    <button type="button" class="glass pill press pill-on" data-l="it" aria-pressed="true" aria-label="italiano">ita</button>
+    <button type="button" class="glass pill press" data-l="en" aria-pressed="false" aria-label="english">en</button>
   </div>
-  <div class="mfoot">
-    <div class="lp" role="group" aria-label="lingua / language" data-lp>
-      <button type="button" class="glass pill press pill-on" data-l="it" aria-pressed="true" aria-label="italiano">ita</button>
-      <button type="button" class="glass pill press" data-l="en" aria-pressed="false" aria-label="english">en</button>
-    </div>
-    <a class="mc press" href="#contact">contattaci</a>
-  </div>
+  <a class="glass pill pill-on press mcb" href="#contact">contattaci</a>
 </div>
 
 <!-- viewer progetto -->
