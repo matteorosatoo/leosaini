@@ -860,6 +860,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   }
   function syncPlay(){
     var lock = document.body.classList.contains('lock');
+    if (autoSel && typeof selFromCenter === 'function' && $('#v-ai').classList.contains('on')) selFromCenter();
     vids.forEach(function(v){
       var isReel = !!v.closest('.reel-item');
       var on = visible.indexOf(v) >= 0 && !lock && v.closest('.view.on');
@@ -883,8 +884,14 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
 
   /* ---------- reel: il video scelto (al centro) viene avanti ---------- */
   var reelItems = $$('.reel-item'), reelPage = $('#reelpage'), ticking = false;
-  selEl = reelItems[0]; if (selEl) selEl.classList.add('sel');
-  function paintReel(){ ticking = false; }
+  var autoSel = true;
+  function selFromCenter(){
+    var mid = innerHeight / 2, best = null, bd = 1e9;
+    reelItems.forEach(function(it){ var r = it.getBoundingClientRect(), d = Math.abs(r.top + r.height / 2 - mid); if (d < bd){ bd = d; best = it; } });
+    if (best && best !== selEl){ if (selEl) selEl.classList.remove('sel'); selEl = best; best.classList.add('sel'); return true; }
+    return false;
+  }
+  function paintReel(){ ticking = false; if (current !== 'ai') return; autoSel = true; if (selFromCenter()) applyAudio(); }
   function setSnd(on){ soundOn = on; $('#snd').setAttribute('aria-pressed', on ? 'true' : 'false'); }
   function applyAudio(){
     $$('.reel-item video').forEach(function(o){ if (!(selEl && selEl.contains(o)) || !soundOn) o.muted = true; });
@@ -893,7 +900,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   }
   $('#snd').addEventListener('click', function(){ setSnd(!soundOn); applyAudio(); });
   reelItems.forEach(function(it){ it.addEventListener('click', function(){
-    if (selEl) selEl.classList.remove('sel'); selEl = it; it.classList.add('sel'); applyAudio();
+    autoSel = false; if (selEl) selEl.classList.remove('sel'); selEl = it; it.classList.add('sel'); applyAudio();
   }); });
   addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(paintReel); } }, {passive:true});
   addEventListener('resize', paintReel);
