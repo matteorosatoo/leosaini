@@ -383,10 +383,10 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
 .mhalf::before{content:"";position:absolute;left:0;right:0;top:0;height:46%;border-radius:35px 35px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,0));z-index:1;pointer-events:none}
 .mhalf .mt{position:absolute;left:20px;right:20px;bottom:22%;z-index:2;font-family:'Satoshi','Manrope',system-ui,sans-serif;font-weight:900;font-size:36px;line-height:1.02;letter-spacing:-.025em;text-align:center;color:#FFD21F;text-shadow:0 2px 18px rgba(0,0,0,.55);pointer-events:none}
 .mh2 .mt{bottom:26%}
-.mcb{position:absolute;z-index:3;left:50%;transform:translateX(-50%);bottom:max(18px,env(safe-area-inset-bottom));min-height:44px;padding:0 20px;display:flex;align-items:center;font-weight:700;font-size:13px;color:var(--acc);text-decoration:none;text-shadow:0 1px 10px rgba(0,0,0,.7);-webkit-tap-highlight-color:transparent}
+.mcb{position:absolute;z-index:3;left:50%;transform:translateX(-50%);bottom:calc((max(18px,env(safe-area-inset-bottom)) + max(10px,env(safe-area-inset-bottom))) / 2 - 11px);min-height:44px;padding:0 20px;display:flex;align-items:center;font-weight:700;font-size:13px;color:var(--acc);text-decoration:none;text-shadow:0 1px 10px rgba(0,0,0,.7);-webkit-tap-highlight-color:transparent}
 .mcb:active{transform:translateX(-50%) scale(.96)}
 .home.hsplit{position:fixed;inset:0;height:auto;min-height:0;padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;overflow:hidden;touch-action:none}
-.hsplit .hlang{position:absolute;z-index:2;top:max(54px,calc(env(safe-area-inset-top) + 20px));left:0;right:0}
+.hsplit .hlang{position:absolute;z-index:2;top:calc((max(54px,calc(env(safe-area-inset-top) + 20px)) + max(10px,env(safe-area-inset-top))) / 2);left:0;right:0}
 .hsplit .hmq{flex:none;position:relative;z-index:2;width:100%;max-width:520px;height:46px;margin:0;border-radius:0;overflow:hidden;pointer-events:none;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
 .hsplit .hmq::before,.hsplit .hmq::after{display:none}
 .hsplit .marq{animation-duration:11s}
