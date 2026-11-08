@@ -184,6 +184,7 @@ body[data-view="contact"] .dockin .cc{display:none}
 .vstage{--vr:1.778;position:absolute;left:0;right:0;top:max(130px,calc(env(safe-area-inset-top) + 100px));height:clamp(160px,min(calc(100vw / var(--vr)),46svh),560px);background:#000}
 .vstage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .vclose{position:absolute;top:max(56px,calc(env(safe-area-inset-top) + 20px));left:50%;margin-left:-32px;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2}
+.vshade{display:none;position:absolute;left:0;right:0;bottom:0;height:50%;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.78));pointer-events:none}
 .vinfo{position:absolute;left:20px;right:20px;bottom:max(36px,env(safe-area-inset-bottom));max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
 .vtag{align-self:flex-start;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:800;color:var(--acc)}
 .vtitle{font-weight:800;font-size:38px;line-height:1;letter-spacing:-.03em;text-shadow:0 2px 16px rgba(0,0,0,.5)}
@@ -206,6 +207,13 @@ body[data-view="contact"] .dockin .cc{display:none}
 @keyframes dqc{50%{border-color:transparent}}
 
 @media (min-width:821px){
+  .page.wide{max-width:none}
+  .reel,.rhead{max-width:none}
+  .rhead{padding:0 32px}
+  .reel-item .rt{left:32px;bottom:26px}
+  .hs{padding-left:32px;padding-right:32px;scroll-padding-left:32px}
+  .vstage{top:0;height:100%}
+  .vshade{display:block}
   .home{padding-top:64px}
   .page{padding-top:28px}
   .wgrid{gap:14px}
@@ -378,6 +386,7 @@ body[data-view="contact"] .dockin .cc{display:none}
 <!-- viewer progetto -->
 <div class="viewer rise" id="viewer" role="dialog" aria-modal="true" aria-label="Progetto" hidden>
   <div class="vstage"><video id="pv" loop playsinline></video></div>
+  <div class="vshade" aria-hidden="true"></div>
   <button class="glass tint press vclose" id="vclose" type="button" aria-label="chiudi il progetto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <div class="vinfo">
     <div class="glass vtag" id="vtag"></div>
