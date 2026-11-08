@@ -10,6 +10,12 @@
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201327%201328%22%3E%3Crect%20width%3D%221327%22%20height%3D%221328%22%20fill%3D%22%230A0A0A%22/%3E%3Cpath%20d%3D%22M84.5%20953V373.5A289.5%20289.5%200%200%201%20663.5%20373.5V953.5A289.5%20289.5%200%200%200%201242.5%20953.5V374%22%20fill%3D%22none%22%20stroke%3D%22%23FFD21F%22%20stroke-width%3D%22169%22/%3E%3C/svg%3E">
 <title>Nitido Vision</title>
+<link rel="preload" as="image" href="assets/logos/terrazza21.png">
+<link rel="preload" as="image" href="assets/logos/hollywood.png">
+<link rel="preload" as="image" href="assets/logos/twiga.svg">
+<link rel="preload" as="image" href="assets/logos/loolapaloosa.png">
+<link rel="preload" as="image" href="assets/logos/rentallo.png">
+<link rel="preload" as="image" href="assets/logos/fastlife.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
@@ -740,9 +746,9 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   addEventListener('hashchange', function(){ fromHash(false); });
 
   /* ---------- fascia loghi ---------- */
-  var LOGOS = [['terrazza21','Terrazza 21','png',36],['hollywood','Hollywood Rythmoteque','png',30],['twiga','Twiga','svg',26],['loolapaloosa','Loolapaloosa','png',36],['rentallo','Rentallo','png',30],['fastlife','Fast Life','png',28]];
+  var LOGOS = [['terrazza21','Terrazza 21','png',36,244/141],['hollywood','Hollywood Rythmoteque','png',30,900/176],['twiga','Twiga','svg',26,284/48],['loolapaloosa','Loolapaloosa','png',36,900/892],['rentallo','Rentallo','png',30,900/373],['fastlife','Fast Life','png',28,716/170]];
   var mh = '';
-  for (var rep = 0; rep < 2; rep++) LOGOS.forEach(function(l){ mh += '<img class="lg" src="assets/logos/' + l[0] + '.' + l[2] + '" alt="" style="height:' + l[3] + 'px">'; });
+  for (var rep = 0; rep < 2; rep++) LOGOS.forEach(function(l){ mh += '<img class="lg" src="assets/logos/' + l[0] + '.' + l[2] + '" alt="" decoding="async" style="height:' + l[3] + 'px;width:' + Math.round(l[3] * l[4]) + 'px;flex:none">'; });
   $('#marq').innerHTML = mh;
 
   /* ---------- lingua ---------- */
