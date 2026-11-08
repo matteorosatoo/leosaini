@@ -330,6 +330,21 @@ html.snap{scroll-snap-type:y proximity}
 .btns{display:flex;gap:10px;flex-wrap:wrap}
 .cgrid{display:grid;gap:14px}
 
+/* contatti */
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:520px;margin:0 auto;padding-top:max(36px,calc(env(safe-area-inset-top) + 24px))}
+.ct-p{margin:0;border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
+.ct-ph{aspect-ratio:3/4;overflow:hidden;background:#111}
+.ct-ph img{display:block;width:100%;height:100%;object-fit:cover;-webkit-user-drag:none}
+.ct-p figcaption{padding:14px 16px 16px}
+.ct-p figcaption b{display:block;font-weight:800;font-size:24px;letter-spacing:-.03em;line-height:1}
+.ct-p figcaption span{display:block;margin-top:6px;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--acc)}
+.ct-txt{max-width:520px;margin:26px auto 0;padding:0 8px;font-size:15px;font-weight:500;line-height:1.5;color:rgba(255,255,255,.86)}
+.ct-cta{max-width:520px;margin:30px auto 0;background:linear-gradient(145deg,rgba(255,210,31,.22),rgba(255,210,31,.04) 70%);border:1px solid rgba(255,210,31,.45);gap:10px}
+.ct-k{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--acc)}
+.ct-h{margin:0;font-weight:800;font-size:26px;line-height:1.08;letter-spacing:-.03em}
+.ct-wa{margin-top:6px;height:50px;border-radius:25px;display:flex;align-items:center;justify-content:center;background:var(--acc);color:#111;font-weight:800;font-size:15px;text-decoration:none}
+.ct-num{text-align:center;font-size:12px;font-weight:600;color:rgba(255,255,255,.6)}
+
 /* dock */
 .dock{position:fixed;left:0;right:0;bottom:max(24px,env(safe-area-inset-bottom));display:none;justify-content:center;z-index:6;pointer-events:none}
 body:not(.is-home) .dock{display:flex;animation:dockin .7s cubic-bezier(.2,.8,.2,1) .15s both}
@@ -619,15 +634,17 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
 <!-- CONTATTACI -->
 <section class="view" id="v-contact" aria-label="Contattaci">
   <div class="page">
-    <header class="glass phead"><div><h1 class="pt" style="margin:0">contattaci</h1><div class="ps">contatto diretto · whatsapp</div></div><div class="yr">2026</div></header>
-    <div class="glass ccard">
-      <div class="val" id="c-wa">+39 370 337 4793</div>
-      <div class="btns"><a class="glass pill pill-on press" href="https://wa.me/393703374793" target="_blank" rel="noopener">apri chat</a><button class="glass pill press" type="button" data-copy="c-wa">copia</button></div>
+    <div class="ct-grid">
+      <figure class="ct-p glass"><div class="ct-ph"><img src="assets/leo.jpg" alt="Leo" width="660" height="880" loading="lazy" draggable="false"></div><figcaption><b>leo</b><span>fondatore</span></figcaption></figure>
+      <figure class="ct-p glass"><div class="ct-ph"><img src="assets/matteo.jpg" alt="Matteo" width="660" height="880" loading="lazy" draggable="false"></div><figcaption><b>matteo</b><span>cofondatore</span></figcaption></figure>
     </div>
-    <div class="rhead" id="s-chisiamo" style="padding:10px 4px 14px"><span class="glass chip">chi siamo</span></div>
-    <div class="cgrid">
-      <section class="glass ccard" style="margin:0"><h3>leo</h3><p>product designer<br>politecnico di milano</p><div class="em" id="c-leo">leo@nitidovision.com</div><div class="btns"><a class="glass pill pill-on press" href="mailto:leo@nitidovision.com">scrivi</a><button class="glass pill press" type="button" data-copy="c-leo">copia</button></div></section>
-      <section class="glass ccard" style="margin:0"><h3>matteo</h3><p>product designer<br>politecnico di milano</p><div class="em" id="c-matteo">matteo@nitidovision.com</div><div class="btns"><a class="glass pill pill-on press" href="mailto:matteo@nitidovision.com">scrivi</a><button class="glass pill press" type="button" data-copy="c-matteo">copia</button></div></section>
+    <p class="ct-txt">Studiamo design del prodotto al Politecnico di Milano. Uniamo creatività e tecnica, e mettiamo le mani su ogni parte del lavoro.</p>
+    <div class="glass ccard ct-cta">
+      <div class="ct-k">contattaci</div>
+      <h2 class="ct-h">Raccontaci la tua idea</h2>
+      <p>Il modo più veloce è un messaggio: rispondiamo noi direttamente, senza moduli.</p>
+      <a class="ct-wa press" href="https://wa.me/393703374793" target="_blank" rel="noopener">Apri WhatsApp</a>
+      <div class="ct-num">+39 370 337 4793</div>
     </div>
   </div>
 </section>
@@ -817,6 +834,11 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
     'meno messaggi e chiamate per le domande ripetitive.':"Fewer messages and calls for repetitive questions.",
     'più tempo per te':"More time for you",
     "il tempo che dedicavi agli ospiti lo usi per far crescere l'attività.":"The time you spent on guests goes into growing the business.",
+    'fondatore':'founder','cofondatore':'co-founder',
+    'studiamo design del prodotto al politecnico di milano. uniamo creatività e tecnica, e mettiamo le mani su ogni parte del lavoro.':'We study product design at Politecnico di Milano. We combine creativity and technique, and put our hands on every part of the work.',
+    'raccontaci la tua idea':'Tell us your idea',
+    'il modo più veloce è un messaggio: rispondiamo noi direttamente, senza moduli.':'The quickest way is a message: we reply directly, no forms.',
+    'apri whatsapp':'Open WhatsApp',
     "ted":"ger"
   };
   var AL = {
