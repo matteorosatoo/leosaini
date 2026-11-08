@@ -1144,7 +1144,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
     timer = setTimeout(function(){ typeNext(n + 1); }, d);
   }
   function enter(){
-    if (leaving) return; leaving = true; clearTimeout(timer);
+    if (leaving || typed < total) return; leaving = true; clearTimeout(timer);
     try { sessionStorage.setItem('nv-intro', '1'); } catch (e) {}
     intro.classList.add('out');
     setTimeout(function(){ intro.hidden = true; app.removeAttribute('inert'); document.body.classList.remove('lock'); }, reduce ? 0 : 560);
