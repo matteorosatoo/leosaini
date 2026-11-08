@@ -190,8 +190,9 @@ html.snap{scroll-snap-type:y proximity}
 .dx-stk .dx-vid{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;border-radius:0;visibility:hidden}
 .dx-stk .dx-vid.on{visibility:visible}
 
-.dx-photo{height:300px;margin:0 -16px;overflow:hidden;-webkit-mask-image:linear-gradient(#000 52%,transparent);mask-image:linear-gradient(#000 52%,transparent)}
-.dx-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:58% 50%}
+.dx-photo{position:relative;height:300px;margin:0 -16px}
+.dx-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:58% 50%;-webkit-mask-image:linear-gradient(transparent,#000 30%,#000 52%,transparent);mask-image:linear-gradient(transparent,#000 30%,#000 52%,transparent)}
+.dx-photo img.dx-bl{position:absolute;left:0;top:-104px;height:250px;filter:blur(26px) brightness(.9);transform:scale(1.12);-webkit-mask-image:linear-gradient(#000 45%,transparent);mask-image:linear-gradient(#000 45%,transparent)}
 .dx-ttl{position:relative;margin-top:-64px;font-size:34px}
 .dx-p{margin:0 0 14px;font-size:14px;font-weight:500;line-height:1.5;color:rgba(255,255,255,.72)}
 .dx-k{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
@@ -500,7 +501,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
     </div>
 
     <div class="pn on" id="p-appartamenti">
-      <div class="dx-photo ap-photo" aria-hidden="true"><img src="assets/menu/appartamenti.jpg" alt="" draggable="false"></div>
+      <div class="dx-photo ap-photo" aria-hidden="true"><img class="dx-bl" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img src="assets/menu/appartamenti.jpg" alt="" draggable="false"></div>
       <div class="dx-k ap-k">appartamenti</div>
       <h2 class="h2 dx-ttl ap-ttl">Ospiti autonomi, host più liberi</h2>
       <p class="dx-p">Prepariamo la guida video completa del tuo appartamento: chi soggiorna sa sempre cosa fare, e tu non devi più rispondere alle stesse domande.</p>
@@ -561,7 +562,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
     </div>
 
     <div class="pn" id="p-doppiaggi">
-      <div class="dx-photo" aria-hidden="true"><img src="assets/menu/doppiaggi.jpg" alt="" draggable="false"></div>
+      <div class="dx-photo" aria-hidden="true"><img class="dx-bl" src="assets/menu/doppiaggi.jpg" alt="" draggable="false"><img src="assets/menu/doppiaggi.jpg" alt="" draggable="false"></div>
       <h2 class="h2 dx-ttl">la stessa storia, in ogni lingua</h2>
       <p class="dx-p">Prendiamo un video girato in italiano e lo rendiamo ascoltabile in inglese, spagnolo, francese e altre lingue, con la voce di chi parla e un suono curato come l'originale.</p>
 
