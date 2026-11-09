@@ -494,6 +494,8 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   /* video ai: griglia invece della colonna a tutto schermo */
   #reelpage{max-width:1440px;margin:0 auto;padding:120px 48px 150px!important}
   #reelpage>h1.sr{position:static;width:auto;height:auto;overflow:visible;clip:auto;margin:0 0 48px;font-weight:900;font-size:96px;line-height:.95;letter-spacing:-.05em;color:var(--acc)}
+  html.snap{scroll-snap-type:none}
+  .reel-item{scroll-snap-align:none}
   .reel{display:grid;grid-template-columns:repeat(30,minmax(0,1fr));gap:20px}
   .rlab{display:block;grid-column:1/-1;margin:24px 0 0;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
   .rlab:first-child{margin-top:0}
