@@ -373,7 +373,7 @@ body:not(.is-home) .tb-home{display:flex}
 .tb-home .c{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,rgba(255,210,31,.28),rgba(255,210,31,.06));border:1px solid rgba(255,210,31,.5);box-sizing:border-box;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
 .tb-home .t{font-size:12px;font-weight:700;color:var(--acc);text-shadow:0 1px 10px rgba(0,0,0,.7);line-height:1}
 .tb-title{position:fixed;z-index:24;left:80px;right:76px;top:max(32px,calc(env(safe-area-inset-top) + 18px));height:52px;display:none;align-items:center;font-weight:800;font-size:21px;letter-spacing:-.03em;line-height:1.05;text-shadow:0 1px 12px rgba(0,0,0,.55);pointer-events:none}
-body[data-view="ai"] .tb-title.ai,body[data-view="making"] .tb-title.making{display:flex}
+body[data-view="ai"] .tb-title.ai,body[data-view="making"] .tb-title.making,body[data-view="appartamenti"] .tb-title.appartamenti{display:flex}
 #v-making .page{padding-top:0}
 #v-making .tabs{margin:max(92px,calc(env(safe-area-inset-top) + 78px)) 0 calc(-44px - max(92px,calc(env(safe-area-inset-top) + 78px))) 64px;position:relative;z-index:3}
 #v-making .tabs .pill{flex:none;padding:0 16px}
@@ -400,6 +400,14 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
 .hsplit .hmq::before,.hsplit .hmq::after{display:none}
 .hsplit .marq{animation-duration:11s}
 .mh1{order:1}.hsplit .hmq{order:2}.mh2{order:3}
+/* home a tre card: si scorre in giù, ogni card alta come prima (mezza schermata) */
+.home.hsplit{overflow-y:auto;overflow-x:hidden;touch-action:pan-y;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;scrollbar-width:none}
+.home.hsplit::-webkit-scrollbar{display:none}
+.hsplit .mhalf{flex:none;height:calc((100svh - max(10px,env(safe-area-inset-top)) - max(10px,env(safe-area-inset-bottom)) - 46px) / 2)}
+.hsplit .hmq2{order:4}.mh3{order:5}
+.hsplit .mcb{position:static;order:6;transform:none;flex:none;margin:6px 0 0}
+.hsplit .mcb:active{transform:scale(.96)}
+#v-appartamenti .page{padding-top:0}
 .mlist{max-width:520px;margin:0 auto;padding:max(176px,calc(env(safe-area-inset-top) + 140px)) 16px 120px;display:flex;flex-direction:column;gap:14px}
 .mlist .lab{font-weight:700;font-size:15px;letter-spacing:.02em;color:var(--acc);text-align:center;padding-bottom:6px}
 .mrow{width:100%;min-height:104px;border-radius:30px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 24px;text-align:left;text-decoration:none}
@@ -469,24 +477,25 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   body:not(.is-home) .dnav{display:flex}
   .dnav{position:fixed;z-index:24;top:30px;right:40px;align-items:center;gap:8px}
   .dnav>a.pill{height:44px;padding:0 20px;font-size:14px;color:inherit}
-  body[data-view="ai"] .dnav a[data-v="ai"],body[data-view="making"] .dnav a[data-v="making"]{background:var(--acc);color:#111;border-color:rgba(255,255,255,.55)}
+  body[data-view="ai"] .dnav a[data-v="ai"],body[data-view="making"] .dnav a[data-v="making"],body[data-view="appartamenti"] .dnav a[data-v="appartamenti"]{background:var(--acc);color:#111;border-color:rgba(255,255,255,.55)}
   .dnav .dlang{margin-left:14px;gap:6px}
   .dnav .dlang .pill{height:40px;padding:0 14px;font-size:13px}
   #snd{top:auto;bottom:28px;right:32px}
   .page{max-width:1344px;padding-left:48px;padding-right:48px;padding-top:120px}
 
-  /* home: due card affiancate, loghi in basso a tutta larghezza */
-  .home.hsplit{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto minmax(0,1fr) auto auto;column-gap:24px;padding:28px 48px 0;align-items:stretch;justify-items:stretch}
+  /* home: tre card affiancate, loghi in basso a tutta larghezza */
+  .home.hsplit{overflow:hidden;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto minmax(0,1fr) auto auto;column-gap:24px;padding:28px 48px 0;align-items:stretch;justify-items:stretch}
   .dbrand{display:flex;grid-column:1;grid-row:1;align-self:center;align-items:center;gap:14px;text-decoration:none;color:inherit;font-weight:800;font-size:18px;letter-spacing:-.02em}
   .dbrand .c{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,rgba(255,210,31,.28),rgba(255,210,31,.06));border:1px solid rgba(255,210,31,.5);box-sizing:border-box}
-  .hsplit .hlang{position:static;grid-column:2;grid-row:1;justify-content:flex-end;padding:0 0 20px}
+  .hsplit .hlang{position:static;grid-column:2/-1;grid-row:1;justify-content:flex-end;padding:0 0 20px}
   .hsplit .hlang .pill{height:40px;padding:0 18px;font-size:14px}
-  .mhalf{grid-row:2;max-width:none;border-radius:32px;min-height:0}
+  .mhalf,.hsplit .mhalf{grid-row:2;max-width:none;border-radius:32px;min-height:0;height:auto}
   .mhalf::after,.mhalf::before{border-radius:31px}
-  .mh1{grid-column:1}.mh2{grid-column:2}
-  .mhalf .mt,.mh2 .mt{left:40px;right:40px;bottom:36px;text-align:left;font-size:64px;line-height:.98}
+  .mh1{grid-column:1}.mh2{grid-column:2}.mh3{grid-column:3}
+  .hsplit .hmq2{display:none}
+  .mhalf .mt,.mh2 .mt{left:40px;right:40px;bottom:36px;text-align:left;font-size:clamp(40px,3.4vw,64px);line-height:.98}
   .mhalf:hover img{transform:scale(1.03)}
-  .mcb{position:static;transform:none;grid-column:1/-1;grid-row:3;justify-self:center;margin:12px 0 4px}
+  .mcb,.hsplit .mcb{position:static;transform:none;grid-column:1/-1;grid-row:3;justify-self:center;margin:12px 0 4px}
   .mcb:active{transform:scale(.96)}
   .hsplit .hmq{grid-column:1/-1;grid-row:4;max-width:none;width:auto;height:84px;margin:0 -48px;border-top:1px solid rgba(255,255,255,.08)}
   .hsplit .mqmask::before,.hsplit .mqmask::after{width:8%}
@@ -509,7 +518,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   .reel-item:hover .clip video{transform:scale(1.02);transition:transform .5s ease}
 
   /* video making: stessi contenuti, più larghi */
-  #v-making .page{padding-top:0}
+  #v-making .page,#v-appartamenti .page{padding-top:0}
   #v-making .tabs{margin:132px 0 -176px 0}
   .dx-photo{--hh:176px;height:520px;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
   .dx-photo img{height:calc(520px + var(--hh))}
@@ -561,7 +570,9 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
     <h1 class="sr">nitido vision</h1>
     <a class="dbrand" href="#home" aria-label="nitido vision, home"><span class="c"><svg width="26" height="26" viewBox="0 0 92 92" fill="none" aria-hidden="true"><path d="M18 64V32Q18 16 33 16Q47 16 47 32V58Q47 74 61 74Q75 74 75 58V30" stroke="#FFD21F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>nitido vision</span></a>
     <a class="mhalf mh1" href="#ai"><img src="assets/menu/video-ai.jpg" alt="" draggable="false"><span class="mt">video ai</span></a>
-    <a class="mhalf mh2" href="#making"><img src="assets/menu/doppiaggi.jpg" alt="" draggable="false"><span class="mt">video making e doppiaggi</span></a>
+    <a class="mhalf mh2" href="#making"><img src="assets/menu/doppiaggi.jpg" alt="" draggable="false"><span class="mt">doppiaggi</span></a>
+    <div class="mq hmq hmq2" aria-hidden="true"><div class="mqmask"><div class="marq" id="marq2"></div></div></div>
+    <a class="mhalf mh3" href="#appartamenti"><img src="assets/menu/appartamenti.jpg" alt="" draggable="false"><span class="mt">appartamenti</span></a>
     <div class="lp hlang" role="group" aria-label="lingua / language" data-lp>
       <button type="button" class="glass pill press pill-on" data-l="it" aria-pressed="true" aria-label="italiano">ita</button>
       <button type="button" class="glass pill press" data-l="en" aria-pressed="false" aria-label="english">en</button>
@@ -597,75 +608,9 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
 </section>
 
 <!-- VIDEO MAKING -->
-<section class="view" id="v-making" aria-label="Video making e doppiaggi">
+<section class="view" id="v-making" aria-label="Doppiaggi">
   <div class="page">
-    <div class="tabs" role="group" aria-label="Filtra per categoria">
-            <button class="glass pill press pill-on" type="button" data-f="appartamenti" aria-pressed="true">appartamenti</button>
-      <button class="glass pill press" type="button" data-f="doppiaggi" aria-pressed="false">doppiaggi</button>
-    </div>
-
-    <div class="pn on" id="p-appartamenti">
-      <div class="dx-photo ap-photo" aria-hidden="true"><img class="m" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img class="b b1" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img class="b b2" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img class="b b3" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img class="b b4" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img class="b b5" src="assets/menu/appartamenti.jpg" alt="" draggable="false"></div>
-      <div class="dx-k ap-k">appartamenti</div>
-      <h2 class="h2 dx-ttl ap-ttl">Ospiti autonomi, host più liberi</h2>
-      <p class="dx-p">Prepariamo la guida video completa del tuo appartamento: chi soggiorna sa sempre cosa fare, e tu non devi più rispondere alle stesse domande.</p>
-
-      <div class="dx-k">il processo</div>
-      <h3 class="dx-h">dall'appartamento alla guida pronta</h3>
-      <div class="dx-chaps">
-<div class="glass dx-chap"><svg class="ill2" viewBox="0 0 300 168" role="img" aria-hidden="true"><defs>
-<linearGradient id="ap1_py1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB800"/><stop offset="1" stop-color="#FFE56B"/></linearGradient>
-<linearGradient id="ap1_pl1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity=".04"/></linearGradient>
-<radialGradient id="ap1_pg1"><stop offset="0" stop-color="#FFD21F" stop-opacity=".9"/><stop offset="1" stop-color="#FFD21F" stop-opacity="0"/></radialGradient>
-<filter id="ap1_pb1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
-</defs><ellipse cx="90" cy="84" rx="90" ry="50" fill="#FFD21F" opacity=".10" filter="url(#ap1_pb1)"/><rect x="14" y="14" width="156" height="140" rx="14" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/><path d="M92 14V90M14 90H170M118 90V154" stroke="rgba(255,255,255,.28)" stroke-width="1.4" fill="none"/><rect x="26" y="26" width="18" height="12" rx="3" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><circle cx="62" cy="56" r="3.6" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/><circle cx="72" cy="56" r="3.6" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/><circle cx="62" cy="66" r="3.6" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/><circle cx="72" cy="66" r="3.6" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/><rect x="136" y="26" width="20" height="22" rx="4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><circle cx="146" cy="38" r="5" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/><rect x="42" y="96" width="38" height="9" rx="4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><g class="pin pin0"><circle cx="35" cy="32" r="11" fill="#FFD21F" opacity=".18"/><circle cx="35" cy="32" r="5" fill="#FFD21F"/></g><g class="pin pin1"><circle cx="67" cy="61" r="11" fill="#FFD21F" opacity=".18"/><circle cx="67" cy="61" r="5" fill="#FFD21F"/></g><g class="pin pin2"><circle cx="146" cy="37" r="11" fill="#FFD21F" opacity=".18"/><circle cx="146" cy="37" r="5" fill="#FFD21F"/></g><g class="pin pin3"><circle cx="61" cy="100" r="11" fill="#FFD21F" opacity=".18"/><circle cx="61" cy="100" r="5" fill="#FFD21F"/></g><g class="cam"><path d="M0 0L26 -15A30 30 0 0 1 26 15Z" fill="#FFD21F" opacity=".22" transform="translate(50 52) rotate(-20)"/><circle cx="50" cy="52" r="7" fill="#fff"/><circle cx="50" cy="52" r="3.4" fill="#111"/></g><circle class="fl fl0" cx="50" cy="52" r="9" fill="none" stroke="#FFD21F" stroke-width="2"/><circle class="fl fl1" cx="130" cy="58" r="9" fill="none" stroke="#FFD21F" stroke-width="2"/><circle class="fl fl2" cx="64" cy="122" r="9" fill="none" stroke="#FFD21F" stroke-width="2"/><g class="orow orow0"><rect x="184" y="22" width="104" height="28" rx="14" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)"/><circle cx="200" cy="36" r="8" fill="#FFD21F"/><path d="M196 36L199 39L205 33" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="214" y="39.5" class="ot">forno</text></g><g class="orow orow1"><rect x="184" y="58" width="104" height="28" rx="14" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)"/><circle cx="200" cy="72" r="8" fill="#FFD21F"/><path d="M196 72L199 75L205 69" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="214" y="75.5" class="ot">piano cottura</text></g><g class="orow orow2"><rect x="184" y="94" width="104" height="28" rx="14" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)"/><circle cx="200" cy="108" r="8" fill="#FFD21F"/><path d="M196 108L199 111L205 105" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="214" y="111.5" class="ot">lavatrice</text></g><g class="orow orow3"><rect x="184" y="130" width="104" height="28" rx="14" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)"/><circle cx="200" cy="144" r="8" fill="#FFD21F"/><path d="M196 144L199 147L205 141" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="214" y="147.5" class="ot">condizionatore</text></g></svg><div class="dx-ct"><div class="dx-n">1</div><b>Sopralluogo e analisi</b><span>Veniamo nell'appartamento, scattiamo le foto e analizziamo insieme a te ogni oggetto che l'ospite deve saper usare.</span></div></div>
-<div class="glass dx-chap"><svg class="ill2" viewBox="0 0 300 168" role="img" aria-hidden="true"><defs><linearGradient id="ap2_py3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB800"/><stop offset="1" stop-color="#FFE56B"/></linearGradient><radialGradient id="ap2_pg3"><stop offset="0" stop-color="#FFD21F" stop-opacity=".9"/><stop offset="1" stop-color="#FFD21F" stop-opacity="0"/></radialGradient><clipPath id="ap2_pk3c0"><rect x="14" y="28" width="72" height="112" rx="14"/></clipPath><clipPath id="ap2_pk3c1"><rect x="114" y="28" width="72" height="112" rx="14"/></clipPath><clipPath id="ap2_pk3c2"><rect x="214" y="28" width="72" height="112" rx="14"/></clipPath><filter id="ap2_pk3b" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10"/></filter></defs><ellipse cx="150" cy="84" rx="130" ry="46" fill="#FFD21F" opacity=".1" filter="url(#ap2_pk3b)"/><g class="pk pkA0"><g clip-path="url(#ap2_pk3c0)"><g transform="translate(-140,12)"><rect x="154" y="16" width="72" height="112" fill="rgba(255,255,255,.14)"/><rect x="154" y="100" width="72" height="28" fill="rgba(255,255,255,.1)"/><ellipse cx="190" cy="108" rx="24" ry="4" fill="#000" opacity=".3"/><rect x="168" y="44" width="44" height="62" rx="7" fill="rgba(255,255,255,.62)"/><rect x="168" y="44" width="44" height="14" rx="7" fill="rgba(255,255,255,.35)"/><circle cx="190" cy="82" r="15" fill="rgba(35,35,35,.8)" stroke="rgba(255,255,255,.75)" stroke-width="2"/><path d="M180 76Q186 70 194 71" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"/></g></g><rect x="14" y="28" width="72" height="112" rx="14" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.6"/><rect x="36" y="33" width="28" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="pk pkA1"><g clip-path="url(#ap2_pk3c1)"><g transform="translate(-40,12)"><rect x="154" y="16" width="72" height="112" fill="#FFD21F"/><rect x="168" y="44" width="44" height="62" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><circle cx="178" cy="53" r="2.6" fill="#111"/><circle cx="190" cy="82" r="15" fill="#FFD21F" stroke="#111" stroke-width="3"/><circle cx="190" cy="82" r="6" fill="#fff" stroke="#111" stroke-width="2.4"/><circle cx="164" cy="30" r="3" fill="#111"/><circle cx="216" cy="118" r="4" fill="#fff"/></g></g><rect x="114" y="28" width="72" height="112" rx="14" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.6"/><rect x="136" y="33" width="28" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="pk pkA2"><g clip-path="url(#ap2_pk3c2)"><g transform="translate(60,12)"><rect x="154" y="16" width="72" height="112" fill="#0b0b0b"/><circle cx="190" cy="76" r="46" fill="url(#ap2_pg3)" opacity=".55"/><rect x="168" y="44" width="44" height="62" rx="9" fill="none" stroke="url(#ap2_py3)" stroke-width="2"/><circle class="spin" cx="190" cy="82" r="15" fill="none" stroke="url(#ap2_py3)" stroke-width="2.4" stroke-dasharray="14 8"/><circle cx="190" cy="82" r="6" fill="#FFD21F" opacity=".85"/><path class="" d="M166 30Q166 36 172 36Q166 36 166 42Q166 36 160 36Q166 36 166 30Z" fill="#fff"/><path class="" d="M214 61Q214 66 219 66Q214 66 214 71Q214 66 209 66Q214 66 214 61Z" fill="#fff"/><path class="" d="M172 110Q172 114 176 114Q172 114 172 118Q172 114 168 114Q172 114 172 110Z" fill="#fff"/></g></g><rect x="214" y="28" width="72" height="112" rx="14" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.6"/><rect x="236" y="33" width="28" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="pr prA0" opacity="0"><rect x="9" y="23" width="82" height="122" rx="19" fill="none" stroke="#FFD21F" stroke-width="2.2"/><circle cx="86" cy="23" r="9" fill="#FFD21F"/><path d="M82 23L85 26.5L90 19.5" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><g class="pr prA1" opacity="1"><rect x="109" y="23" width="82" height="122" rx="19" fill="none" stroke="#FFD21F" stroke-width="2.2"/><circle cx="186" cy="23" r="9" fill="#FFD21F"/><path d="M182 23L185 26.5L190 19.5" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><g class="pr prA2" opacity="0"><rect x="209" y="23" width="82" height="122" rx="19" fill="none" stroke="#FFD21F" stroke-width="2.2"/><circle cx="286" cy="23" r="9" fill="#FFD21F"/><path d="M282 23L285 26.5L290 19.5" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g></svg><div class="dx-ct"><div class="dx-n">2</div><b>Video nello stile che preferisci</b><span>Concordiamo l'elenco dei video necessari e li realizziamo con i nostri software, nello stile che scegli: originale, 2D o con AI.</span></div></div>
-<div class="glass dx-chap"><svg class="ill2" viewBox="0 0 300 168" role="img" aria-hidden="true"><defs>
-<linearGradient id="ap3_py3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB800"/><stop offset="1" stop-color="#FFE56B"/></linearGradient>
-<linearGradient id="ap3_pl3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity=".04"/></linearGradient>
-<radialGradient id="ap3_pg3"><stop offset="0" stop-color="#FFD21F" stop-opacity=".9"/><stop offset="1" stop-color="#FFD21F" stop-opacity="0"/></radialGradient>
-<filter id="ap3_pb3" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
-</defs><ellipse cx="210" cy="84" rx="90" ry="40" fill="#FFD21F" opacity=".14" filter="url(#ap3_pb3)"/><rect x="16" y="34" width="92" height="92" rx="16" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.25)"/><rect x="50" y="44" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="58" y="44" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="50" y="52" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="52" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="50" y="60" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="58" y="60" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="60" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="26" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="34" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="42" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="50" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="74" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="34" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="50" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="74" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="82" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="90" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="34" y="84" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="58" y="84" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="74" y="84" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="82" y="84" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="90" y="84" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="58" y="92" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="92" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="82" y="92" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="90" y="92" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="100" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="58" y="108" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="74" y="108" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="82" y="108" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="26" y="44" width="22.4" height="22.4" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/><rect x="33" y="51" width="6.4" height="6.4" rx="1.5" fill="#fff"/><rect x="74" y="44" width="22.4" height="22.4" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/><rect x="81" y="51" width="6.4" height="6.4" rx="1.5" fill="#fff"/><rect x="26" y="92" width="22.4" height="22.4" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/><rect x="33" y="99" width="6.4" height="6.4" rx="1.5" fill="#fff"/><g class="ascan"><rect x="20" y="0" width="84" height="3" rx="1.5" fill="#FFD21F"/><rect x="20" y="-14" width="84" height="14" fill="url(#pq3)"/></g><path d="M116 80H138M133 75L138 80L133 85" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="150" y="12" width="124" height="144" rx="24" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.4)" stroke-width="1.4"/><rect x="198" y="18" width="28" height="5" rx="2.5" fill="rgba(255,255,255,.35)"/><text x="212" y="44" text-anchor="middle" class="lb l0">menu</text><g class="arow" style="--i:0"><rect x="160" y="54" width="104" height="19" rx="9.5" class="arr"/><circle cx="171" cy="63.5" r="5.2" fill="#FFD21F"/><path d="M169.6 61L169.6 66L174 63.5Z" fill="#111"/><rect x="182" y="61.5" width="58" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="arow" style="--i:1"><rect x="160" y="78" width="104" height="19" rx="9.5" class="arr"/><circle cx="171" cy="87.5" r="5.2" fill="#FFD21F"/><path d="M169.6 85L169.6 90L174 87.5Z" fill="#111"/><rect x="182" y="85.5" width="46" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="arow" style="--i:2"><rect x="160" y="102" width="104" height="19" rx="9.5" class="arr"/><circle cx="171" cy="111.5" r="5.2" fill="#FFD21F"/><path d="M169.6 109L169.6 114L174 111.5Z" fill="#111"/><rect x="182" y="109.5" width="64" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="arow" style="--i:3"><rect x="160" y="126" width="104" height="19" rx="9.5" class="arr"/><circle cx="171" cy="135.5" r="5.2" fill="#FFD21F"/><path d="M169.6 133L169.6 138L174 135.5Z" fill="#111"/><rect x="182" y="133.5" width="40" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g></svg><div class="dx-ct"><div class="dx-n">3</div><b>Guida digitale e QR code</b><span>Creiamo anche il sito con tutti i video in ordine e un menu: l'ospite inquadra il QR code e viene guidato passo dopo passo.</span></div></div>
-      </div>
-
-      <div class="dx-k">in appartamento</div>
-      <h3 class="dx-h">tutto a portata di mano</h3>
-      <p class="dx-p">Insieme ai video realizziamo anche il sito dedicato al tuo appartamento. Basta un unico QR code, sul totem all'ingresso, per accedere a tutte le informazioni, a ogni video e a ogni tutorial che abbiamo creato.</p>
-      <div class="glass ap-ph"><img src="assets/menu/totem.jpg" alt="" loading="lazy" draggable="false"></div>
-      <div class="ap-rows">
-<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 14v0M17 20h4M20 17v3"/></svg></div><div><b>Totem con QR code</b><span>L'ospite lo inquadra appena arriva ed entra nel sito dell'appartamento.</span></div></div>
-<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 19V5.5M9 8h7"/></svg></div><div><b>Sito dedicato</b><span>Tutte le informazioni, i video e i tutorial in un unico posto, ordinati in un menu chiaro.</span></div></div>
-<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1" fill="#FFD21F"/></svg></div><div><b>Materiale stampato</b><span>QR code per gli elettrodomestici, la rete Wi-Fi e la mappa della metropolitana.</span></div></div>
-      </div>
-
-      <div class="dx-k" style="margin-top:46px">il vantaggio per chi gestisce</div>
-      <h3 class="dx-h">più autonomia per l'ospite, più tempo per te</h3>
-      <p class="dx-p">Un ospite guidato ha meno motivi di scrivere o chiamare. Per chi gestisce gli appartamenti significa meno richieste da seguire e più tempo per ciò che conta davvero.</p>
-      <div class="ap-rows">
-<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16 9.5"/></svg></div><div><b>Ospiti autonomi</b><span>Ogni dubbio ha già un video, a portata di QR code.</span></div></div>
-<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/></svg></div><div><b>Meno richieste</b><span>Meno messaggi e chiamate per le domande ripetitive.</span></div></div>
-<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div><div><b>Più tempo per te</b><span>Il tempo che dedicavi agli ospiti lo usi per far crescere l'attività.</span></div></div>
-      </div>
-
-      <button class="glass ap-fld press" type="button" id="apFld" aria-expanded="false" aria-controls="apFldBody">
-        <div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
-        <div class="ap-fldt"><b>alcuni lavori per Rentallo</b><span>6 video</span></div>
-        <svg class="ap-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="ap-fldb" id="apFldBody" hidden>
-<div class="hs" id="guides" style="margin:0 -16px">
-      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-hisense-en.jpg" data-src="video/rentallo-hisense-en.mp4"></video><button class="glass snd press" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></g></svg></button></div><figcaption class="gcap">condizionatore<span>hisense</span></figcaption><select class="lsel" aria-label="Lingua del video"><option value="video/rentallo-hisense-en.mp4" data-poster="poster/rentallo-hisense-en.jpg">english</option><option value="video/rentallo-hisense-cn.mp4" data-poster="poster/rentallo-hisense-cn.jpg">cinese · 中文</option></select></figure>
-      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-daikin-en.jpg" data-src="video/rentallo-daikin-en.mp4"></video><button class="glass snd press" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></g></svg></button></div><figcaption class="gcap">condizionatore<span>daikin</span></figcaption></figure>
-      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-piano-induzione-en.jpg" data-src="video/rentallo-piano-induzione-en.mp4"></video><button class="glass snd press" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></g></svg></button></div><figcaption class="gcap">piano a induzione<span>rentallo</span></figcaption></figure>
-      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-lavastoviglie-en.jpg" data-src="video/rentallo-lavastoviglie-en.mp4"></video><button class="glass snd press" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></g></svg></button></div><figcaption class="gcap">lavastoviglie<span>rentallo</span></figcaption></figure>
-      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-checkin-skyline.jpg" data-src="video/rentallo-checkin-skyline.mp4"></video></div><figcaption class="gcap">self check-in<span>rentallo</span></figcaption></figure>
-      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-checkout-duomo.jpg" data-src="video/rentallo-checkout-duomo.mp4"></video></div><figcaption class="gcap">check-out<span>rentallo</span></figcaption></figure>
-    </div>
-
-      </div>
-    </div>
-
-    <div class="pn" id="p-doppiaggi">
+    <div class="pn on" id="p-doppiaggi">
       <div class="dx-photo" aria-hidden="true"><img class="m" src="assets/menu/doppiaggi.jpg" alt="" draggable="false"><img class="b b1" src="assets/menu/doppiaggi.jpg" alt="" draggable="false"><img class="b b2" src="assets/menu/doppiaggi.jpg" alt="" draggable="false"><img class="b b3" src="assets/menu/doppiaggi.jpg" alt="" draggable="false"><img class="b b4" src="assets/menu/doppiaggi.jpg" alt="" draggable="false"><img class="b b5" src="assets/menu/doppiaggi.jpg" alt="" draggable="false"></div>
       <h2 class="h2 dx-ttl">la stessa storia, in ogni lingua</h2>
       <p class="dx-p">Prendiamo un video girato in italiano e lo rendiamo ascoltabile in inglese, spagnolo, francese e altre lingue, con la voce di chi parla e un suono curato come l'originale.</p>
@@ -731,6 +676,73 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   </div>
 </section>
 
+<!-- APPARTAMENTI -->
+<section class="view" id="v-appartamenti" aria-label="Appartamenti">
+  <div class="page">
+    <div class="pn on" id="p-appartamenti">
+      <div class="dx-photo ap-photo" aria-hidden="true"><img class="m" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img class="b b1" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img class="b b2" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img class="b b3" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img class="b b4" src="assets/menu/appartamenti.jpg" alt="" draggable="false"><img class="b b5" src="assets/menu/appartamenti.jpg" alt="" draggable="false"></div>
+      <div class="dx-k ap-k">appartamenti</div>
+      <h2 class="h2 dx-ttl ap-ttl">Ospiti autonomi, host più liberi</h2>
+      <p class="dx-p">Prepariamo la guida video completa del tuo appartamento: chi soggiorna sa sempre cosa fare, e tu non devi più rispondere alle stesse domande.</p>
+
+      <div class="dx-k">il processo</div>
+      <h3 class="dx-h">dall'appartamento alla guida pronta</h3>
+      <div class="dx-chaps">
+<div class="glass dx-chap"><svg class="ill2" viewBox="0 0 300 168" role="img" aria-hidden="true"><defs>
+<linearGradient id="ap1_py1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB800"/><stop offset="1" stop-color="#FFE56B"/></linearGradient>
+<linearGradient id="ap1_pl1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity=".04"/></linearGradient>
+<radialGradient id="ap1_pg1"><stop offset="0" stop-color="#FFD21F" stop-opacity=".9"/><stop offset="1" stop-color="#FFD21F" stop-opacity="0"/></radialGradient>
+<filter id="ap1_pb1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+</defs><ellipse cx="90" cy="84" rx="90" ry="50" fill="#FFD21F" opacity=".10" filter="url(#ap1_pb1)"/><rect x="14" y="14" width="156" height="140" rx="14" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/><path d="M92 14V90M14 90H170M118 90V154" stroke="rgba(255,255,255,.28)" stroke-width="1.4" fill="none"/><rect x="26" y="26" width="18" height="12" rx="3" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><circle cx="62" cy="56" r="3.6" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/><circle cx="72" cy="56" r="3.6" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/><circle cx="62" cy="66" r="3.6" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/><circle cx="72" cy="66" r="3.6" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/><rect x="136" y="26" width="20" height="22" rx="4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><circle cx="146" cy="38" r="5" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/><rect x="42" y="96" width="38" height="9" rx="4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><g class="pin pin0"><circle cx="35" cy="32" r="11" fill="#FFD21F" opacity=".18"/><circle cx="35" cy="32" r="5" fill="#FFD21F"/></g><g class="pin pin1"><circle cx="67" cy="61" r="11" fill="#FFD21F" opacity=".18"/><circle cx="67" cy="61" r="5" fill="#FFD21F"/></g><g class="pin pin2"><circle cx="146" cy="37" r="11" fill="#FFD21F" opacity=".18"/><circle cx="146" cy="37" r="5" fill="#FFD21F"/></g><g class="pin pin3"><circle cx="61" cy="100" r="11" fill="#FFD21F" opacity=".18"/><circle cx="61" cy="100" r="5" fill="#FFD21F"/></g><g class="cam"><path d="M0 0L26 -15A30 30 0 0 1 26 15Z" fill="#FFD21F" opacity=".22" transform="translate(50 52) rotate(-20)"/><circle cx="50" cy="52" r="7" fill="#fff"/><circle cx="50" cy="52" r="3.4" fill="#111"/></g><circle class="fl fl0" cx="50" cy="52" r="9" fill="none" stroke="#FFD21F" stroke-width="2"/><circle class="fl fl1" cx="130" cy="58" r="9" fill="none" stroke="#FFD21F" stroke-width="2"/><circle class="fl fl2" cx="64" cy="122" r="9" fill="none" stroke="#FFD21F" stroke-width="2"/><g class="orow orow0"><rect x="184" y="22" width="104" height="28" rx="14" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)"/><circle cx="200" cy="36" r="8" fill="#FFD21F"/><path d="M196 36L199 39L205 33" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="214" y="39.5" class="ot">forno</text></g><g class="orow orow1"><rect x="184" y="58" width="104" height="28" rx="14" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)"/><circle cx="200" cy="72" r="8" fill="#FFD21F"/><path d="M196 72L199 75L205 69" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="214" y="75.5" class="ot">piano cottura</text></g><g class="orow orow2"><rect x="184" y="94" width="104" height="28" rx="14" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)"/><circle cx="200" cy="108" r="8" fill="#FFD21F"/><path d="M196 108L199 111L205 105" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="214" y="111.5" class="ot">lavatrice</text></g><g class="orow orow3"><rect x="184" y="130" width="104" height="28" rx="14" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)"/><circle cx="200" cy="144" r="8" fill="#FFD21F"/><path d="M196 144L199 147L205 141" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="214" y="147.5" class="ot">condizionatore</text></g></svg><div class="dx-ct"><div class="dx-n">1</div><b>Sopralluogo e analisi</b><span>Veniamo nell'appartamento, scattiamo le foto e analizziamo insieme a te ogni oggetto che l'ospite deve saper usare.</span></div></div>
+<div class="glass dx-chap"><svg class="ill2" viewBox="0 0 300 168" role="img" aria-hidden="true"><defs><linearGradient id="ap2_py3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB800"/><stop offset="1" stop-color="#FFE56B"/></linearGradient><radialGradient id="ap2_pg3"><stop offset="0" stop-color="#FFD21F" stop-opacity=".9"/><stop offset="1" stop-color="#FFD21F" stop-opacity="0"/></radialGradient><clipPath id="ap2_pk3c0"><rect x="14" y="28" width="72" height="112" rx="14"/></clipPath><clipPath id="ap2_pk3c1"><rect x="114" y="28" width="72" height="112" rx="14"/></clipPath><clipPath id="ap2_pk3c2"><rect x="214" y="28" width="72" height="112" rx="14"/></clipPath><filter id="ap2_pk3b" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10"/></filter></defs><ellipse cx="150" cy="84" rx="130" ry="46" fill="#FFD21F" opacity=".1" filter="url(#ap2_pk3b)"/><g class="pk pkA0"><g clip-path="url(#ap2_pk3c0)"><g transform="translate(-140,12)"><rect x="154" y="16" width="72" height="112" fill="rgba(255,255,255,.14)"/><rect x="154" y="100" width="72" height="28" fill="rgba(255,255,255,.1)"/><ellipse cx="190" cy="108" rx="24" ry="4" fill="#000" opacity=".3"/><rect x="168" y="44" width="44" height="62" rx="7" fill="rgba(255,255,255,.62)"/><rect x="168" y="44" width="44" height="14" rx="7" fill="rgba(255,255,255,.35)"/><circle cx="190" cy="82" r="15" fill="rgba(35,35,35,.8)" stroke="rgba(255,255,255,.75)" stroke-width="2"/><path d="M180 76Q186 70 194 71" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"/></g></g><rect x="14" y="28" width="72" height="112" rx="14" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.6"/><rect x="36" y="33" width="28" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="pk pkA1"><g clip-path="url(#ap2_pk3c1)"><g transform="translate(-40,12)"><rect x="154" y="16" width="72" height="112" fill="#FFD21F"/><rect x="168" y="44" width="44" height="62" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><circle cx="178" cy="53" r="2.6" fill="#111"/><circle cx="190" cy="82" r="15" fill="#FFD21F" stroke="#111" stroke-width="3"/><circle cx="190" cy="82" r="6" fill="#fff" stroke="#111" stroke-width="2.4"/><circle cx="164" cy="30" r="3" fill="#111"/><circle cx="216" cy="118" r="4" fill="#fff"/></g></g><rect x="114" y="28" width="72" height="112" rx="14" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.6"/><rect x="136" y="33" width="28" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="pk pkA2"><g clip-path="url(#ap2_pk3c2)"><g transform="translate(60,12)"><rect x="154" y="16" width="72" height="112" fill="#0b0b0b"/><circle cx="190" cy="76" r="46" fill="url(#ap2_pg3)" opacity=".55"/><rect x="168" y="44" width="44" height="62" rx="9" fill="none" stroke="url(#ap2_py3)" stroke-width="2"/><circle class="spin" cx="190" cy="82" r="15" fill="none" stroke="url(#ap2_py3)" stroke-width="2.4" stroke-dasharray="14 8"/><circle cx="190" cy="82" r="6" fill="#FFD21F" opacity=".85"/><path class="" d="M166 30Q166 36 172 36Q166 36 166 42Q166 36 160 36Q166 36 166 30Z" fill="#fff"/><path class="" d="M214 61Q214 66 219 66Q214 66 214 71Q214 66 209 66Q214 66 214 61Z" fill="#fff"/><path class="" d="M172 110Q172 114 176 114Q172 114 172 118Q172 114 168 114Q172 114 172 110Z" fill="#fff"/></g></g><rect x="214" y="28" width="72" height="112" rx="14" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.6"/><rect x="236" y="33" width="28" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="pr prA0" opacity="0"><rect x="9" y="23" width="82" height="122" rx="19" fill="none" stroke="#FFD21F" stroke-width="2.2"/><circle cx="86" cy="23" r="9" fill="#FFD21F"/><path d="M82 23L85 26.5L90 19.5" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><g class="pr prA1" opacity="1"><rect x="109" y="23" width="82" height="122" rx="19" fill="none" stroke="#FFD21F" stroke-width="2.2"/><circle cx="186" cy="23" r="9" fill="#FFD21F"/><path d="M182 23L185 26.5L190 19.5" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><g class="pr prA2" opacity="0"><rect x="209" y="23" width="82" height="122" rx="19" fill="none" stroke="#FFD21F" stroke-width="2.2"/><circle cx="286" cy="23" r="9" fill="#FFD21F"/><path d="M282 23L285 26.5L290 19.5" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g></svg><div class="dx-ct"><div class="dx-n">2</div><b>Video nello stile che preferisci</b><span>Concordiamo l'elenco dei video necessari e li realizziamo con i nostri software, nello stile che scegli: originale, 2D o con AI.</span></div></div>
+<div class="glass dx-chap"><svg class="ill2" viewBox="0 0 300 168" role="img" aria-hidden="true"><defs>
+<linearGradient id="ap3_py3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB800"/><stop offset="1" stop-color="#FFE56B"/></linearGradient>
+<linearGradient id="ap3_pl3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity=".04"/></linearGradient>
+<radialGradient id="ap3_pg3"><stop offset="0" stop-color="#FFD21F" stop-opacity=".9"/><stop offset="1" stop-color="#FFD21F" stop-opacity="0"/></radialGradient>
+<filter id="ap3_pb3" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+</defs><ellipse cx="210" cy="84" rx="90" ry="40" fill="#FFD21F" opacity=".14" filter="url(#ap3_pb3)"/><rect x="16" y="34" width="92" height="92" rx="16" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.25)"/><rect x="50" y="44" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="58" y="44" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="50" y="52" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="52" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="50" y="60" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="58" y="60" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="60" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="26" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="34" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="42" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="50" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="74" y="68" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="34" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="50" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="74" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="82" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="90" y="76" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="34" y="84" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="58" y="84" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="74" y="84" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="82" y="84" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="90" y="84" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="58" y="92" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="92" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="82" y="92" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="90" y="92" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="66" y="100" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="58" y="108" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="74" y="108" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="82" y="108" width="6.4" height="6.4" rx="1.5" fill="rgba(255,255,255,.85)"/><rect x="26" y="44" width="22.4" height="22.4" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/><rect x="33" y="51" width="6.4" height="6.4" rx="1.5" fill="#fff"/><rect x="74" y="44" width="22.4" height="22.4" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/><rect x="81" y="51" width="6.4" height="6.4" rx="1.5" fill="#fff"/><rect x="26" y="92" width="22.4" height="22.4" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/><rect x="33" y="99" width="6.4" height="6.4" rx="1.5" fill="#fff"/><g class="ascan"><rect x="20" y="0" width="84" height="3" rx="1.5" fill="#FFD21F"/><rect x="20" y="-14" width="84" height="14" fill="url(#pq3)"/></g><path d="M116 80H138M133 75L138 80L133 85" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="150" y="12" width="124" height="144" rx="24" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.4)" stroke-width="1.4"/><rect x="198" y="18" width="28" height="5" rx="2.5" fill="rgba(255,255,255,.35)"/><text x="212" y="44" text-anchor="middle" class="lb l0">menu</text><g class="arow" style="--i:0"><rect x="160" y="54" width="104" height="19" rx="9.5" class="arr"/><circle cx="171" cy="63.5" r="5.2" fill="#FFD21F"/><path d="M169.6 61L169.6 66L174 63.5Z" fill="#111"/><rect x="182" y="61.5" width="58" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="arow" style="--i:1"><rect x="160" y="78" width="104" height="19" rx="9.5" class="arr"/><circle cx="171" cy="87.5" r="5.2" fill="#FFD21F"/><path d="M169.6 85L169.6 90L174 87.5Z" fill="#111"/><rect x="182" y="85.5" width="46" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="arow" style="--i:2"><rect x="160" y="102" width="104" height="19" rx="9.5" class="arr"/><circle cx="171" cy="111.5" r="5.2" fill="#FFD21F"/><path d="M169.6 109L169.6 114L174 111.5Z" fill="#111"/><rect x="182" y="109.5" width="64" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g><g class="arow" style="--i:3"><rect x="160" y="126" width="104" height="19" rx="9.5" class="arr"/><circle cx="171" cy="135.5" r="5.2" fill="#FFD21F"/><path d="M169.6 133L169.6 138L174 135.5Z" fill="#111"/><rect x="182" y="133.5" width="40" height="4" rx="2" fill="rgba(255,255,255,.55)"/></g></svg><div class="dx-ct"><div class="dx-n">3</div><b>Guida digitale e QR code</b><span>Creiamo anche il sito con tutti i video in ordine e un menu: l'ospite inquadra il QR code e viene guidato passo dopo passo.</span></div></div>
+      </div>
+
+      <div class="dx-k">in appartamento</div>
+      <h3 class="dx-h">tutto a portata di mano</h3>
+      <p class="dx-p">Insieme ai video realizziamo anche il sito dedicato al tuo appartamento. Basta un unico QR code, sul totem all'ingresso, per accedere a tutte le informazioni, a ogni video e a ogni tutorial che abbiamo creato.</p>
+      <div class="glass ap-ph"><img src="assets/menu/totem.jpg" alt="" loading="lazy" draggable="false"></div>
+      <div class="ap-rows">
+<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 14v0M17 20h4M20 17v3"/></svg></div><div><b>Totem con QR code</b><span>L'ospite lo inquadra appena arriva ed entra nel sito dell'appartamento.</span></div></div>
+<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 19V5.5M9 8h7"/></svg></div><div><b>Sito dedicato</b><span>Tutte le informazioni, i video e i tutorial in un unico posto, ordinati in un menu chiaro.</span></div></div>
+<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1" fill="#FFD21F"/></svg></div><div><b>Materiale stampato</b><span>QR code per gli elettrodomestici, la rete Wi-Fi e la mappa della metropolitana.</span></div></div>
+      </div>
+
+      <div class="dx-k" style="margin-top:46px">il vantaggio per chi gestisce</div>
+      <h3 class="dx-h">più autonomia per l'ospite, più tempo per te</h3>
+      <p class="dx-p">Un ospite guidato ha meno motivi di scrivere o chiamare. Per chi gestisce gli appartamenti significa meno richieste da seguire e più tempo per ciò che conta davvero.</p>
+      <div class="ap-rows">
+<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16 9.5"/></svg></div><div><b>Ospiti autonomi</b><span>Ogni dubbio ha già un video, a portata di QR code.</span></div></div>
+<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/></svg></div><div><b>Meno richieste</b><span>Meno messaggi e chiamate per le domande ripetitive.</span></div></div>
+<div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div><div><b>Più tempo per te</b><span>Il tempo che dedicavi agli ospiti lo usi per far crescere l'attività.</span></div></div>
+      </div>
+
+      <button class="glass ap-fld press" type="button" id="apFld" aria-expanded="false" aria-controls="apFldBody">
+        <div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <div class="ap-fldt"><b>alcuni lavori per Rentallo</b><span>6 video</span></div>
+        <svg class="ap-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="ap-fldb" id="apFldBody" hidden>
+<div class="hs" id="guides" style="margin:0 -16px">
+      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-hisense-en.jpg" data-src="video/rentallo-hisense-en.mp4"></video><button class="glass snd press" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></g></svg></button></div><figcaption class="gcap">condizionatore<span>hisense</span></figcaption><select class="lsel" aria-label="Lingua del video"><option value="video/rentallo-hisense-en.mp4" data-poster="poster/rentallo-hisense-en.jpg">english</option><option value="video/rentallo-hisense-cn.mp4" data-poster="poster/rentallo-hisense-cn.jpg">cinese · 中文</option></select></figure>
+      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-daikin-en.jpg" data-src="video/rentallo-daikin-en.mp4"></video><button class="glass snd press" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></g></svg></button></div><figcaption class="gcap">condizionatore<span>daikin</span></figcaption></figure>
+      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-piano-induzione-en.jpg" data-src="video/rentallo-piano-induzione-en.mp4"></video><button class="glass snd press" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></g></svg></button></div><figcaption class="gcap">piano a induzione<span>rentallo</span></figcaption></figure>
+      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-lavastoviglie-en.jpg" data-src="video/rentallo-lavastoviglie-en.mp4"></video><button class="glass snd press" type="button" aria-pressed="false" aria-label="attiva audio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><g class="off"><path d="M17 9l5 6M22 9l-5 6"/></g><g class="on"><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></g></svg></button></div><figcaption class="gcap">lavastoviglie<span>rentallo</span></figcaption></figure>
+      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-checkin-skyline.jpg" data-src="video/rentallo-checkin-skyline.mp4"></video></div><figcaption class="gcap">self check-in<span>rentallo</span></figcaption></figure>
+      <figure class="gcard" style="margin:0"><div class="gv"><video muted loop playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate" poster="poster/rentallo-checkout-duomo.jpg" data-src="video/rentallo-checkout-duomo.mp4"></video></div><figcaption class="gcap">check-out<span>rentallo</span></figcaption></figure>
+    </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- WEB DESIGN (raggiungibile da #web, non nel menu) -->
 <section class="view" id="v-web" aria-label="Web Design">
   <div class="page">
@@ -764,9 +776,9 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
 
 <!-- dock flottante -->
 <nav class="dock" aria-label="Navigazione"><a class="ccta press" href="#contact">contattaci</a></nav>
-<nav class="dnav" aria-label="sezioni"><a class="glass pill press" href="#ai" data-v="ai">video ai</a><a class="glass pill press" href="#making" data-v="making">video making e doppiaggi</a><div class="lp dlang" role="group" aria-label="lingua / language" data-lp><button type="button" class="glass pill press pill-on" data-l="it" aria-pressed="true" aria-label="italiano">ita</button><button type="button" class="glass pill press" data-l="en" aria-pressed="false" aria-label="english">en</button></div></nav>
+<nav class="dnav" aria-label="sezioni"><a class="glass pill press" href="#ai" data-v="ai">video ai</a><a class="glass pill press" href="#making" data-v="making">doppiaggi</a><a class="glass pill press" href="#appartamenti" data-v="appartamenti">appartamenti</a><div class="lp dlang" role="group" aria-label="lingua / language" data-lp><button type="button" class="glass pill press pill-on" data-l="it" aria-pressed="true" aria-label="italiano">ita</button><button type="button" class="glass pill press" data-l="en" aria-pressed="false" aria-label="english">en</button></div></nav>
 <a class="tb-home press" href="#home" aria-label="home"><span class="c"><svg width="26" height="26" viewBox="0 0 92 92" fill="none" aria-hidden="true"><path d="M18 64V32Q18 16 33 16Q47 16 47 32V58Q47 74 61 74Q75 74 75 58V30" stroke="#FFD21F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">home</span></a>
-<div class="tb-title ai" aria-hidden="true">video ai</div><div class="tb-title making" aria-hidden="true">video making e doppiaggi</div>
+<div class="tb-title ai" aria-hidden="true">video ai</div><div class="tb-title making" aria-hidden="true">doppiaggi</div><div class="tb-title appartamenti" aria-hidden="true">appartamenti</div>
 </div>
 
 <div class="wipe" id="wipe" aria-hidden="true"><div class="vglass"></div></div>
@@ -788,13 +800,6 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   </div>
 </div>
 
-<!-- intro: voce di dizionario -->
-<button class="intro" id="intro" type="button" aria-label="nìtido, adj. from latin nitidus: sharp, clear, with well-defined edges. tocca per entrare" hidden>
-  <div class="dq-wrap">
-    <p class="dq" aria-hidden="true" id="dqFull" style="visibility:hidden"></p>
-    <p class="dq" aria-hidden="true" id="dqTyped" style="position:absolute;left:0;top:0"></p>
-  </div>
-</button>
 
 <script>
 (function(){
@@ -803,12 +808,11 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   var app = $('#app'), lang = 'it';
 
   /* ---------- pagine ---------- */
-  var views = ['home','ai','making','web','contact'], legacy = {commissioned:'ai', vision:'ai'}, current = null, pendingSub = '';
+  var views = ['home','ai','making','appartamenti','web','contact'], legacy = {commissioned:'ai', vision:'ai', apartments:'appartamenti'}, current = null, pendingSub = '';
   function norm(v){ v = legacy[v] || v; return views.indexOf(v) < 0 ? 'home' : v; }
   function applySub(v){
     var sub = pendingSub; pendingSub = '';
     if (!sub) return;
-    if (v === 'making'){ var fb = $('.tabs .pill[data-f="' + sub + '"]'); if (fb) setTimeout(function(){ fb.click(); }, 0); return; }
     var el = document.getElementById('s-' + sub);
     if (el) setTimeout(function(){ var y = el.getBoundingClientRect().top + pageYOffset - 70; window.scrollTo(0, Math.max(0, y)); }, 60);
   }
@@ -829,9 +833,10 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
       busy = false; if (target() !== current) fromHash();
     }, 180);
   }
-  function target(){ var h = (location.hash || '#home').slice(1), i = h.indexOf('-'); return norm(i < 0 ? h : h.slice(0, i)); }
+  function oldLink(h){ return h.indexOf('making-appartamenti') === 0 ? 'appartamenti' : h; }
+  function target(){ var h = oldLink((location.hash || '#home').slice(1)), i = h.indexOf('-'); return norm(i < 0 ? h : h.slice(0, i)); }
   function fromHash(first){
-    var h = (location.hash || '#home').slice(1), i = h.indexOf('-'), v = norm(i < 0 ? h : h.slice(0, i));
+    var h = oldLink((location.hash || '#home').slice(1)), i = h.indexOf('-'), v = norm(i < 0 ? h : h.slice(0, i));
     if (busy) return;
     pendingSub = i < 0 ? '' : h.slice(i + 1);
     if (v === current) applySub(v); else if (first === true) show(v); else go(v);
@@ -842,15 +847,18 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   var LOGOS = [['terrazza21','Terrazza 21','png',36,244/141],['hollywood','Hollywood Rythmoteque','png',30,900/176],['twiga','Twiga','svg',26,284/48],['loolapaloosa','Loolapaloosa','png',36,900/892],['rentallo','Rentallo','png',30,900/373],['fastlife','Fast Life','png',28,716/170]];
   var mh = '';
   for (var rep = 0; rep < 2; rep++) LOGOS.forEach(function(l){ mh += '<img class="lg" src="assets/logos/' + l[0] + '.' + l[2] + '" alt="" style="height:' + l[3] + 'px;width:' + Math.round(l[3] * l[4]) + 'px;flex:none">'; });
-  $('#marq').innerHTML = mh;
+  $('#marq').innerHTML = mh; $('#marq2').innerHTML = mh;
   /* scorrimento guidato da JS: parte subito anche su iPhone, senza aspettare che il browser avvii l'animazione CSS */
   (function(){
-    var mq = $('#marq'); if (!mq) return;
-    mq.style.animation = 'none'; mq.style.willChange = 'transform';
+    var mqs = $$('.hsplit .marq'); if (!mqs.length) return;
+    mqs.forEach(function(m){ m.style.animation = 'none'; m.style.willChange = 'transform'; });
     var DUR = 11000, t0 = performance.now(), half = 0;
     function loop(t){
-      if (!half || (t - t0) < 2000) half = mq.scrollWidth / 2;
-      mq.style.transform = 'translate3d(' + (-(((t - t0) % DUR) / DUR) * half) + 'px,0,0)';
+      mqs.forEach(function(mq, i){
+        var hw = mq.scrollWidth / 2, x = ((t - t0) % DUR) / DUR * hw;
+        /* la seconda striscia scorre al contrario */
+        mq.style.transform = 'translate3d(' + (i ? x - hw : -x) + 'px,0,0)';
+      });
       requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
@@ -1104,14 +1112,6 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
       if (o){ bd.hidden = true; $$('video', bd).forEach(function(v){ try{ v.pause(); }catch(e){} }); } else { bd.hidden = false; }
     });
   })();
-  var tabs = $$('.tabs .pill');
-  function setTab(f){
-    tabs.forEach(function(o){ var on = o.getAttribute('data-f') === f; o.setAttribute('aria-pressed', on ? 'true' : 'false'); o.classList.toggle('pill-on', on); });
-    $$('.pn').forEach(function(p){ p.classList.toggle('on', p.id === 'p-' + f); });
-    syncPlay();
-  }
-  tabs.forEach(function(b){ b.addEventListener('click', function(){ setTab(b.getAttribute('data-f')); }); });
-  setTab('appartamenti');
 
   /* ---------- selettore lingua a pillole ---------- */
   var GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg>';
@@ -1231,44 +1231,8 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
     });
   });
 
-  /* ---------- intro: voce di dizionario che si scrive ---------- */
-  var intro = $('#intro'), timer = 0, typed = 0, leaving = false;
-  var segs = [
-    {c:'hw', t:'nìtido'}, {c:'', t:' ni·ti·do /ˈnitido/ '}, {c:'it', t:'adj.'}, {c:'', t:' [from lat. '},
-    {c:'it', t:'nitidus'}, {c:'', t:', from '}, {c:'it', t:'nitēre'}, {c:'', t:' “to shine”]. – '},
-    {c:'b', t:'1.'}, {c:'', t:' sharp, clear, with well-defined edges: '}, {c:'it', t:'un’immagine nitida'},
-    {c:'', t:', a crisp image. '}, {c:'b', t:'2.'}, {c:'', t:' fig. clean, free of blur and noise; seen exactly as it is.'}
-  ];
-  var total = segs.reduce(function(a, s){ return a + s.t.length; }, 0);
-  var full = $('#dqFull'), typ = $('#dqTyped'), tspans = [];
-  segs.forEach(function(s){
-    var a = document.createElement('span'), b = document.createElement('span'); a.className = b.className = s.c; a.textContent = s.t; full.appendChild(a); typ.appendChild(b); tspans.push(b);
-  });
-  var caret = document.createElement('span'); caret.className = 'dq-caret'; typ.appendChild(caret);
-  function paintTyped(){ var rem = typed; segs.forEach(function(s, i){ var v = Math.max(0, Math.min(s.t.length, rem)); rem -= s.t.length; tspans[i].textContent = s.t.slice(0, v); }); }
-  function typeNext(n){
-    if (n >= total) return;
-    typed = n + 1; paintTyped();
-    var acc = 0, ch = '', hw = false;
-    for (var i = 0; i < segs.length; i++){ if (n < acc + segs[i].t.length){ ch = segs[i].t[n - acc]; hw = segs[i].c === 'hw'; break; } acc += segs[i].t.length; }
-    var d = hw ? 50 : 8 + Math.random() * 7; if (',.:;–'.indexOf(ch) >= 0) d += 35;
-    timer = setTimeout(function(){ typeNext(n + 1); }, d);
-  }
-  function enter(){
-    if (leaving || typed < total) return; leaving = true; clearTimeout(timer);
-    try { sessionStorage.setItem('nv-intro', '1'); } catch (e) {}
-    intro.classList.add('out');
-    setTimeout(function(){ intro.hidden = true; app.removeAttribute('inert'); document.body.classList.remove('lock'); }, reduce ? 0 : 560);
-  }
-  intro.addEventListener('click', enter);
-
   /* ---------- avvio ---------- */
   fromHash(true);
-  if (current === 'home'){
-    intro.hidden = false; app.setAttribute('inert', ''); document.body.classList.add('lock');
-    if (reduce){ typed = total; paintTyped(); } else { paintTyped(); timer = setTimeout(function(){ typeNext(0); }, 450); }
-    intro.focus();
-  }
 })();
 </script>
 </body>
