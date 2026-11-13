@@ -16,6 +16,9 @@
 <link rel="preload" as="image" href="assets/logos/loolapaloosa.png">
 <link rel="preload" as="image" href="assets/logos/rentallo.png">
 <link rel="preload" as="image" href="assets/logos/fastlife.png">
+<link rel="preload" as="image" href="assets/logos/mv18.png">
+<link rel="preload" as="image" href="assets/logos/blacksheep.svg">
+<link rel="preload" as="image" href="assets/logos/mc-holiday.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
@@ -844,7 +847,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   addEventListener('hashchange', function(){ fromHash(false); });
 
   /* ---------- fascia loghi ---------- */
-  var LOGOS = [['terrazza21','Terrazza 21','png',36,244/141],['hollywood','Hollywood Rythmoteque','png',30,900/176],['twiga','Twiga','svg',26,284/48],['loolapaloosa','Loolapaloosa','png',36,900/892],['rentallo','Rentallo','png',30,900/373],['fastlife','Fast Life','png',28,716/170]];
+  var LOGOS = [['terrazza21','Terrazza 21','png',36,244/141],['hollywood','Hollywood Rythmoteque','png',30,900/176],['twiga','Twiga','svg',26,284/48],['loolapaloosa','Loolapaloosa','png',36,900/892],['rentallo','Rentallo','png',30,900/373],['fastlife','Fast Life','png',28,716/170],['mv18','MV18','png',32,900/465],['blacksheep','Black Sheep','svg',34,1131.7/569.7],['mc-holiday','MC Holiday','svg',38,433/435]];
   var mh = '';
   for (var rep = 0; rep < 2; rep++) LOGOS.forEach(function(l){ mh += '<img class="lg" src="assets/logos/' + l[0] + '.' + l[2] + '" alt="" style="height:' + l[3] + 'px;width:' + Math.round(l[3] * l[4]) + 'px;flex:none">'; });
   $('#marq').innerHTML = mh; $('#marq2').innerHTML = mh;
