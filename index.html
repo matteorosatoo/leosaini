@@ -468,7 +468,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
 @media (prefers-reduced-motion:reduce){.orb,.marq,.rise,.stagger>*,.dq-caret,.view.on,.pn.on{animation:none}.reel-item,.viewer{transition:none}.wipe{display:none}}
 
 /* ===== versione PC (solo schermi larghi: il mobile resta identico) ===== */
-.dbrand,.dnav,.rlab{display:none}
+.dbrand,.dnav{display:none}
 @media (min-width:1100px){
   /* intestazione */
   .tb-home{left:40px;top:28px;flex-direction:row;width:auto;gap:12px}
@@ -499,21 +499,17 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   .hsplit .hmq{grid-column:1/-1;grid-row:4;max-width:none;width:auto;height:84px;margin:0 -48px;border-top:1px solid rgba(255,255,255,.08)}
   .hsplit .mqmask::before,.hsplit .mqmask::after{width:8%}
 
-  /* video ai: griglia invece della colonna a tutto schermo */
-  #reelpage{max-width:1440px;margin:0 auto;padding:120px 48px 150px!important}
+  /* video ai: come sul telefono, uno sotto l'altro in ordine, senza divisioni */
+  #reelpage{max-width:1240px;margin:0 auto;padding:120px 48px 150px!important}
   #reelpage>h1.sr{position:static;width:auto;height:auto;overflow:visible;clip:auto;margin:0 0 48px;font-weight:900;font-size:96px;line-height:.95;letter-spacing:-.05em;color:var(--acc)}
   html.snap{scroll-snap-type:none}
-  .reel-item{scroll-snap-align:none}
-  .reel{display:grid;grid-template-columns:repeat(30,minmax(0,1fr));gap:20px}
-  .rlab{display:block;grid-column:1/-1;margin:24px 0 0;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
-  .rlab:first-child{margin-top:0}
-  .reel-item{grid-column:span 10;width:auto;height:auto;aspect-ratio:16/9;transform:none!important;border-radius:22px}
-  .reel-item[data-t="church"]{grid-column:1/-1;aspect-ratio:21/9;border-radius:28px}
-  .reel-item.v{grid-column:span 6;height:auto;aspect-ratio:9/16}
+  .reel{display:flex;flex-direction:column;align-items:center;gap:28px}
+  .reel-item{scroll-snap-align:none;width:100%;height:auto;aspect-ratio:16/9;transform:none!important;border-radius:26px}
+  .reel-item.v{width:auto;height:min(86vh,980px);max-width:100%;aspect-ratio:9/16}
+  .reel-item[style*="--rw:0.8"]{aspect-ratio:4/5}
   .reel-item .clip{border-radius:inherit}
   .reel-item::after{inset:0;border-radius:inherit}
-  .reel-item .rt,.reel-item:not(.v) .rt{left:22px;bottom:18px;font-size:24px}
-  .reel-item[data-t="church"] .rt{left:32px;bottom:28px;font-size:44px}
+  .reel-item .rt,.reel-item:not(.v) .rt{left:28px;bottom:24px;font-size:32px}
   .reel-item:hover .clip video{transform:scale(1.02);transition:transform .5s ease}
 
   /* video making: stessi contenuti, più larghi */
@@ -589,7 +585,12 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   <div class="page wide" id="reelpage" style="padding:0">
     <h1 class="sr">video ai</h1>
     <div class="reel" id="reel">
-      <div class="rlab" aria-hidden="true">vision</div>
+      <button class="reel-item v" type="button" style="--rw:0.5625" data-t="gotha" data-tag="" data-src="video/gotha.mp4" aria-label="gotha"><span class="clip"><video muted loop playsinline preload="none" poster="poster/gotha.jpg" data-src="video/gotha.mp4"></video><span class="shade"></span></span><span class="rt">gotha</span></button>
+      <button class="reel-item" type="button" style="--rw:1.778" data-t="black sheep" data-tag="" data-src="video/blacksheep.mp4" aria-label="black sheep"><span class="clip"><video muted loop playsinline preload="none" poster="poster/blacksheep.jpg" data-src="video/blacksheep.mp4"></video><span class="shade"></span></span><span class="rt">black sheep</span></button>
+      <button class="reel-item v" type="button" style="--rw:0.5625" data-t="privilege" data-tag="" data-src="video/privilege.mp4" aria-label="privilege"><span class="clip"><video muted loop playsinline preload="none" poster="poster/privilege.jpg" data-src="video/privilege.mp4"></video><span class="shade"></span></span><span class="rt">privilege</span></button>
+      <button class="reel-item" type="button" style="--rw:1.778" data-t="trapped here" data-tag="" data-src="video/trapped-here.mp4" aria-label="trapped here"><span class="clip"><video muted loop playsinline preload="none" poster="poster/trapped-here.jpg" data-src="video/trapped-here.mp4"></video><span class="shade"></span></span><span class="rt">trapped here</span></button>
+      <button class="reel-item v" type="button" style="--rw:0.5625" data-t="vitti lugano" data-tag="" data-src="video/vitti-lugano.mp4" aria-label="vitti lugano"><span class="clip"><video muted loop playsinline preload="none" poster="poster/vitti-lugano.jpg" data-src="video/vitti-lugano.mp4"></video><span class="shade"></span></span><span class="rt">vitti lugano</span></button>
+      <button class="reel-item v" type="button" style="--rw:0.5625" data-t="vitti roma" data-tag="" data-src="video/vitti-roma.mp4" aria-label="vitti roma"><span class="clip"><video muted loop playsinline preload="none" poster="poster/vitti-roma.jpg" data-src="video/vitti-roma.mp4"></video><span class="shade"></span></span><span class="rt">vitti roma</span></button>
       <button class="reel-item" type="button" style="--rw:1.778" data-t="church" data-tag="vision" data-src="video/church.mp4" aria-label="church"><span class="clip"><video muted loop playsinline preload="none" poster="video/church.jpg" data-src="video/church.mp4"></video><span class="shade"></span></span><span class="rt">church</span></button>
       <button class="reel-item" type="button" style="--rw:1.778" data-t="salvador's dream" data-tag="vision" data-src="video/salvadors-dream.mp4" aria-label="salvador's dream"><span class="clip"><video muted loop playsinline preload="none" poster="poster/salvadors-dream.jpg" data-src="video/salvadors-dream.mp4"></video><span class="shade"></span></span><span class="rt">salvador's dream</span></button>
       <button class="reel-item" type="button" style="--rw:1.778" data-t="backrooms" data-tag="vision" data-src="video/backrooms.mp4" aria-label="backrooms"><span class="clip"><video muted loop playsinline preload="none" poster="poster/backrooms.jpg" data-src="video/backrooms.mp4"></video><span class="shade"></span></span><span class="rt">backrooms</span></button>
@@ -597,7 +598,6 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
       <button class="reel-item" type="button" style="--rw:1.778" data-t="milano" data-tag="vision" data-src="video/milano.mp4" aria-label="milano"><span class="clip"><video muted loop playsinline preload="none" poster="poster/milano.jpg" data-src="video/milano.mp4"></video><span class="shade"></span></span><span class="rt">milano</span></button>
       <button class="reel-item" type="button" style="--rw:1.778" data-t="training" data-tag="vision" data-src="video/mob-fut-grain.mp4" aria-label="training"><span class="clip"><video muted loop playsinline preload="none" poster="poster/mob-fut-grain.jpg" data-src="video/mob-fut-grain.mp4"></video><span class="shade"></span></span><span class="rt">training</span></button>
       <button class="reel-item" type="button" style="--rw:1.778" data-t="terrazza duomo" data-tag="evento" data-src="video/ugo-dv-mariu.mp4" aria-label="terrazza duomo, evento"><span class="clip"><video muted loop playsinline preload="none" poster="poster/ugo-dv-mariu.jpg" data-src="video/ugo-dv-mariu.mp4"></video><span class="shade"></span></span><span class="rt">terrazza duomo<small>evento</small></span></button>
-      <div class="rlab" aria-hidden="true">commissionati</div>
       <button class="reel-item v" type="button" style="--rw:0.5625" data-t="dolce vita" data-tag="terrazza duomo" data-src="video/dolce-vita.mp4" aria-label="dolce vita, terrazza duomo"><span class="clip"><video muted loop playsinline preload="none" poster="poster/dolce-vita.jpg" data-src="video/dolce-vita.mp4"></video><span class="shade"></span></span><span class="rt">dolce vita<small>terrazza duomo</small></span></button>
       <button class="reel-item v" type="button" style="--rw:0.5625" data-t="mfw closing" data-tag="twiga" data-src="video/mfw-closing-unilux.mp4" aria-label="mfw closing, twiga"><span class="clip"><video muted loop playsinline preload="none" poster="poster/mfw-closing-unilux.jpg" data-src="video/mfw-closing-unilux.mp4"></video><span class="shade"></span></span><span class="rt">mfw closing<small>twiga</small></span></button>
       <button class="reel-item v" type="button" style="--rw:0.8" data-t="fast life" data-tag="risotto western" data-src="video/fastlife-draft.mp4" aria-label="fast life, risotto western"><span class="clip"><video muted loop playsinline preload="none" poster="poster/fastlife-draft.jpg" data-src="video/fastlife-draft.mp4"></video><span class="shade"></span></span><span class="rt">fast life<small>risotto western</small></span></button>
