@@ -324,8 +324,6 @@ html.snap{scroll-snap-type:y proximity}
 .ap-photo img{object-position:62% 50%}
 .ap-k{position:relative;z-index:1;margin-top:-72px;margin-bottom:8px}
 .ap-ttl{margin-top:0}
-.ap-ph{border-radius:26px;padding:10px;margin:18px 0 12px;box-sizing:border-box}
-.ap-ph img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:18px}
 .ap-rows{display:flex;flex-direction:column;gap:10px;margin:6px 0 0}
 .ap-row{display:flex;gap:14px;align-items:flex-start;border-radius:22px;padding:16px}
 .ap-ico{width:40px;height:40px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(255,210,31,.12);border:1px solid rgba(255,210,31,.4);box-sizing:border-box}
@@ -479,9 +477,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   .tb-title{display:none!important}
   body:not(.is-home) .dnav{display:flex}
   .dnav{position:fixed;z-index:24;top:30px;right:40px;align-items:center;gap:8px}
-  .dnav>a.pill{height:44px;padding:0 20px;font-size:14px;color:inherit}
-  body[data-view="ai"] .dnav a[data-v="ai"],body[data-view="making"] .dnav a[data-v="making"],body[data-view="appartamenti"] .dnav a[data-v="appartamenti"]{background:var(--acc);color:#111;border-color:rgba(255,255,255,.55)}
-  .dnav .dlang{margin-left:14px;gap:6px}
+  .dnav .dlang{gap:6px}
   .dnav .dlang .pill{height:40px;padding:0 14px;font-size:13px}
   #snd{top:auto;bottom:28px;right:32px}
   .page{max-width:1344px;padding-left:48px;padding-right:48px;padding-top:120px}
@@ -536,7 +532,6 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   .dx-chaps{flex-direction:row;gap:20px;margin:10px 0 0}
   .dx-chap{flex:1 1 0;min-width:0;padding:16px 16px 26px}
   .dx-ct b{font-size:20px}.dx-ct span{font-size:15px}
-  .ap-ph{max-width:460px}
   .ap-rows{flex-direction:row;gap:16px}
   .ap-row{flex:1 1 0;min-width:0;padding:22px}
   .ap-row b{font-size:17px}.ap-row span{font-size:14px}
@@ -709,7 +704,6 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
       <div class="dx-k">in appartamento</div>
       <h3 class="dx-h">tutto a portata di mano</h3>
       <p class="dx-p">Insieme ai video realizziamo anche il sito dedicato al tuo appartamento. Basta un unico QR code, sul totem all'ingresso, per accedere a tutte le informazioni, a ogni video e a ogni tutorial che abbiamo creato.</p>
-      <div class="glass ap-ph"><img src="assets/menu/totem.jpg" alt="" loading="lazy" draggable="false"></div>
       <div class="ap-rows">
 <div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 14v0M17 20h4M20 17v3"/></svg></div><div><b>Totem con QR code</b><span>L'ospite lo inquadra appena arriva ed entra nel sito dell'appartamento.</span></div></div>
 <div class="glass ap-row"><div class="ap-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 19V5.5M9 8h7"/></svg></div><div><b>Sito dedicato</b><span>Tutte le informazioni, i video e i tutorial in un unico posto, ordinati in un menu chiaro.</span></div></div>
@@ -779,7 +773,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
 
 <!-- dock flottante -->
 <nav class="dock" aria-label="Navigazione"><a class="ccta press" href="#contact">contattaci</a></nav>
-<nav class="dnav" aria-label="sezioni"><a class="glass pill press" href="#ai" data-v="ai">video ai</a><a class="glass pill press" href="#making" data-v="making">doppiaggi</a><a class="glass pill press" href="#appartamenti" data-v="appartamenti">appartamenti</a><div class="lp dlang" role="group" aria-label="lingua / language" data-lp><button type="button" class="glass pill press pill-on" data-l="it" aria-pressed="true" aria-label="italiano">ita</button><button type="button" class="glass pill press" data-l="en" aria-pressed="false" aria-label="english">en</button></div></nav>
+<nav class="dnav" aria-label="sezioni"><div class="lp dlang" role="group" aria-label="lingua / language" data-lp><button type="button" class="glass pill press pill-on" data-l="it" aria-pressed="true" aria-label="italiano">ita</button><button type="button" class="glass pill press" data-l="en" aria-pressed="false" aria-label="english">en</button></div></nav>
 <a class="tb-home press" href="#home" aria-label="home"><span class="c"><svg width="26" height="26" viewBox="0 0 92 92" fill="none" aria-hidden="true"><path d="M18 64V32Q18 16 33 16Q47 16 47 32V58Q47 74 61 74Q75 74 75 58V30" stroke="#FFD21F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">home</span></a>
 <div class="tb-title ai" aria-hidden="true">video ai</div><div class="tb-title making" aria-hidden="true">doppiaggi</div><div class="tb-title appartamenti" aria-hidden="true">appartamenti</div>
 </div>
@@ -849,13 +843,15 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   /* ---------- fascia loghi ---------- */
   var LOGOS = [['terrazza21','Terrazza 21','png',36,244/141],['hollywood','Hollywood Rythmoteque','png',30,900/176],['twiga','Twiga','svg',26,284/48],['loolapaloosa','Loolapaloosa','png',36,900/892],['rentallo','Rentallo','png',30,900/373],['fastlife','Fast Life','png',28,716/170],['mv18','MV18','png',32,900/465],['blacksheep','Black Sheep','svg',34,1131.7/569.7],['mc-holiday','MC Holiday','svg',38,433/435]];
   var mh = '';
-  for (var rep = 0; rep < 2; rep++) LOGOS.forEach(function(l){ mh += '<img class="lg" src="assets/logos/' + l[0] + '.' + l[2] + '" alt="" style="height:' + l[3] + 'px;width:' + Math.round(l[3] * l[4]) + 'px;flex:none">'; });
+  /* ogni metà della striscia deve essere più larga dello schermo (su PC una sola serie di loghi non basta) */
+  var COPIES = Math.max(1, Math.ceil(Math.max(innerWidth, screen.width || 0) / 900));
+  for (var rep = 0; rep < 2 * COPIES; rep++) LOGOS.forEach(function(l){ mh += '<img class="lg" src="assets/logos/' + l[0] + '.' + l[2] + '" alt="" style="height:' + l[3] + 'px;width:' + Math.round(l[3] * l[4]) + 'px;flex:none">'; });
   $('#marq').innerHTML = mh; $('#marq2').innerHTML = mh;
   /* scorrimento guidato da JS: parte subito anche su iPhone, senza aspettare che il browser avvii l'animazione CSS */
   (function(){
     var mqs = $$('.hsplit .marq'); if (!mqs.length) return;
     mqs.forEach(function(m){ m.style.animation = 'none'; m.style.willChange = 'transform'; });
-    var DUR = 11000, t0 = performance.now(), half = 0;
+    var DUR = 11000 * COPIES, t0 = performance.now(), half = 0;
     function loop(t){
       mqs.forEach(function(mq, i){
         var hw = mq.scrollWidth / 2, x = ((t - t0) % DUR) / DUR * hw;
