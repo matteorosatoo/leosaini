@@ -19,6 +19,7 @@
 <link rel="preload" as="image" href="assets/logos/mv18.png">
 <link rel="preload" as="image" href="assets/logos/blacksheep.svg">
 <link rel="preload" as="image" href="assets/logos/mc-holiday.svg">
+<link rel="preload" as="image" href="assets/logos/vitti.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
@@ -573,7 +574,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
       <button type="button" class="glass pill press pill-on" data-l="it" aria-pressed="true" aria-label="italiano">ita</button>
       <button type="button" class="glass pill press" data-l="en" aria-pressed="false" aria-label="english">en</button>
     </div>
-    <div class="mq hmq" role="img" aria-label="Brand con cui abbiamo lavorato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life"><div class="mqmask"><div class="marq" id="marq"></div></div></div>
+    <div class="mq hmq" role="img" aria-label="Brand con cui abbiamo lavorato: Terrazza 21, Hollywood, Twiga, Loolapaloosa, Rentallo, Fast Life, MV18, Black Sheep, MC Holiday, Vitti"><div class="mqmask"><div class="marq" id="marq"></div></div></div>
     <a class="mcb" href="#contact">contattaci</a>
   </div>
 </section>
@@ -597,7 +598,6 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
       <button class="reel-item" type="button" style="--rw:1.778" data-t="milano" data-tag="vision" data-src="video/milano.mp4" aria-label="milano"><span class="clip"><video muted loop playsinline preload="none" poster="poster/milano.jpg" data-src="video/milano.mp4"></video><span class="shade"></span></span><span class="rt">milano</span></button>
       <button class="reel-item" type="button" style="--rw:1.778" data-t="training" data-tag="vision" data-src="video/mob-fut-grain.mp4" aria-label="training"><span class="clip"><video muted loop playsinline preload="none" poster="poster/mob-fut-grain.jpg" data-src="video/mob-fut-grain.mp4"></video><span class="shade"></span></span><span class="rt">training</span></button>
       <button class="reel-item" type="button" style="--rw:1.778" data-t="terrazza duomo" data-tag="evento" data-src="video/ugo-dv-mariu.mp4" aria-label="terrazza duomo, evento"><span class="clip"><video muted loop playsinline preload="none" poster="poster/ugo-dv-mariu.jpg" data-src="video/ugo-dv-mariu.mp4"></video><span class="shade"></span></span><span class="rt">terrazza duomo<small>evento</small></span></button>
-      <button class="reel-item v" type="button" style="--rw:0.5625" data-t="dolce vita" data-tag="terrazza duomo" data-src="video/dolce-vita.mp4" aria-label="dolce vita, terrazza duomo"><span class="clip"><video muted loop playsinline preload="none" poster="poster/dolce-vita.jpg" data-src="video/dolce-vita.mp4"></video><span class="shade"></span></span><span class="rt">dolce vita<small>terrazza duomo</small></span></button>
       <button class="reel-item v" type="button" style="--rw:0.5625" data-t="mfw closing" data-tag="twiga" data-src="video/mfw-closing-unilux.mp4" aria-label="mfw closing, twiga"><span class="clip"><video muted loop playsinline preload="none" poster="poster/mfw-closing-unilux.jpg" data-src="video/mfw-closing-unilux.mp4"></video><span class="shade"></span></span><span class="rt">mfw closing<small>twiga</small></span></button>
       <button class="reel-item v" type="button" style="--rw:0.8" data-t="fast life" data-tag="risotto western" data-src="video/fastlife-draft.mp4" aria-label="fast life, risotto western"><span class="clip"><video muted loop playsinline preload="none" poster="poster/fastlife-draft.jpg" data-src="video/fastlife-draft.mp4"></video><span class="shade"></span></span><span class="rt">fast life<small>risotto western</small></span></button>
       <button class="reel-item v" type="button" style="--rw:0.5625" data-t="ladies night" data-tag="loolapaloosa" data-src="video/ladies-night.mp4" aria-label="ladies night, loolapaloosa"><span class="clip"><video muted loop playsinline preload="none" poster="poster/ladies-night.jpg" data-src="video/ladies-night.mp4"></video><span class="shade"></span></span><span class="rt">ladies night<small>loolapaloosa</small></span></button>
@@ -843,7 +843,7 @@ body[data-view="home"]::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
   addEventListener('hashchange', function(){ fromHash(false); });
 
   /* ---------- fascia loghi ---------- */
-  var LOGOS = [['terrazza21','Terrazza 21','png',36,244/141],['hollywood','Hollywood Rythmoteque','png',30,900/176],['twiga','Twiga','svg',26,284/48],['loolapaloosa','Loolapaloosa','png',36,900/892],['rentallo','Rentallo','png',30,900/373],['fastlife','Fast Life','png',28,716/170],['mv18','MV18','png',32,900/465],['blacksheep','Black Sheep','svg',34,1131.7/569.7],['mc-holiday','MC Holiday','svg',38,433/435]];
+  var LOGOS = [['terrazza21','Terrazza 21','png',36,244/141],['hollywood','Hollywood Rythmoteque','png',30,900/176],['twiga','Twiga','svg',26,284/48],['loolapaloosa','Loolapaloosa','png',36,900/892],['rentallo','Rentallo','png',30,900/373],['fastlife','Fast Life','png',28,716/170],['mv18','MV18','png',32,900/465],['blacksheep','Black Sheep','svg',34,1131.7/569.7],['mc-holiday','MC Holiday','svg',38,433/435],['vitti','Vitti','svg',42,1782/1062]];
   var mh = '';
   /* ogni metà della striscia deve essere più larga dello schermo (su PC una sola serie di loghi non basta) */
   var COPIES = Math.max(1, Math.ceil(Math.max(innerWidth, screen.width || 0) / 900));
